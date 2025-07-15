@@ -122,7 +122,7 @@ export const Banner = () => {
                         }}
                         className={`w-3 h-3 rounded-full transition-colors ${index === imageIndex ? 'bg-[#fff4bf]' : 'bg-white/50 hover:bg-white/70'}`}
                     />
-                ))}n            </div>
+                ))}            </div>
         </div>
     );
 };
