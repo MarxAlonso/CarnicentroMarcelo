@@ -1,12 +1,12 @@
 import {useState} from 'react'
 import './HomePage.css'
-import {Header} from '../../components/Header/Header'
+import {Banner} from '../../components/Banner/Banner'
 import {ExplorarCarnes} from '../../components/ExplorarCarnes/ExplorarCarnes'
 export const HomePage = () =>{
     const[category,setCategory] = useState("Mas");
     return(
         <div>
-            <Header />
+            <Banner />
             <ExplorarCarnes category={category} setCategory={setCategory} />
         </div>
     )
