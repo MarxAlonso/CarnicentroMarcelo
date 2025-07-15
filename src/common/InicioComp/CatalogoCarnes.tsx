@@ -20,7 +20,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 45.99,
         peso: '1kg',
-        imagen: '/src/assets/food_1.png',
+        imagen: '../../../src/assets/food_1.png',
         descripcion: 'Corte premium de res, ideal para preparar a la parrilla o en medallones. Carne suave y jugosa.'
     },
     {
@@ -29,7 +29,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 32.99,
         peso: '800g',
-        imagen: '/src/assets/food_2.png',
+        imagen: '../../../src/assets/food_2.png',
         descripcion: 'Chuletas de cerdo premium, perfectas para la parrilla o freír. Jugosas y tiernas.'
     },
     {
@@ -38,7 +38,7 @@ const productos: Producto[] = [
         tipo: 'molida',
         precio: 25.99,
         peso: '500g',
-        imagen: '/src/assets/food_3.png',
+        imagen: '../../../src/assets/food_3.png',
         descripcion: 'Carne molida premium, ideal para hamburguesas, albóndigas o cualquier preparación.'
     },
     {
@@ -47,7 +47,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 52.99,
         peso: '1kg',
-        imagen: '/src/assets/food_4.png',
+        imagen: '../../../src/assets/food_4.png',
         descripcion: 'Corte jugoso y tierno, perfecto para la parrilla. Con el punto justo de marmoleo.'
     },
     {
@@ -56,7 +56,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 38.99,
         peso: '1kg',
-        imagen: '/src/assets/food_5.png',
+        imagen: '../../../src/assets/food_5.png',
         descripcion: 'Costillas de cerdo jugosas, ideales para BBQ o al horno. Sabor incomparable.'
     },
     {
@@ -65,7 +65,7 @@ const productos: Producto[] = [
         tipo: 'molida',
         precio: 28.99,
         peso: '500g',
-        imagen: '/src/assets/food_6.png',
+        imagen: '../../../src/assets/food_6.png',
         descripcion: 'Carne molida de primera calidad, con el punto justo de grasa para máximo sabor.'
     },
     {
@@ -74,7 +74,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 48.99,
         peso: '1kg',
-        imagen: '/src/assets/food_7.png',
+        imagen: '../../../src/assets/food_7.png',
         descripcion: 'Corte brasileño por excelencia, jugoso y con una capa de grasa que le da un sabor único.'
     },
     {
@@ -83,7 +83,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 35.99,
         peso: '800g',
-        imagen: '/src/assets/food_8.png',
+        imagen: '../../../src/assets/food_8.png',
         descripcion: 'Panceta de cerdo con piel, perfecta para chicharrón o al horno. Textura crujiente por fuera y jugosa por dentro.'
     }
 ];
