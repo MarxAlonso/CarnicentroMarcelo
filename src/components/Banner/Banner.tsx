@@ -5,8 +5,8 @@ import { BsArrowRightCircle, BsArrowLeftCircle } from 'react-icons/bs';
 
 const bannerImages = [
     '/header_img.png',
-    '../../../src/assets/food_1.png',
-    '../../../src/assets/food_2.png',
+    '../../assets/food_1.png',
+    '../../assets/food_2.png',
 ];
 
 const slideVariants = {
