@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { NavbarMenu } from "./NavbarData";
-import { FaShoppingBasket } from "react-icons/fa";
 
 interface ResponsiveMenuProps {
   open: boolean;

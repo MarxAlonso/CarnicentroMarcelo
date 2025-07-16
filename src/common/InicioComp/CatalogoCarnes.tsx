@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GiCow, GiPig, GiMeat, GiWeight, GiPriceTag } from 'react-icons/gi';
 import { FaTimes } from 'react-icons/fa';
+import  food_1  from '../../assets/food_1.png';
+import  food_2  from '../../assets/food_2.png';
+import  food_3  from '../../assets/food_3.png';
+import  food_4  from '../../assets/food_4.png';
+import  food_5  from '../../assets/food_5.png';
+import  food_6  from '../../assets/food_6.png';
+import  food_7  from '../../assets/food_7.png';
+import  food_8  from '../../assets/food_8.png';
 
 interface Producto {
     id: number;
@@ -20,7 +28,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 45.99,
         peso: '1kg',
-        imagen: '../../assets/food_1.png',
+        imagen: food_1,
         descripcion: 'Corte premium de res, ideal para preparar a la parrilla o en medallones. Carne suave y jugosa.'
     },
     {
@@ -29,7 +37,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 32.99,
         peso: '800g',
-        imagen: '../../assets/food_2.png',
+        imagen: food_2,
         descripcion: 'Chuletas de cerdo premium, perfectas para la parrilla o freír. Jugosas y tiernas.'
     },
     {
@@ -38,7 +46,7 @@ const productos: Producto[] = [
         tipo: 'molida',
         precio: 25.99,
         peso: '500g',
-        imagen: '../../assets/food_3.png',
+        imagen: food_3,
         descripcion: 'Carne molida premium, ideal para hamburguesas, albóndigas o cualquier preparación.'
     },
     {
@@ -47,7 +55,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 52.99,
         peso: '1kg',
-        imagen: '../../assets/food_4.png',
+        imagen: food_4,
         descripcion: 'Corte jugoso y tierno, perfecto para la parrilla. Con el punto justo de marmoleo.'
     },
     {
@@ -56,7 +64,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 38.99,
         peso: '1kg',
-        imagen: '../../assets/food_5.png',
+        imagen: food_5,
         descripcion: 'Costillas de cerdo jugosas, ideales para BBQ o al horno. Sabor incomparable.'
     },
     {
@@ -65,7 +73,7 @@ const productos: Producto[] = [
         tipo: 'molida',
         precio: 28.99,
         peso: '500g',
-        imagen: '../../assets/food_6.png',
+        imagen: food_6,
         descripcion: 'Carne molida de primera calidad, con el punto justo de grasa para máximo sabor.'
     },
     {
@@ -74,7 +82,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 48.99,
         peso: '1kg',
-        imagen: '../../assets/food_7.png',
+        imagen: food_7,
         descripcion: 'Corte brasileño por excelencia, jugoso y con una capa de grasa que le da un sabor único.'
     },
     {
@@ -83,7 +91,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 35.99,
         peso: '800g',
-        imagen: '../../assets/food_8.png',
+        imagen: food_8,
         descripcion: 'Panceta de cerdo con piel, perfecta para chicharrón o al horno. Textura crujiente por fuera y jugosa por dentro.'
     }
 ];

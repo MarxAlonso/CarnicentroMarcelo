@@ -2,11 +2,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { GiMeat, GiCow, GiPig } from 'react-icons/gi';
 import { BsArrowRightCircle, BsArrowLeftCircle } from 'react-icons/bs';
-
+import  food_21  from '../../assets/food_21.png';
+import  food_22  from '../../assets/food_22.png';
 const bannerImages = [
     '/header_img.png',
-    '../../assets/food_1.png',
-    '../../assets/food_2.png',
+    food_21,
+    food_22
 ];
 
 const slideVariants = {
