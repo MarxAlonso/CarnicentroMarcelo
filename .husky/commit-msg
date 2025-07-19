@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+commit_message=$(cat "$1")
+commit_pattern="^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert)(\(.+\))?: .{1,50}$"
+
+if ! echo "$commit_message" | grep -E "$commit_pattern" > /dev/null; then
+  echo "Error: El mensaje del commit debe seguir el formato Conventional Commits:"
+  echo "  <tipo>(alcance opcional): <descripción>"
+  echo ""
+  echo "Tipos permitidos: feat, fix, docs, style, refactor, perf, test, chore, build, ci, revert"
+  echo "Ejemplo: feat(auth): agregar validación de token"
+  exit 1
+fi
