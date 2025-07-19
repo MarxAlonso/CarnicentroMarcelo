@@ -1,3 +1,5 @@
+//<tipo>(alcance opcional): <descripción>
+//feat(auth): agregar validación de token
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
