@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GiCow, GiMeat, GiWeight } from 'react-icons/gi';
+import { GiMeat, GiWeight } from 'react-icons/gi';
 
 // Datos de ejemplo de productos
 import { productosRes } from './data/productosRes';
@@ -166,7 +166,7 @@ export const FiltroCarneRes = () => {
                     <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
                     <p className="text-carni-dark-red font-bold mb-6">S/ {modalProducto.precio}.00 /kg</p>
                     <a
-                        href={`https://wa.me/51999999999?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}.00%20por%20kg.`}
+                        href={`https://wa.me/51922061911?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}.00%20por%20kg.`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block text-center bg-carni-red text-white py-2 rounded-lg font-semibold hover:bg-carni-dark-red transition-colors duration-300"
