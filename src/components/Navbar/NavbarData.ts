@@ -23,7 +23,7 @@ export const NavbarMenu: MenuItem[] = [
     submenu: [
       {
         title: 'Carne de Res',
-        link: '/productos/res',
+        link: '/carneres',
       },
       {
         title: 'Carne de Cerdo',
