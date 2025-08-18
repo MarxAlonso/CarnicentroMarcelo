@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { GiCow, GiMeat } from 'react-icons/gi';
-import menu_1 from '../../assets/menu_1.png';
-import menu_2 from '../../assets/menu_2.png';
-import menu_3 from '../../assets/menu_3.png';
-import menu_4 from '../../assets/menu_4.png';
-import menu_5 from '../../assets/menu_5.png';
-import menu_6 from '../../assets/menu_6.png';
-import menu_7 from '../../assets/menu_7.png';
-import menu_8 from '../../assets/menu_8.png';
+import carnemolida from '../../assets/carnes/carnemolida.webp';
+import panceta from '../../assets/carnes/panceta.webp';
+import costillas from '../../assets/carnes/costillas.webp';
+import chuletacerdo from '../../assets/carnes/chuletacerdo.webp';
+import bisteck from '../../assets/carnes/bisteck.webp';
+import lomo from '../../assets/carnes/lomo.webp';
+import asado from '../../assets/carnes/asado.webp';
+import churrasco from '../../assets/carnes/churrasco.webp';
 
 // Definir el tipo de los elementos del menú
 interface MenuItem {
@@ -23,14 +23,14 @@ interface ExplorarCarnesProps {
 
 // La lista de los elementos del menú (carnes)
 const menu_list: MenuItem[] = [
-  { menu_name: "Cortes Premium", menu_image: menu_1 },
-  { menu_name: "Carne Molida", menu_image: menu_2 },
-  { menu_name: "Costillas", menu_image: menu_3 },
-  { menu_name: "Chuletas", menu_image: menu_4 },
-  { menu_name: "Bistec", menu_image: menu_5 },
-  { menu_name: "Lomo", menu_image: menu_6 },
-  { menu_name: "Asado", menu_image: menu_7 },
-  { menu_name: "Especiales", menu_image: menu_8 },
+  { menu_name: "Panceta", menu_image: panceta },
+  { menu_name: "Carne Molida", menu_image: carnemolida },
+  { menu_name: "Costillas", menu_image: costillas },
+  { menu_name: "Chuletas", menu_image: chuletacerdo },
+  { menu_name: "Bistec", menu_image: bisteck },
+  { menu_name: "Lomo", menu_image: lomo },
+  { menu_name: "Asado", menu_image: asado },
+  { menu_name: "Churrasco", menu_image: churrasco },
 ];
 
 // Componente ExplorarCarnes
