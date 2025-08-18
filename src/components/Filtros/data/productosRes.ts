@@ -1,5 +1,6 @@
-import  food_21  from '../../../assets/food_21.png';
-import  food_22  from '../../../assets/food_22.png';
+import  lomofino  from '../../../assets/catalogoinicio/lomofino.webp';
+import  bife from '../../../assets/catalogoinicio/bife.webp';
+import  carnemolidaespecial from '../../../assets/catalogoinicio/carnemolidaespecial.webp';
 export const productosRes = [
     {
         id: 1,
@@ -7,7 +8,7 @@ export const productosRes = [
         precio: 45,
         categoria: 'Premium',
         descripcion: 'Corte magro y tierno',
-        imagen: food_21,
+        imagen: lomofino,
     },
     {
         id: 2,
@@ -15,7 +16,7 @@ export const productosRes = [
         precio: 39,
         categoria: 'Premium',
         descripcion: 'Jugoso y marmoleado',
-        imagen: food_22,
+        imagen: bife,
     },
     {
         id: 3,
@@ -47,6 +48,6 @@ export const productosRes = [
         precio: 25,
         categoria: 'Molida',
         descripcion: 'Carne molida premium',
-        imagen: '',
+        imagen: carnemolidaespecial,
     },
 ];

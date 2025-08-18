@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { GiCow } from 'react-icons/gi';
+import  banner1vacas  from '../../assets/banner/banner1-vacas.webp';
 
 export const BannerCarneRes = () => {
     return (
@@ -8,7 +9,7 @@ export const BannerCarneRes = () => {
             <div 
                 className="absolute inset-0 bg-gradient-to-r from-carni-red/90 to-carni-dark-red/90"
                 style={{ 
-                    backgroundImage: 'url("/header_img.png")',
+                    backgroundImage: `url(${banner1vacas})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundBlendMode: 'overlay'
