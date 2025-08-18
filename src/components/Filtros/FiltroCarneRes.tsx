@@ -6,8 +6,6 @@ import { GiMeat, GiWeight } from 'react-icons/gi';
 import { productosRes } from './data/productosRes';
 import { categorias } from './data/categorias';
 
-
-
 export const FiltroCarneRes = () => {
     const [busqueda, setBusqueda] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
