@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GiCow, GiPig, GiMeat, GiWeight, GiPriceTag } from 'react-icons/gi';
 import { FaTimes } from 'react-icons/fa';
-import  food_1  from '../../assets/food_1.png';
-import  food_2  from '../../assets/food_2.png';
-import  food_3  from '../../assets/food_3.png';
-import  food_4  from '../../assets/food_4.png';
+import  lomofino  from '../../assets/catalogoinicio/lomofino.webp';
+import  chuletacerdo  from '../../assets/catalogoinicio/chuletacerdo.webp';
+import  carnemolidaespecial  from '../../assets/catalogoinicio/carnemolidaespecial.webp';
+import  bife  from '../../assets/catalogoinicio/bife.webp';
 import  food_5  from '../../assets/food_5.png';
 import  food_6  from '../../assets/food_6.png';
 import  food_7  from '../../assets/food_7.png';
-import  food_8  from '../../assets/food_8.png';
+import  pancetadecerdo  from '../../assets/catalogoinicio/pancetadecerdo.webp';
 
 interface Producto {
     id: number;
@@ -28,7 +28,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 45.99,
         peso: '1kg',
-        imagen: food_1,
+        imagen: lomofino,
         descripcion: 'Corte premium de res, ideal para preparar a la parrilla o en medallones. Carne suave y jugosa.'
     },
     {
@@ -37,7 +37,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 32.99,
         peso: '800g',
-        imagen: food_2,
+        imagen: chuletacerdo,
         descripcion: 'Chuletas de cerdo premium, perfectas para la parrilla o freír. Jugosas y tiernas.'
     },
     {
@@ -46,7 +46,7 @@ const productos: Producto[] = [
         tipo: 'molida',
         precio: 25.99,
         peso: '500g',
-        imagen: food_3,
+        imagen: carnemolidaespecial,
         descripcion: 'Carne molida premium, ideal para hamburguesas, albóndigas o cualquier preparación.'
     },
     {
@@ -55,7 +55,7 @@ const productos: Producto[] = [
         tipo: 'res',
         precio: 52.99,
         peso: '1kg',
-        imagen: food_4,
+        imagen: bife,
         descripcion: 'Corte jugoso y tierno, perfecto para la parrilla. Con el punto justo de marmoleo.'
     },
     {
@@ -91,7 +91,7 @@ const productos: Producto[] = [
         tipo: 'cerdo',
         precio: 35.99,
         peso: '800g',
-        imagen: food_8,
+        imagen: pancetadecerdo,
         descripcion: 'Panceta de cerdo con piel, perfecta para chicharrón o al horno. Textura crujiente por fuera y jugosa por dentro.'
     }
 ];
@@ -154,7 +154,7 @@ export const CatalogoCarnes = () => {
                             className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group"
                             onClick={() => setProductoSeleccionado(producto)}
                         >
-                            <div className="aspect-w-16 aspect-h-9 bg-gray-200 overflow-hidden">
+                            <div className="h-56 bg-gray-200 overflow-hidden">
                                 <motion.img 
                                     whileHover={{ scale: 1.1 }}
                                     src={producto.imagen} 
@@ -162,6 +162,7 @@ export const CatalogoCarnes = () => {
                                     className="w-full h-full object-cover transition-transform duration-300"
                                 />
                             </div>
+
                             <div className="p-4">
                                 <h3 className="text-xl font-semibold text-gray-800 group-hover:text-[#a90a0a] transition-colors">
                                     {producto.nombre}
