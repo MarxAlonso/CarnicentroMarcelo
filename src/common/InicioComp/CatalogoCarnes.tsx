@@ -6,9 +6,7 @@ import  lomofino  from '../../assets/catalogoinicio/lomofino.webp';
 import  chuletacerdo  from '../../assets/catalogoinicio/chuletacerdo.webp';
 import  carnemolidaespecial  from '../../assets/catalogoinicio/carnemolidaespecial.webp';
 import  bife  from '../../assets/catalogoinicio/bife.webp';
-import  food_5  from '../../assets/food_5.png';
-import  food_6  from '../../assets/food_6.png';
-import  food_7  from '../../assets/food_7.png';
+import  bisteck2  from '../../assets/catalogoinicio/bisteck2.webp';
 import  pancetadecerdo  from '../../assets/catalogoinicio/pancetadecerdo.webp';
 
 interface Producto {
@@ -60,33 +58,15 @@ const productos: Producto[] = [
     },
     {
         id: 5,
-        nombre: 'Costillas de Cerdo',
-        tipo: 'cerdo',
+        nombre: 'Bistec',
+        tipo: 'res',
         precio: 38.99,
         peso: '1kg',
-        imagen: food_5,
-        descripcion: 'Costillas de cerdo jugosas, ideales para BBQ o al horno. Sabor incomparable.'
+        imagen: bisteck2,
+        descripcion: 'Bistec jugoso y tierno, perfecto para la parrilla. Con el punto justo de marmoleo.'
     },
     {
         id: 6,
-        nombre: 'Carne Molida Premium',
-        tipo: 'molida',
-        precio: 28.99,
-        peso: '500g',
-        imagen: food_6,
-        descripcion: 'Carne molida de primera calidad, con el punto justo de grasa para máximo sabor.'
-    },
-    {
-        id: 7,
-        nombre: 'Picaña',
-        tipo: 'res',
-        precio: 48.99,
-        peso: '1kg',
-        imagen: food_7,
-        descripcion: 'Corte brasileño por excelencia, jugoso y con una capa de grasa que le da un sabor único.'
-    },
-    {
-        id: 8,
         nombre: 'Panceta de Cerdo',
         tipo: 'cerdo',
         precio: 35.99,

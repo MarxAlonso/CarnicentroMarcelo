@@ -1,6 +1,8 @@
 import  lomofino  from '../../../assets/catalogoinicio/lomofino.webp';
 import  bife from '../../../assets/catalogoinicio/bife.webp';
 import  carnemolidaespecial from '../../../assets/catalogoinicio/carnemolidaespecial.webp';
+import  osobuco from '../../../assets/catalogoinicio/osobuco.webp';
+import  asadotira from '../../../assets/catalogoinicio/asadotira.webp';
 export const productosRes = [
     {
         id: 1,
@@ -24,26 +26,18 @@ export const productosRes = [
         precio: 35,
         categoria: 'Parrilla',
         descripcion: 'Ideal para la parrilla',
-        imagen: '',
+        imagen: asadotira,
     },
     {
         id: 4,
-        nombre: 'Picaña',
-        precio: 42,
-        categoria: 'Premium',
-        descripcion: 'Sabor intenso',
-        imagen: '',
-    },
-    {
-        id: 5,
         nombre: 'Osobuco',
         precio: 28,
         categoria: 'Guisos',
         descripcion: 'Perfecto para guisos',
-        imagen: '',
+        imagen: osobuco,
     },
     {
-        id: 6,
+        id: 5,
         nombre: 'Molida Especial',
         precio: 25,
         categoria: 'Molida',
