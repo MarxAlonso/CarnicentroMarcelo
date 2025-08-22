@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { GiCow, GiPig, GiMeat, GiSteak } from 'react-icons/gi';
 import { useState, useEffect } from 'react';
-import header_img from '../../assets/header_img.png';
+import banner4 from '../../assets/banner/banner4.webp';
 
 const frases = [
     '"La mejor calidad en carnes para tu mesa"',
@@ -21,10 +21,10 @@ export const BannerNosotros = () => {
     }, []);
 
     return (
-        <div className="relative h-[90vh] overflow-hidden">
+        <div className="relative h-[80vh] overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <img 
-                    src={header_img} 
+                    src={banner4} 
                     alt="Banner Carnicentro" 
                     className="w-full h-full object-cover"
                 />
