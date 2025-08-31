@@ -27,12 +27,12 @@ export const NavbarMenu: MenuItem[] = [
       },
       {
         title: 'Carne de Cerdo',
-        link: '/productos/cerdo',
+        link: '/carnecerdo',
       },
-      {
+      /*{
         title: 'Cortes Especiales',
         link: '/productos/especiales',
-      },
+      },*/
     ],
   },
   {
