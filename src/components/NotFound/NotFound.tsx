@@ -30,7 +30,7 @@ export const NotFound = () => {
         transition: {
             duration: 3,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
         }
     };
 
@@ -80,7 +80,7 @@ export const NotFound = () => {
                             transition={{
                                 duration: 2,
                                 repeat: Infinity,
-                                ease: "easeInOut"
+                                ease: "easeInOut" as const
                             }}
                         >
                             0
