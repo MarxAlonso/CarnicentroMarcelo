@@ -1,1 +1,1 @@
-export const categorias = ['Todos', 'Bistecks', 'Asados', 'Guisos', 'Sancochados', 'Molida'];
+export const categorias = ['Todos', 'Bistecks', 'Asados', 'Guisos', 'Sanchochados', 'Carne molida'];

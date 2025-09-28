@@ -178,7 +178,7 @@ export const FiltroCarneCerdos = () => {
                         <div className="flex items-center justify-between">
                             <div className="flex items-center text-[#a90a0a]">
                                 <GiWeight className="text-xl mr-2" />
-                                <span className="font-bold text-lg">S/ {producto.precio}/kg</span>
+                                <span className="font-bold text-lg">S/ {producto.precio}.00/kg</span>
                             </div>
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
@@ -215,7 +215,7 @@ export const FiltroCarneCerdos = () => {
                     <img src={modalProducto.imagen} alt={modalProducto.nombre} className="rounded-lg mb-4" />
                     <h2 className="text-2xl font-bold text-[#a90a0a] mb-2">{modalProducto.nombre}</h2>
                     <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
-                    <p className="text-[#a90a0a] font-bold mb-6">S/ {modalProducto.precio} /kg</p>
+                    <p className="text-[#a90a0a] font-bold mb-6">S/ {modalProducto.precio}.00/kg</p>
                     <a
                         href={`https://wa.me/51922061911?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}%20por%20kg.`}
                         target="_blank"
