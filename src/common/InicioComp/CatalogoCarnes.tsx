@@ -18,7 +18,7 @@ interface Producto {
     descripcion: string;
 }
 
-export const productos: Producto[] = [
+const productos: Producto[] = [
   // === 3 cortes de RES ===
   {
     id: 1,
