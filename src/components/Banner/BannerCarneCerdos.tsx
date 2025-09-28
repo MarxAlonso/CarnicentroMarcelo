@@ -66,7 +66,7 @@ export const BannerCarneCerdos = () => {
     return (
         <div className="relative h-[80vh] overflow-hidden bg-gradient-to-r from-[#a90a0a] to-[#a90a0a]/80">
             {/* Fondo con patrón */}
-            <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 opacity-50">
                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${banner4cerdo})` }} />
             </div>
             

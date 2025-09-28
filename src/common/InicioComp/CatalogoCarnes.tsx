@@ -6,7 +6,6 @@ import  lomofino  from '../../assets/catalogoinicio/lomofino.webp';
 import  chuletacerdo  from '../../assets/catalogoinicio/chuletacerdo.webp';
 import  carnemolidaespecial  from '../../assets/catalogoinicio/carnemolidaespecial.webp';
 import  bife  from '../../assets/catalogoinicio/bife.webp';
-import  bisteck2  from '../../assets/catalogoinicio/bisteck2.webp';
 import  pancetadecerdo  from '../../assets/catalogoinicio/pancetadecerdo.webp';
 
 interface Producto {
@@ -19,61 +18,64 @@ interface Producto {
     descripcion: string;
 }
 
-const productos: Producto[] = [
-    {
-        id: 1,
-        nombre: 'Lomo Fino de Res',
-        tipo: 'res',
-        precio: 45.99,
-        peso: '1kg',
-        imagen: lomofino,
-        descripcion: 'Corte premium de res, ideal para preparar a la parrilla o en medallones. Carne suave y jugosa.'
-    },
-    {
-        id: 2,
-        nombre: 'Chuleta de Cerdo',
-        tipo: 'cerdo',
-        precio: 32.99,
-        peso: '800g',
-        imagen: chuletacerdo,
-        descripcion: 'Chuletas de cerdo premium, perfectas para la parrilla o freír. Jugosas y tiernas.'
-    },
-    {
-        id: 3,
-        nombre: 'Carne Molida Especial',
-        tipo: 'molida',
-        precio: 25.99,
-        peso: '500g',
-        imagen: carnemolidaespecial,
-        descripcion: 'Carne molida premium, ideal para hamburguesas, albóndigas o cualquier preparación.'
-    },
-    {
-        id: 4,
-        nombre: 'Bife Ancho',
-        tipo: 'res',
-        precio: 52.99,
-        peso: '1kg',
-        imagen: bife,
-        descripcion: 'Corte jugoso y tierno, perfecto para la parrilla. Con el punto justo de marmoleo.'
-    },
-    {
-        id: 5,
-        nombre: 'Bistec',
-        tipo: 'res',
-        precio: 38.99,
-        peso: '1kg',
-        imagen: bisteck2,
-        descripcion: 'Bistec jugoso y tierno, perfecto para la parrilla. Con el punto justo de marmoleo.'
-    },
-    {
-        id: 6,
-        nombre: 'Panceta de Cerdo',
-        tipo: 'cerdo',
-        precio: 35.99,
-        peso: '800g',
-        imagen: pancetadecerdo,
-        descripcion: 'Panceta de cerdo con piel, perfecta para chicharrón o al horno. Textura crujiente por fuera y jugosa por dentro.'
-    }
+export const productos: Producto[] = [
+  // === 3 cortes de RES ===
+  {
+    id: 1,
+    nombre: 'Lomo Fino',
+    tipo: 'res',
+    precio: 64.00,
+    peso: '1kg',
+    imagen: lomofino,
+    descripcion: 'El corte más tierno y premium de res, ideal para medallones y preparaciones especiales.'
+  },
+  {
+    id: 2,
+    nombre: 'Biffe',
+    tipo: 'res',
+    precio: 42.00,
+    peso: '1kg',
+    imagen: bife,
+    descripcion: 'Corte con excelente marmoleo, perfecto para parrilla y platos gourmet con gran jugosidad.'
+  },
+  {
+    id: 3,
+    nombre: 'Cuadril de Cadera',
+    tipo: 'res',
+    precio: 40.00,
+    peso: '1kg',
+    imagen: carnemolidaespecial,
+    descripcion: 'Corte premium de la cadera, jugoso y tierno, ideal para bistecks a la parrilla.'
+  },
+
+  // === 3 cortes de CERDO ===
+  {
+    id: 4,
+    nombre: 'Panceta Especial',
+    tipo: 'cerdo',
+    precio: 29.00,
+    peso: '800g',
+    imagen: pancetadecerdo,
+    descripcion: 'Panceta con balance ideal de carne y grasa, perfecta para parrillas y recetas tradicionales.'
+  },
+  {
+    id: 5,
+    nombre: 'Chuleta de Lomo de Cerdo',
+    tipo: 'cerdo',
+    precio: 22.00,
+    peso: '800g',
+    imagen: chuletacerdo,
+    descripcion: 'Chuleta magra y jugosa, excelente para la parrilla, plancha o fritura.'
+  },
+  {
+    id: 6,
+    nombre: 'Bondiola sin Hueso',
+    tipo: 'cerdo',
+    precio: 26.00,
+    peso: '1kg',
+    imagen: chuletacerdo,
+    descripcion: 'Corte versátil y jugoso, ideal para asar lentamente o preparar al horno con especias.'
+  }
 ];
 
 export const CatalogoCarnes = () => {
