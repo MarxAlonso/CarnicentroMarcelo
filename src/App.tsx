@@ -7,6 +7,8 @@ import { NosotrosPage } from "./pages/NosotrosPage/NosotrosPage";
 import { CarneResPage } from "./pages/Productos/CarneResPage/CarneResPage";
 import { CarneCerdoPage } from "./pages/Productos/CarneCerdoPage/CarneCerdoPage";
 import { NotFound } from "./components/NotFound/NotFound";
+import Chatbot from "./components/Chatbot";
+
 function App() {
   return (
     <>
@@ -19,6 +21,7 @@ function App() {
           <Route path="/carnecerdo" element={<CarneCerdoPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Chatbot />
       </div>
       <Footer />
     </>
