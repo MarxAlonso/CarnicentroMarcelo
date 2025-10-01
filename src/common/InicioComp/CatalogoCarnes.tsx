@@ -54,7 +54,7 @@ const productos: Producto[] = [
     nombre: 'Panceta Especial',
     tipo: 'cerdo',
     precio: 29.00,
-    peso: '800g',
+    peso: '1kg',
     imagen: pancetadecerdo,
     descripcion: 'Panceta con balance ideal de carne y grasa, perfecta para parrillas y recetas tradicionales.'
   },
@@ -63,7 +63,7 @@ const productos: Producto[] = [
     nombre: 'Chuleta de Lomo de Cerdo',
     tipo: 'cerdo',
     precio: 22.00,
-    peso: '800g',
+    peso: '1kg',
     imagen: chuletacerdo,
     descripcion: 'Chuleta magra y jugosa, excelente para la parrilla, plancha o fritura.'
   },
