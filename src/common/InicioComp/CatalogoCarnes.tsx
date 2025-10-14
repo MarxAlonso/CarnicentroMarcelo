@@ -4,9 +4,12 @@ import { GiCow, GiPig, GiMeat, GiWeight, GiPriceTag } from 'react-icons/gi';
 import { FaTimes } from 'react-icons/fa';
 import  lomofino  from '../../assets/catalogoinicio/lomofino.webp';
 import  chuletacerdo  from '../../assets/catalogoinicio/chuletacerdo.webp';
-import  carnemolidaespecial  from '../../assets/catalogoinicio/carnemolidaespecial.webp';
 import  bife  from '../../assets/catalogoinicio/bife.webp';
 import  pancetadecerdo  from '../../assets/catalogoinicio/pancetadecerdo.webp';
+import  bondiolasinhueso  from '../../assets/catalogoinicio/bondiolasinhueso.webp';
+import  cuadrildecadera  from '../../assets/catalogoinicio/cuadrildecadera.webp';
+import  carnemolidaespecial  from '../../assets/catalogoinicio/carnemolidaespecial.webp';
+
 
 interface Producto {
     id: number;
@@ -44,7 +47,7 @@ const productos: Producto[] = [
     tipo: 'res',
     precio: 40.00,
     peso: '1kg',
-    imagen: carnemolidaespecial,
+    imagen: cuadrildecadera,
     descripcion: 'Corte premium de la cadera, jugoso y tierno, ideal para bistecks a la parrilla.'
   },
 
@@ -73,8 +76,17 @@ const productos: Producto[] = [
     tipo: 'cerdo',
     precio: 26.00,
     peso: '1kg',
-    imagen: chuletacerdo,
+    imagen: bondiolasinhueso,
     descripcion: 'Corte versátil y jugoso, ideal para asar lentamente o preparar al horno con especias.'
+  },
+  {
+    id: 7,
+    nombre: 'Carne molida Especial',
+    tipo: 'molida',
+    precio: 28.00,
+    peso: '1kg',
+    imagen: carnemolidaespecial,
+    descripcion: 'Carne molida de primera calidad, ideal para hamburguesas, albóndigas y guisos.'
   }
 ];
 

@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { GiCow, GiMeat } from 'react-icons/gi';
 import carnemolida from '../../assets/carnes/carnemolida.webp';
-import panceta from '../../assets/carnes/panceta.webp';
+import panceta from '../../assets/cerdos/panceta.webp';
 import costillas from '../../assets/carnes/costillas.webp';
-import chuletacerdo from '../../assets/carnes/chuletacerdo.webp';
+import chuletacerdo from '../../assets/cerdos/chuletacerdo.webp';
 import bisteck from '../../assets/carnes/bisteck.webp';
 import lomo from '../../assets/carnes/lomo.webp';
 import asado from '../../assets/carnes/asado.webp';
