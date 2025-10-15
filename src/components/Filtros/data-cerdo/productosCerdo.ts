@@ -1,3 +1,5 @@
+import panceta from "../../../assets/cerdos/panceta.webp";
+
 export interface ProductoCerdo {
   id: number;
   nombre: string;
@@ -22,7 +24,7 @@ export const productosCerdo: ProductoCerdo[] = [
     nombre: "Panceta",
     precio: 24.00,
     categoria: 1,
-    imagen: "/src/assets/carnes/panceta.jpg",
+    imagen: panceta,
     descripcion: "Panceta de cerdo clásica, ideal para freír, guisos o preparar chicharrones crujientes."
   },
   {
