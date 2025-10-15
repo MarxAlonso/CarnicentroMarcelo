@@ -102,7 +102,8 @@ export const BannerCarneCerdos = () => {
                         brindarte una experiencia culinaria excepcional. Calidad, frescura y sabor garantizado.
                     </motion.p>
                     
-                    <motion.button
+                    <motion.a
+                    href='#productoscerdos'
                         className="bg-[#fff4bf] text-[#a90a0a] px-8 py-3 rounded-full font-bold text-lg
                                 hover:bg-white transition-colors duration-300 shadow-lg"
                         whileHover={{ scale: 1.05 }}
@@ -110,7 +111,7 @@ export const BannerCarneCerdos = () => {
                         variants={itemVariants}
                     >
                         Ver Productos
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
                 
                 {/* Elementos visuales */}

@@ -4,7 +4,7 @@ import { GiMeat, GiCow, GiPig } from 'react-icons/gi';
 import { BsArrowRightCircle, BsArrowLeftCircle } from 'react-icons/bs';
 import  banner1  from '../../assets/banner/banner1-vacas.webp';
 import  banner2  from '../../assets/banner/banner2-vacas.webp';
-import  banner3  from '../../assets/banner/banner3-cerdo.webp';
+import  banner3  from '../../assets/banner/banner4-cerdo.webp';
 const bannerImages = [
     banner1,
     banner2,
@@ -87,14 +87,15 @@ export const Banner = () => {
                          <p className="text-lg md:text-xl text-white mb-8 max-w-2xl banner-description">
                              Descubre nuestra selección premium de carnes de res y cerdo, criadas con los más altos estándares de calidad.
                          </p>
-                         <motion.button
+                         <motion.a
+                             href='/carneres'
                              whileHover={{ scale: 1.05 }}
                              whileTap={{ scale: 0.95 }}
                              className="flex items-center gap-2 bg-[#a90a0a] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#8a0808] transition-colors w-fit banner-button"
                         >
                             <GiMeat className="text-xl" />
                             Ver Nuestros Cortes
-                        </motion.button>
+                        </motion.a>
                     </motion.div>
                 </motion.div>
             </AnimatePresence>

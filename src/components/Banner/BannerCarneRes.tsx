@@ -32,14 +32,15 @@ export const BannerCarneRes = () => {
                         Descubre nuestra selección de cortes premium, desde tiernos lomos hasta jugosos ribeyes, 
                         preparados con la más alta calidad para tu mesa.
                     </p>
-                    <motion.button
+                    <motion.a
+                        href='#productosres'
                         className="bg-carni-cream text-carni-red px-8 py-3 rounded-full font-bold text-lg
                                  hover:bg-white transition-colors duration-300 shadow-lg"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         Ver Productos
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
 
                 {/* Icono de vaca con hover */}

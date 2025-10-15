@@ -88,7 +88,7 @@ export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ open }) => {
                 className="mt-4 px-8 py-3 bg-[#8a0808] hover:bg-[#a90a0a] rounded-xl font-semibold transition-colors duration-300 shadow-lg flex items-center justify-center gap-2"
               >
                 <FaShoppingBasket />
-                Pedidos
+                Contacto
               </motion.a>
             </ul>
           </motion.div>

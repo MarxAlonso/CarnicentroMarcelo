@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaShoppingBasket } from "react-icons/fa";
 import { MdMenu, MdKeyboardArrowDown } from "react-icons/md";
 import { GiCow, GiPig } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,21 +89,6 @@ export const Navbar = () => {
 
           {/* Icons section */}
           <div className="flex items-center gap-4">
-            <motion.button 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="hover:bg-[#8a0808] text-[#fff4bf] rounded-full p-3 duration-300 border border-[#fff4bf] hover:border-white flex items-center gap-2"
-            >
-              <a 
-                href="/contacto" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[#fff4bf] hover:text-white flex items-center gap-2"
-              >
-                <FaShoppingBasket />
-                Pedidos
-              </a>
-            </motion.button>
 
             {/* Mobile hamburger Menu section */}
             <motion.div 

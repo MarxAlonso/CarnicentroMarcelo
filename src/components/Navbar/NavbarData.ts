@@ -37,12 +37,12 @@ export const NavbarMenu: MenuItem[] = [
   },
   {
     id: 3,
-    title: 'Ofertas',
-    link: '/ofertas',
+    title: 'Nosotros',
+    link: '/nosotros',
   },
   {
     id: 4,
-    title: 'Nosotros',
-    link: '/nosotros',
+    title: 'Contacto',
+    link: '/contacto',
   },
 ];

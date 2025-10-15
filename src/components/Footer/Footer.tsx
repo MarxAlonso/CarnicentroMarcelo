@@ -38,8 +38,13 @@ export const Footer = () => {
                         <h2 className="text-xl font-bold text-[#a90a0a]">Enlaces Rápidos</h2>
                         <ul className="space-y-2">
                             <li>
-                                <a href="/" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
-                                    <GiMeat className="text-[#a90a0a]" /> Productos
+                                <a href="/carneres" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                    <GiMeat className="text-[#a90a0a]" /> Carne de Res
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/carnecerdo" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                    <GiPig className="text-[#a90a0a]" /> Carne de Cerdo
                                 </a>
                             </li>
                             <li>
@@ -48,8 +53,8 @@ export const Footer = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="/delivery" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
-                                    <GiPig className="text-[#a90a0a]" /> Delivery
+                                <a href="/contacto" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                    <GiPig className="text-[#a90a0a]" /> Contacto
                                 </a>
                             </li>
                         </ul>

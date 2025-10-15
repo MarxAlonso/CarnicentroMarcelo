@@ -45,7 +45,7 @@ export const FiltroCarneCerdos = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8" id="productoscerdos">
             {/* Barra de búsqueda */}
             <div className="relative mb-8">
                 <div className="flex items-center bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#a90a0a] focus-within:border-[#a90a0a] transition-colors duration-300">

@@ -67,7 +67,7 @@ const generateResponse = (query: string): string => {
   
   // Si no se detectaron categorías, dar respuesta por defecto
   if (detectedCategories.length === 0) {
-    return "Gracias por tu pregunta. Para información más específica, por favor visita nuestra tienda o llámanos al 555-123-4567.";
+    return "Gracias por tu pregunta. Para información más específica, por favor visita nuestra tienda o llámanos al 984-620-910.";
   }
   
   // Priorizar respuestas específicas sobre productos

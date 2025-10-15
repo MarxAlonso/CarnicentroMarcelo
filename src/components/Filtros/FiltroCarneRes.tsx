@@ -37,7 +37,7 @@ export const FiltroCarneRes = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8" id="productosres">
             {/* Barra de búsqueda */}
             <div className="relative mb-8">
                 <div className="flex items-center bg-white rounded-lg shadow-lg overflow-hidden border-2 border-carni-red focus-within:border-carni-dark-red transition-colors duration-300">
