@@ -180,13 +180,16 @@ export const FiltroCarneCerdos = () => {
                                 <GiWeight className="text-xl mr-2" />
                                 <span className="font-bold text-lg">S/ {producto.precio}.00/kg</span>
                             </div>
-                            <motion.button
+                            <motion.a
+                                href={`https://wa.me/51984620910?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(producto.nombre)}%20a%20S/${producto.precio}.00%20por%20kg.`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 className="bg-[#a90a0a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#a90a0a]/80 transition-colors duration-300"
                             >
                                 Pedir
-                            </motion.button>
+                            </motion.a>
                         </div>
                     </div>
                 </motion.div>
@@ -217,7 +220,7 @@ export const FiltroCarneCerdos = () => {
                     <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
                     <p className="text-[#a90a0a] font-bold mb-6">S/ {modalProducto.precio}.00/kg</p>
                     <a
-                        href={`https://wa.me/51922061911?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}%20por%20kg.`}
+                        href={`https://wa.me/51984620910?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}%20por%20kg.`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block text-center bg-[#a90a0a] text-white py-2 rounded-lg font-semibold hover:bg-[#a90a0a]/80 transition-colors duration-300"

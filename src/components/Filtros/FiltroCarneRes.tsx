@@ -127,13 +127,18 @@ export const FiltroCarneRes = () => {
                                 <GiWeight className="text-xl mr-2" />
                                 <span className="font-bold text-lg">S/ {producto.precio}.00/kg</span>
                             </div>
-                            <motion.button
+                            <motion.a
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="bg-carni-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-carni-dark-red transition-colors duration-300"
+                                href={`https://wa.me/51984620910?text=${encodeURIComponent(
+                                    `Hola! Quisiera pedir ${producto.nombre} a S/${producto.precio}.00 por kg.`
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-carni-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-carni-dark-red transition-colors duration-300 flex items-center justify-center"
                             >
                                 Pedir
-                            </motion.button>
+                            </motion.a>
                         </div>
                     </div>
                 </motion.div>
@@ -164,7 +169,7 @@ export const FiltroCarneRes = () => {
                     <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
                     <p className="text-carni-dark-red font-bold mb-6">S/ {modalProducto.precio}.00 /kg</p>
                     <a
-                        href={`https://wa.me/51922061911?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}.00%20por%20kg.`}
+                        href={`https://wa.me/51984620910?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}.00%20por%20kg.`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block text-center bg-carni-red text-white py-2 rounded-lg font-semibold hover:bg-carni-dark-red transition-colors duration-300"

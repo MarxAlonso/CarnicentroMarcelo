@@ -230,14 +230,19 @@ export const CatalogoCarnes = () => {
                                 {productoSeleccionado.descripcion}
                             </p>
 
-                            <motion.button
+                            <motion.a
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                href={`https://wa.me/51984620910?text=${encodeURIComponent(
+                                    `Hola! Quisiera pedir ${productoSeleccionado.nombre} a S/${productoSeleccionado.precio.toFixed(2)} por kg.`
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="mt-6 w-full bg-[#a90a0a] text-white py-3 px-6 rounded-full text-lg font-medium hover:bg-[#8a0808] transition-colors flex items-center justify-center gap-2"
                             >
                                 <GiMeat className="text-xl" />
-                                Realizar Pedido
-                            </motion.button>
+                                Pedir por WhatsApp
+                            </motion.a>
                         </motion.div>
                     </motion.div>
                 )}
