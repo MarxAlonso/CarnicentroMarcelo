@@ -3,7 +3,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { Footer } from "./components/Footer/Footer";
-import Chatbot from "./components/Chatbot";
+import Chatbot from "./components/Chatbot/Chatbot";
 import Loading from "./components/Loading/Loading";
 
 // Lazy loading de componentes
