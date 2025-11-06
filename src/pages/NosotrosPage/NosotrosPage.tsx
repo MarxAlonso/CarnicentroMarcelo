@@ -1,8 +1,9 @@
 import { NosotrosInicio } from '../../common/NosotrosComp/NosotrosInicio';
-export const NosotrosPage = () =>{
+const NosotrosPage = () =>{
     return(
         <div>
             <NosotrosInicio />
         </div>
     )
 }
+export default NosotrosPage;

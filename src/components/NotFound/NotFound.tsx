@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { GiCow, GiMeat, GiChefToque } from 'react-icons/gi';
 import { FaHome, FaArrowLeft } from 'react-icons/fa';
 
-export const NotFound = () => {
+const NotFound = () => {
     const containerVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -191,3 +191,4 @@ export const NotFound = () => {
         </div>
     );
 };
+export default NotFound;

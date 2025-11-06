@@ -1,6 +1,8 @@
 import {CarneResComp} from "../../../common/CarneResComp/CarneResComp";
-export const CarneResPage = () =>{
+const CarneResPage = () =>{
     return(
         <CarneResComp />
     )
 }
+
+export default CarneResPage;

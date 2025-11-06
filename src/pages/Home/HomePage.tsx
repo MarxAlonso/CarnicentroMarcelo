@@ -3,7 +3,7 @@ import './HomePage.css'
 import {Banner} from '../../components/Banner/Banner'
 import {ExplorarCarnes} from '../../common/InicioComp/ExplorarCarnes'
 import { CatalogoCarnes } from '../../common/InicioComp/CatalogoCarnes'
-export const HomePage = () =>{
+const HomePage = () =>{
     const[category,setCategory] = useState("Mas");
     return(
         <div>
@@ -13,3 +13,4 @@ export const HomePage = () =>{
         </div>
     )
 }
+export default HomePage;

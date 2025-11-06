@@ -1,7 +1,9 @@
 import { CarneCerdoComp } from "../../../common/CarneCerdosComp/CarneCerdoComp"
 
-export const CarneCerdoPage = () =>{
+const CarneCerdoPage = () =>{
     return(
         <CarneCerdoComp />
     )
 }
+
+export default CarneCerdoPage;
