@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { GiMeat, GiWeight } from 'react-icons/gi';
 
 // Datos de ejemplo de productos
-import { productosRes } from './data/productosRes';
-import { categorias } from './data/categorias';
+import { productosRes } from '../data/productosRes';
+import { categorias } from '../data/categorias';
 
 export const FiltroCarneRes = () => {
     const [busqueda, setBusqueda] = useState('');
