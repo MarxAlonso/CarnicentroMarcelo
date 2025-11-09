@@ -4,7 +4,7 @@ import { GiCow, GiPig } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveMenu } from "./ResponsiveMenu.tsx";
 import { NavbarMenu } from "./NavbarData";
-
+import {logoimagen} from "../../assets/logo2-carnicentromarcelo.png";
 export const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
@@ -19,21 +19,20 @@ export const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="container mx-auto flex justify-between items-center py-6 px-4"
+          className="container mx-auto flex justify-between items-center py-2 px-6"
         >
           {/* Logo section */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="text-2xl flex items-center gap-2 font-bold text-[#fff4bf]"
+            className="flex items-center gap-2 font-bold text-[#fff4bf]"
           >
-            <div className="flex gap-1">
-              <GiCow className="text-[#fff4bf]" />
-              <GiPig className="text-[#fff4bf]" />
-            </div>
-            <p>Carnicentro</p>
-            <p className="text-white">Marcelo</p>
+            {/* Logo image */}
+            <img 
+              src="/logo2-carnicentromarcelo.png"
+              alt="Logo Carnicentro Marcelo"
+              className="w-full h-24 object-cover rounded-[20px] cursor-pointer shadow-lg"
+            />
           </motion.div>
-
           {/* Menu section */}
           <div className="hidden md:block">
             <ul className="flex items-center gap-6">

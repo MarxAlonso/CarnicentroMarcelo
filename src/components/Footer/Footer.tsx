@@ -9,15 +9,13 @@ export const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Logo y descripción */}
                     <div className="space-y-4">
-                        <div className="flex items-center gap-2">
-                            <div className="flex gap-1">
-                                <GiCow className="text-[#a90a0a] text-3xl" />
-                                <GiPig className="text-[#a90a0a] text-3xl" />
-                            </div>
-                            <h1 className="text-2xl font-bold">
-                                <span className="text-[#a90a0a]">Carnicentro</span>
-                                <span className="text-[#8a0808]"> Marcelo</span>
-                            </h1>
+                        <div className="flex items-center gap-4">
+                            {/* Imagen del logo */}
+                            <img
+                            src="/logo2-carnicentromarcelo.png"
+                            alt="Logo Carnicentro Marcelo"
+                            className="w-full h-24 rounded-[20px] shadow-lg"
+                            />
                         </div>
                         <p className="text-gray-700">Ofrecemos la mejor calidad en carnes de res y cerdo. Nuestra experiencia y dedicación nos respaldan para brindarle los mejores cortes.</p>
                         <div className="flex space-x-4">
@@ -78,10 +76,10 @@ export const Footer = () => {
                                 <MdPhone className="text-[#a90a0a]" />
                                 <a href="tel:+51984620910" className="hover:text-[#a90a0a] transition-colors">+51 984620910</a>
                             </li>
-                            <li className="flex items-center gap-2 text-gray-700">
+                            {/*<li className="flex items-center gap-2 text-gray-700">
                                 <MdEmail className="text-[#a90a0a]" />
                                 <a href="mailto:contacto@carnicentro.com" className="hover:text-[#a90a0a] transition-colors">contacto@carnicentro.com</a>
-                            </li>
+                            </li>*/}
                             <li className="flex items-center gap-2 text-gray-700">
                                 <MdLocationOn className="text-[#a90a0a]" />
                                 <span>Av. Principal 123, Lima</span>
