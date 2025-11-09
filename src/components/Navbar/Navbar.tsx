@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdMenu, MdKeyboardArrowDown } from "react-icons/md";
-import { GiCow, GiPig } from "react-icons/gi";
+//import { GiCow, GiPig } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveMenu } from "./ResponsiveMenu.tsx";
 import { NavbarMenu } from "./NavbarData";
