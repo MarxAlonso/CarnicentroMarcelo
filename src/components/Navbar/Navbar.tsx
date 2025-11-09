@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MdMenu, MdKeyboardArrowDown } from "react-icons/md";
 import { GiCow, GiPig } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
