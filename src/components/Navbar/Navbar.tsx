@@ -4,7 +4,7 @@ import { GiCow, GiPig } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveMenu } from "./ResponsiveMenu.tsx";
 import { NavbarMenu } from "./NavbarData";
-import {logoimagen} from "../../assets/logo2-carnicentromarcelo.png";
+//import {logoimagen} from "../../assets/logo2-carnicentromarcelo.png";
 export const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const [activeMenu, setActiveMenu] = useState<number | null>(null);

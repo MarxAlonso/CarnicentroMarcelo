@@ -1,7 +1,7 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { GiCow, GiPig, GiMeat } from 'react-icons/gi';
-import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
-
+import { MdPhone, MdLocationOn } from 'react-icons/md';
+//MdEmail
 export const Footer = () => {
     return (
         <footer className="bg-[#fff4bf] pt-12 pb-6">
