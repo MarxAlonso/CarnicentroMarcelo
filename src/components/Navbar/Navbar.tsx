@@ -6,7 +6,7 @@ import { ResponsiveMenu } from "./ResponsiveMenu.tsx";
 import { NavbarMenu } from "./NavbarData";
 //import {logoimagen} from "../../assets/logo2-carnicentromarcelo.png";
 export const Navbar = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
 
   const handleMouseEnter = (id: number) => setActiveMenu(id);
