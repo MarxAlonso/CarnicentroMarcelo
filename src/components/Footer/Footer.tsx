@@ -1,7 +1,7 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { GiCow, GiPig, GiMeat } from 'react-icons/gi';
-import { MdPhone, MdLocationOn } from 'react-icons/md';
-//MdEmail
+import { MdPhone } from 'react-icons/md';
+//MdEmail, MdLocationOn
 export const Footer = () => {
     return (
         <footer className="bg-[#fff4bf] pt-12 pb-6">
@@ -62,9 +62,9 @@ export const Footer = () => {
                     <div className="space-y-4">
                         <h2 className="text-xl font-bold text-[#a90a0a]">Horario de Atención</h2>
                         <ul className="space-y-2 text-gray-700">
-                            <li>Lunes - Viernes: 8:00 AM - 8:00 PM</li>
-                            <li>Sábados: 8:00 AM - 6:00 PM</li>
-                            <li>Domingos: 9:00 AM - 2:00 PM</li>
+                            <li>Lunes - Viernes: 7:00 AM - 2:00 PM</li>
+                            <li>Sábados: 7:00 AM - 2:30 PM</li>
+                            <li>Domingos: 6:00 AM - 2:30 PM</li>
                         </ul>
                     </div>
 
@@ -81,8 +81,8 @@ export const Footer = () => {
                                 <a href="mailto:contacto@carnicentro.com" className="hover:text-[#a90a0a] transition-colors">contacto@carnicentro.com</a>
                             </li>*/}
                             <li className="flex items-center gap-2 text-gray-700">
-                                <MdLocationOn className="text-[#a90a0a]" />
-                                <span>Av. Principal 123, Lima</span>
+                                {/*<MdLocationOn className="text-[#a90a0a]" />
+                                <span>Av. Principal 123, Lima</span>*/}
                             </li>
                             <li className="mt-4">
                                 <a href="https://wa.me/51984620910" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#a90a0a] text-white px-4 py-2 rounded-lg hover:bg-[#8a0808] transition-colors">
