@@ -96,7 +96,7 @@ export const Footer = () => {
 
                 <div className="mt-8 pt-8 border-t border-gray-300">
                     <p className="text-center text-gray-700">
-                        © {new Date().getFullYear()} Carnicentro Marcelo - Todos los derechos reservados
+                        © {new Date().getFullYear()} Desarrollado por Marx Chipana - Todos los derechos reservados
                     </p>
                 </div>
             </div>

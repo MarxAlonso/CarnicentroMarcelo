@@ -44,17 +44,6 @@ export const ProductModal = ({ producto, onClose }: ProductModalProps) => {
         <p className="text-[#a90a0a] font-bold mb-6">
           S/ {producto.precio.toFixed(2)} / kg
         </p>
-
-        <a
-          href={`https://wa.me/51984620910?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(
-            producto.nombre
-          )}%20a%20S/${producto.precio.toFixed(2)}%20por%20kg.`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block text-center bg-[#a90a0a] text-white py-2 rounded-lg font-semibold hover:bg-[#a90a0a]/80 transition-colors duration-300"
-        >
-          Pedir por WhatsApp
-        </a>
       </motion.div>
     </motion.div>
   );

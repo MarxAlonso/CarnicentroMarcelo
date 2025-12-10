@@ -41,18 +41,6 @@ export const ProductCard = ({ producto, onClick }: ProductCardProps) => {
             <GiWeight className="text-xl mr-2" />
             <span className="font-bold text-lg">S/ {producto.precio.toFixed(2)} / kg</span>
           </div>
-
-          <a
-            href={`https://wa.me/51984620910?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(
-              producto.nombre
-            )}%20a%20S/${producto.precio.toFixed(2)}%20por%20kg.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#a90a0a] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#a90a0a]/80 transition-colors duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            Pedir
-          </a>
         </div>
       </div>
     </motion.div>

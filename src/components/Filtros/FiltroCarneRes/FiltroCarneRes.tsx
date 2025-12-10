@@ -168,14 +168,6 @@ export const FiltroCarneRes = () => {
                     <h2 className="text-2xl font-bold text-carni-red mb-2">{modalProducto.nombre}</h2>
                     <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
                     <p className="text-carni-dark-red font-bold mb-6">S/ {modalProducto.precio}.00 /kg</p>
-                    <a
-                        href={`https://wa.me/51984620910?text=Hola!%20Quisiera%20pedir%20${encodeURIComponent(modalProducto.nombre)}%20a%20S/${modalProducto.precio}.00%20por%20kg.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-center bg-carni-red text-white py-2 rounded-lg font-semibold hover:bg-carni-dark-red transition-colors duration-300"
-                    >
-                        Pedir por WhatsApp
-                    </a>
                     </motion.div>
                 </motion.div>
                 )}
