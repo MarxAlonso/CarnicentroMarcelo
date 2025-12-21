@@ -127,18 +127,6 @@ export const FiltroCarneRes = () => {
                                 <GiWeight className="text-xl mr-2" />
                                 <span className="font-bold text-lg">S/ {producto.precio}.00/kg</span>
                             </div>
-                            <motion.a
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                href={`https://wa.me/51984620910?text=${encodeURIComponent(
-                                    `Hola! Quisiera pedir ${producto.nombre} a S/${producto.precio}.00 por kg.`
-                                )}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-carni-red text-white px-4 py-2 rounded-lg font-semibold hover:bg-carni-dark-red transition-colors duration-300 flex items-center justify-center"
-                            >
-                                Pedir
-                            </motion.a>
                         </div>
                     </div>
                 </motion.div>
