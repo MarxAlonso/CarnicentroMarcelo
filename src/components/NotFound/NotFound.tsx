@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { GiCow, GiMeat, GiChefToque } from 'react-icons/gi';
 import { FaHome, FaArrowLeft } from 'react-icons/fa';
+import SEO from '../SEO/SEO';
 
 const NotFound = () => {
     const containerVariants = {
@@ -36,6 +37,7 @@ const NotFound = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#fff4bf] via-white to-[#fff4bf] flex items-center justify-center px-4">
+            <SEO title="404 - Página no encontrada" description="La página que buscas no existe en Carnicentro Marcelo." />
             <motion.div
                 className="text-center max-w-2xl mx-auto"
                 variants={containerVariants}
