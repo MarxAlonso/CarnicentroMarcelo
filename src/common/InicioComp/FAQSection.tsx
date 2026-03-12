@@ -115,7 +115,7 @@ const FAQSection: React.FC = () => {
         >
           <p className="text-gray-600 mb-4 font-medium">¿Aún tienes dudas?</p>
           <a
-            href="https://wa.me/519XXXXXXXX" // Reemplazar con número real si se conoce o dejar placeholder
+            href="https://wa.me/51984620910" // Reemplazar con número real si se conoce o dejar placeholder
             className="inline-flex items-center gap-2 bg-[#25D366] text-white px-8 py-3 rounded-full font-bold hover:bg-[#128C7E] transition-all transform hover:scale-105 shadow-lg"
           >
             Pregúntanos por WhatsApp

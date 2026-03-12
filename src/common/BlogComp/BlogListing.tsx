@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import imageBlog1 from '../../assets/blog/blog_header_nutrition_beef.png';
+import imageBlog2 from '../../assets/blog/nutricion_carne_header.png';
+import imageBlog3 from '../../assets/blog/gym_blog_header.png';
 
 const blogPosts = [
   {
@@ -12,6 +14,24 @@ const blogPosts = [
     date: "12 de Marzo, 2026",
     link: "/blog/importancia-carne-res",
     category: "Salud y Nutrición"
+  },
+  {
+    id: 2,
+    title: "Beneficios Nutritivos al Consumir Carne de Res",
+    excerpt: "Análisis del elevado valor nutricional, aporte proteico y minerales esenciales que la carne de res brinda para una salud óptima.",
+    image: imageBlog2,
+    date: "12 de Marzo, 2026",
+    link: "/blog/beneficios-nutritivos-carne-res",
+    category: "Nutrición"
+  },
+  {
+    id: 3,
+    title: "Carne de Res y Cerdo: Tu Aliado en el Gimnasio",
+    excerpt: "Descubre cómo los cortes magros de res y cerdo potencian la masa muscular y aceleran la recuperación post-entrenamiento.",
+    image: imageBlog3,
+    date: "12 de Marzo, 2026",
+    link: "/blog/beneficios-carne-gym",
+    category: "Fitness"
   }
 ];
 

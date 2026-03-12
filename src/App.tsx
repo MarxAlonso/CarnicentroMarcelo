@@ -16,6 +16,8 @@ const CarneCerdoPage = lazy(() => import("./pages/Productos/CarneCerdoPage/Carne
 const ContactoPage = lazy(() => import("./pages/ContactoPage/ContactoPage"));
 const BlogPage = lazy(() => import("./pages/Blog/BlogPage"));
 const ImportanciaCarnePage = lazy(() => import("./pages/Blog/ImportanciaCarnePage"));
+const BeneficiosNutritivosPage = lazy(() => import("./pages/Blog/BeneficiosNutritivosPage"));
+const BeneficiosGymPage = lazy(() => import("./pages/Blog/BeneficiosGymPage"));
 
 // Componente principal de la aplicación
 function App() {
@@ -33,6 +35,8 @@ function App() {
             <Route path="/contacto" element={<ContactoPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/importancia-carne-res" element={<ImportanciaCarnePage />} />
+            <Route path="/blog/beneficios-nutritivos-carne-res" element={<BeneficiosNutritivosPage />} />
+            <Route path="/blog/beneficios-carne-gym" element={<BeneficiosGymPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
