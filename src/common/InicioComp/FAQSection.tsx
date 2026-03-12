@@ -30,7 +30,7 @@ const faqs: FAQItem[] = [
   }
 ];
 
-const FAQAccordion: React.FC<{ item: FAQItem; index: number }> = ({ item, index }) => {
+const FAQAccordion: React.FC<{ item: FAQItem }> = ({ item }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -103,7 +103,7 @@ const FAQSection: React.FC = () => {
 
         <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
           {faqs.map((faq, index) => (
-            <FAQAccordion key={index} item={faq} index={index} />
+            <FAQAccordion key={index} item={faq} />
           ))}
         </div>
 
