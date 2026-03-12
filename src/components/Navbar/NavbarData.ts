@@ -45,4 +45,9 @@ export const NavbarMenu: MenuItem[] = [
     title: 'Contacto',
     link: '/contacto',
   },
+  {
+    id: 5,
+    title: 'Blog',
+    link: '/blog',
+  },
 ];
