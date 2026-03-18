@@ -15,12 +15,18 @@ const siteDescription =
 const siteUrl = "https://carnicentromarcelo.com";
 const defaultImage = `${siteUrl}/logo-carnicentromarcelo.png`;
 
+import { useLocation } from "react-router-dom";
 import defaultKeywords from "../../seo/keywords";
 
 const SEO: React.FC<SEOProps> = ({ title, description, pathname, image, keywords }) => {
+  const location = useLocation();
   const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
   const pageDescription = description || siteDescription;
-  const url = pathname ? `${siteUrl}${pathname}` : siteUrl;
+  
+  // Use pathname if provided, otherwise use current location path
+  const currentPath = pathname || location.pathname;
+  const url = `${siteUrl}${currentPath}`;
+  
   const img = image || defaultImage;
   const metaKeywords = keywords || defaultKeywords;
 
