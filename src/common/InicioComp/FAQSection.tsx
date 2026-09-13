@@ -1,15 +1,18 @@
-"use client";
-
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronDown } from 'react-icons/fa';
+import { buildFaqSchema, jsonLd, type Faq } from '@/lib/schema';
+import { whatsappUrl } from '@/lib/site';
 
-interface FAQItem {
-  pregunta: string;
-  respuesta: string;
-}
+/**
+ * Componente de servidor.
+ *
+ * El acordeón era `useState` + `AnimatePresence`; ahora es `<details>` nativo,
+ * que despliega sin JavaScript y deja las respuestas dentro del HTML. Eso
+ * importa para SEO: las respuestas declaradas en el `FAQPage` tienen que estar
+ * realmente en la página, y así lo están aunque el visitante no abra nada.
+ */
 
-const faqs: FAQItem[] = [
+const faqs: Faq[] = [
   {
     pregunta: "¿Qué garantiza la calidad de sus carnes de res?",
     respuesta: "Nuestra carne de res proviene de ganado seleccionado cuidadosamente en las mejores zonas de pastura. Garantizamos frescura diaria, cortes precisos realizados por maestros carniceros y un cumplimiento estricto de las normas sanitarias."
@@ -28,101 +31,52 @@ const faqs: FAQItem[] = [
   },
   {
     pregunta: "¿Cuál es la mejor forma de conservar la carne?",
-    respuesta: "Recomendamos mantener la carne refrigerada entre 0°C y 4°C si se va a consumir pronto. Para periodos largos, la congelación es ideal. Siempre sugerimos sacar la carne del frío unos minutos antes de cocinarla para que recupere su temperatura ambiente."
+    respuesta: "Recomendamos mantener la carne refrigerada entre 0 °C y 4 °C si se va a consumir pronto. Para periodos largos, la congelación es ideal. Siempre sugerimos sacar la carne del frío unos minutos antes de cocinarla para que recupere su temperatura ambiente."
   }
 ];
 
-const FAQAccordion: React.FC<{ item: FAQItem }> = ({ item }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  return (
-    <div className="border-b border-gray-200">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex justify-between items-center text-left focus:outline-none group"
-      >
-        <span className={`text-lg font-bold transition-colors duration-300 ${isOpen ? 'text-[#a90a0a]' : 'text-gray-800'} group-hover:text-[#a90a0a]`}>
-          {item.pregunta}
-        </span>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          className={`${isOpen ? 'text-[#a90a0a]' : 'text-gray-400'}`}
-        >
-          <FaChevronDown />
-        </motion.div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
-          >
-            <p className="pb-6 text-gray-600 leading-relaxed text-lg">
-              {item.respuesta}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
 const FAQSection: React.FC = () => {
-  // Generar JSON-LD para SEO
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.pregunta,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.respuesta
-      }
-    }))
-  };
-
   return (
-    <section className="py-24 bg-gray-50 overflow-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-sm font-bold tracking-widest text-[#a90a0a] uppercase mb-2">Ayuda y Soporte</h2>
-          <h3 className="text-4xl font-extrabold text-gray-900">Preguntas Frecuentes</h3>
-          <div className="w-20 h-1 bg-[#a90a0a] mx-auto mt-6"></div>
-        </motion.div>
+    <section className="overflow-hidden bg-gray-50 py-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(buildFaqSchema(faqs))} />
 
-        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-          {faqs.map((faq, index) => (
-            <FAQAccordion key={index} item={faq} />
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div data-reveal="up" className="mb-16 text-center">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-[#a90a0a]">
+            Ayuda y Soporte
+          </h2>
+          <h3 className="text-4xl font-extrabold text-gray-900">Preguntas Frecuentes</h3>
+          <div className="mx-auto mt-6 h-1 w-20 bg-[#a90a0a]"></div>
+        </div>
+
+        <div data-reveal="up" className="rounded-3xl bg-white p-8 shadow-xl md:p-12">
+          {faqs.map((faq) => (
+            <details key={faq.pregunta} className="group border-b border-gray-200 last:border-b-0">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-left marker:hidden">
+                <span className="text-lg font-bold text-gray-800 transition-colors duration-300 group-hover:text-[#a90a0a] group-open:text-[#a90a0a]">
+                  {faq.pregunta}
+                </span>
+                <FaChevronDown
+                  aria-hidden="true"
+                  className="shrink-0 text-gray-400 transition-transform duration-300 group-open:rotate-180 group-open:text-[#a90a0a]"
+                />
+              </summary>
+              <p className="pb-6 text-lg leading-relaxed text-gray-600">{faq.respuesta}</p>
+            </details>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
-          <p className="text-gray-600 mb-4 font-medium">¿Aún tienes dudas?</p>
+        <div data-reveal="fade" className="mt-12 text-center">
+          <p className="mb-4 font-medium text-gray-600">¿Aún tienes dudas?</p>
           <a
-            href="https://wa.me/51984620910" // Reemplazar con número real si se conoce o dejar placeholder
-            className="inline-flex items-center gap-2 bg-[#25D366] text-white px-8 py-3 rounded-full font-bold hover:bg-[#128C7E] transition-all transform hover:scale-105 shadow-lg"
+            href={whatsappUrl('Hola, tengo una consulta sobre sus cortes.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex transform items-center gap-2 rounded-full bg-[#25D366] px-8 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-[#128C7E]"
           >
             Pregúntanos por WhatsApp
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

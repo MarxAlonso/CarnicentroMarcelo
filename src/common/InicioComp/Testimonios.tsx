@@ -1,8 +1,7 @@
-"use client";
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
+
+/** Componente de servidor: sin framer-motion no necesita JavaScript en cliente. */
 
 interface Testimonio {
   nombre: string;
@@ -28,74 +27,65 @@ const testimonios: Testimonio[] = [
   }
 ];
 
-const TestimonioCard: React.FC<{ testimonio: Testimonio; index: number }> = ({ testimonio, index }) => {
+const TestimonioCard: React.FC<{ testimonio: Testimonio }> = ({ testimonio }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.2 }}
-      className="bg-white p-8 rounded-3xl shadow-lg border border-[#fff4bf]/30 hover:shadow-2xl transition-all duration-300 relative group"
+    <div
+      data-reveal="scale"
+      className="group relative rounded-3xl border border-[#fff4bf]/30 bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl"
     >
-      <div className="absolute top-0 right-10 -translate-y-1/2 w-16 h-16 bg-[#a90a0a] rounded-2xl flex items-center justify-center shadow-lg transform group-hover:-rotate-6 transition-transform">
-        <FaQuoteLeft className="text-white text-2xl" />
+      <div className="absolute right-10 top-0 flex h-16 w-16 -translate-y-1/2 transform items-center justify-center rounded-2xl bg-[#a90a0a] shadow-lg transition-transform group-hover:-rotate-6">
+        <FaQuoteLeft className="text-2xl text-white" />
       </div>
-      <div className="flex gap-1 mb-4">
-        {[...Array(testimonio.estrellas)].map((_, i) => (
-          <FaStar key={i} className="text-[#FFD700]" />
+      <div className="mb-4 flex gap-1" aria-label={`${testimonio.estrellas} de 5 estrellas`}>
+        {Array.from({ length: testimonio.estrellas }, (_, i) => (
+          <FaStar key={i} className="text-[#FFD700]" aria-hidden="true" />
         ))}
       </div>
-      <p className="text-gray-700 italic text-lg leading-relaxed mb-6">
-        “{testimonio.comentario}”
+      <p className="mb-6 text-lg italic leading-relaxed text-gray-700">
+        &ldquo;{testimonio.comentario}&rdquo;
       </p>
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-[#fff4bf] rounded-full flex items-center justify-center font-bold text-[#a90a0a]">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#fff4bf] font-bold text-[#a90a0a]">
           {testimonio.nombre.charAt(0)}
         </div>
         <h4 className="text-lg font-bold text-gray-900">{testimonio.nombre}</h4>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 const Testimonios: React.FC = () => {
   return (
-    <section className="py-24 bg-[#a90a0a] relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#fff4bf] rounded-full blur-3xl"></div>
+    <section className="relative overflow-hidden bg-[#a90a0a] py-24">
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-10">
+        <div className="absolute left-10 top-10 h-64 w-64 rounded-full bg-white blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 h-96 w-96 rounded-full bg-[#fff4bf] blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-        >
-          <h2 className="text-sm font-bold tracking-widest text-[#fff4bf] uppercase mb-2">Opiniones de Nuestros Clientes</h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div data-reveal="up" className="mb-16 text-center">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-[#fff4bf]">
+            Opiniones de Nuestros Clientes
+          </h2>
+          <h3 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
             Confianza que se <span className="text-[#fff4bf]">Saborea</span>
           </h3>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonios.map((t, i) => (
-            <TestimonioCard key={i} testimonio={t} index={i} />
+        <div data-reveal-group="" className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {testimonios.map((t) => (
+            <TestimonioCard key={t.nombre} testimonio={t} />
           ))}
         </div>
 
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-20 text-center"
-        >
-          <div className="inline-block p-1 rounded-full bg-white/10 backdrop-blur-sm px-6 py-3 border border-white/20">
-            <p className="text-white text-lg font-medium">Más de <span className="text-[#fff4bf] font-bold">500+ clientes</span> satisfechos cada mes.</p>
+        <div data-reveal="fade" className="mt-20 text-center">
+          <div className="inline-block rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
+            <p className="text-lg font-medium text-white">
+              Más de <span className="font-bold text-[#fff4bf]">500+ clientes</span> satisfechos cada
+              mes.
+            </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

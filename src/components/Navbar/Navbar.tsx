@@ -3,117 +3,105 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { MdMenu, MdKeyboardArrowDown } from "react-icons/md";
-//import { GiCow, GiPig } from "react-icons/gi";
-import { motion, AnimatePresence } from "framer-motion";
+import { MdMenu, MdClose, MdKeyboardArrowDown } from "react-icons/md";
 import { ResponsiveMenu } from "./ResponsiveMenu";
 import { NavbarMenu } from "./NavbarData";
-//import {logoimagen} from "../../assets/logo2-carnicentromarcelo.png";
+
+/**
+ * Barra de navegación sin framer-motion.
+ *
+ * Va en el layout, así que su coste se pagaba en todas las páginas. El submenú
+ * ahora se abre por CSS (`group-hover` + `group-focus-within`), lo que además
+ * lo hace accesible con teclado: antes solo respondía a `onMouseEnter` y quien
+ * navega con Tab no podía abrirlo.
+ */
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<number | null>(null);
-
-  const handleMouseEnter = (id: number) => setActiveMenu(id);
-  const handleMouseLeave = () => setActiveMenu(null);
 
   return (
     <>
-      <nav className="bg-[#a90a0a] shadow-lg relative z-[1000]">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="container mx-auto flex justify-between items-center py-2 px-6"
-        >
-          {/* Logo section */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 font-bold text-[#fff4bf]"
+      <nav className="relative z-[1000] bg-[#a90a0a] shadow-lg">
+        <div className="container mx-auto flex items-center justify-between px-6 py-2">
+          <Link
+            href="/"
+            aria-label="Carnicentro Marcelo, ir al inicio"
+            className="transition-transform duration-200 hover:scale-105"
           >
-            {/* El logo lleva a la portada: es lo primero que intenta pulsar
-                quien quiere volver al inicio, y antes no era un enlace. */}
-            <Link href="/" aria-label="Carnicentro Marcelo, ir al inicio">
-              <Image
-                src="/logo2-carnicentromarcelo.png"
-                alt="Carnicentro Marcelo"
-                width={240}
-                height={96}
-                priority
-                className="h-24 w-auto rounded-[20px] object-contain shadow-lg"
-              />
-            </Link>
-          </motion.div>
-          {/* Menu section */}
+            <Image
+              src="/logo2-carnicentromarcelo.png"
+              alt="Carnicentro Marcelo"
+              width={240}
+              height={96}
+              priority
+              className="h-24 w-auto rounded-[20px] object-contain shadow-lg"
+            />
+          </Link>
+
           <div className="hidden md:block">
             <ul className="flex items-center gap-6">
               {NavbarMenu.map((item) => (
-                <motion.li 
-                  key={item.id}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative"
-                  onMouseEnter={() => handleMouseEnter(item.id)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="flex items-center gap-1">
-                    <Link
-                      href={item.link}
-                      className="inline-block py-2 px-4 text-[#fff4bf] hover:text-white hover:bg-[#8a0808] rounded-lg transition-all duration-300 font-semibold"
-                      onClick={item.submenu ? (e) => e.preventDefault() : undefined}
-                    >
-                      {item.title}
-                      {item.submenu && <MdKeyboardArrowDown className="inline ml-1" />}
-                    </Link>
-                  </div>
-                  
-                  {/* Submenu */}
-                  <AnimatePresence>
-                    {item.submenu && activeMenu === item.id && (
-                      <motion.ul
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-full left-0 mt-2 py-2 bg-[#a90a0a] rounded-lg shadow-lg min-w-[200px] z-[1001]"
+                <li key={item.id} className="group relative">
+                  {item.submenu ? (
+                    <>
+                      {/* Es un disparador de menú, no un enlace: antes era un
+                          <a href="#"> con preventDefault. */}
+                      <button
+                        type="button"
+                        aria-haspopup="true"
+                        className="inline-flex items-center gap-1 rounded-lg px-4 py-2 font-semibold text-[#fff4bf] transition-all duration-300 hover:bg-[#8a0808] hover:text-white"
                       >
-                        {item.submenu.map((subItem, index) => (
-                          <motion.li
-                            key={index}
-                            whileHover={{ x: 5 }}
-                          >
+                        {item.title}
+                        <MdKeyboardArrowDown
+                          aria-hidden="true"
+                          className="transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                        />
+                      </button>
+                      <ul className="invisible absolute left-0 top-full z-[1001] mt-2 min-w-[200px] -translate-y-1 rounded-lg bg-[#a90a0a] py-2 opacity-0 shadow-lg transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                        {item.submenu.map((subItem) => (
+                          <li key={subItem.link}>
                             <Link
                               href={subItem.link}
-                              className="block px-4 py-2 text-[#fff4bf] hover:text-white hover:bg-[#8a0808] transition-all duration-300"
+                              className="block px-4 py-2 text-[#fff4bf] transition-all duration-300 hover:translate-x-1 hover:bg-[#8a0808] hover:text-white"
                             >
                               {subItem.title}
                             </Link>
-                          </motion.li>
+                          </li>
                         ))}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                </motion.li>
+                      </ul>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.link}
+                      className="inline-block rounded-lg px-4 py-2 font-semibold text-[#fff4bf] transition-all duration-300 hover:scale-105 hover:bg-[#8a0808] hover:text-white"
+                    >
+                      {item.title}
+                    </Link>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
 
-          {/* Icons section */}
           <div className="flex items-center gap-4">
-
-            {/* Mobile hamburger Menu section */}
-            <motion.div 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="md:hidden cursor-pointer text-white" 
-              onClick={() => setOpen(!open)}
+            <button
+              type="button"
+              aria-label={open ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={open}
+              aria-controls="menu-movil"
+              className="cursor-pointer text-white transition-transform duration-200 hover:scale-110 active:scale-95 md:hidden"
+              onClick={() => setOpen((v) => !v)}
             >
-              <MdMenu className="text-4xl hover:text-[#fff4bf] transition-colors" />
-            </motion.div>
+              {open ? (
+                <MdClose className="text-4xl transition-colors hover:text-[#fff4bf]" />
+              ) : (
+                <MdMenu className="text-4xl transition-colors hover:text-[#fff4bf]" />
+              )}
+            </button>
           </div>
-        </motion.div>
+        </div>
       </nav>
 
-      {/* Mobile Sidebar section */}
-      <ResponsiveMenu open={open} />
+      <ResponsiveMenu open={open} onNavigate={() => setOpen(false)} />
     </>
   );
 };

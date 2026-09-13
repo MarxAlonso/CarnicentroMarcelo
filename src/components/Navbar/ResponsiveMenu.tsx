@@ -1,102 +1,95 @@
 "use client";
 
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { NavbarMenu } from "./NavbarData";
 import { FaShoppingBasket } from "react-icons/fa";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
-interface ResponsiveMenuProps {
+/**
+ * Menú móvil sin framer-motion: la apertura la hace la clase `menu-movil-in`.
+ *
+ * Además cierra al navegar —antes el panel se quedaba abierto encima de la
+ * página nueva— y el submenú desplegable ya es un `<button>`, no un `div` con
+ * `onClick`.
+ */
+export const ResponsiveMenu = ({
+  open,
+  onNavigate,
+}: {
   open: boolean;
-}
-
-export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ open }) => {
+  onNavigate: () => void;
+}) => {
   const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
 
-  const toggleSubmenu = (id: number) => {
-    setActiveSubmenu(activeSubmenu === id ? null : id);
-  };
+  if (!open) return null;
 
   return (
-    <AnimatePresence mode="wait">
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -100 }}
-          transition={{ duration: 0.3 }}
-          className="fixed top-20 left-0 w-full h-screen z-50 bg-black bg-opacity-60 backdrop-blur-lg"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-[#a90a0a] text-[#fff4bf] py-8 px-6 m-4 rounded-2xl shadow-lg"
-          >
-            <ul className="flex flex-col justify-center items-center gap-8">
-              {NavbarMenu.map((item) => (
-                <motion.li
-                  key={item.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full text-center"
-                >
-                  <div
-                    onClick={() => item.submenu && toggleSubmenu(item.id)}
-                    className="cursor-pointer"
+    <div
+      id="menu-movil"
+      className="menu-movil-in fixed left-0 top-20 z-50 h-screen w-full bg-black/60 backdrop-blur-lg md:hidden"
+    >
+      <div className="m-4 rounded-2xl bg-[#a90a0a] px-6 py-8 text-[#fff4bf] shadow-lg">
+        <ul className="flex flex-col items-center justify-center gap-4">
+          {NavbarMenu.map((item) => (
+            <li key={item.id} className="w-full text-center">
+              {item.submenu ? (
+                <>
+                  <button
+                    type="button"
+                    aria-expanded={activeSubmenu === item.id}
+                    onClick={() => setActiveSubmenu((prev) => (prev === item.id ? null : item.id))}
+                    className="inline-flex w-full items-center justify-center gap-1 rounded-xl px-6 py-3 text-lg font-semibold transition-all duration-300 hover:bg-[#8a0808]"
                   >
-                    <Link
-                      href={item.link}
-                      onClick={(e) => item.submenu && e.preventDefault()}
-                      className="inline-block w-full py-3 px-6 text-lg font-semibold hover:bg-[#8a0808] rounded-xl transition-all duration-300"
-                    >
-                      {item.title}
-                    </Link>
-                  </div>
+                    {item.title}
+                    <MdKeyboardArrowDown
+                      aria-hidden="true"
+                      className={`transition-transform duration-200 ${
+                        activeSubmenu === item.id ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
-                  {/* Submenu */}
-                  <AnimatePresence>
-                    {item.submenu && activeSubmenu === item.id && (
-                      <motion.ul
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="mt-2 bg-[#8a0808] rounded-lg overflow-hidden"
-                      >
-                        {item.submenu.map((subItem, index) => (
-                          <motion.li
-                            key={index}
-                            whileHover={{ x: 10 }}
-                            className="w-full"
+                  {activeSubmenu === item.id && (
+                    <ul className="submenu-in mt-2 overflow-hidden rounded-lg bg-[#8a0808]">
+                      {item.submenu.map((subItem) => (
+                        <li key={subItem.link} className="w-full">
+                          <Link
+                            href={subItem.link}
+                            onClick={onNavigate}
+                            className="block w-full px-8 py-2 text-left text-[#fff4bf] transition-all duration-300 hover:translate-x-1 hover:text-white"
                           >
-                            <Link
-                              href={subItem.link}
-                              className="block w-full py-2 px-8 text-[#fff4bf] hover:text-white hover:bg-[#8a0808] transition-all duration-300 text-left"
-                            >
-                              {subItem.title}
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                </motion.li>
-              ))}
-              {/* Es una página del propio sitio: no tiene por qué abrirse en
-                  una pestaña nueva. */}
-              <motion.a
-                href="/contacto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-4 px-8 py-3 bg-[#8a0808] hover:bg-[#a90a0a] rounded-xl font-semibold transition-colors duration-300 shadow-lg flex items-center justify-center gap-2"
-              >
-                <FaShoppingBasket />
-                Contacto
-              </motion.a>
-            </ul>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                            {subItem.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={item.link}
+                  onClick={onNavigate}
+                  className="inline-block w-full rounded-xl px-6 py-3 text-lg font-semibold transition-all duration-300 hover:bg-[#8a0808]"
+                >
+                  {item.title}
+                </Link>
+              )}
+            </li>
+          ))}
+
+          <li className="mt-4 w-full">
+            <Link
+              href="/contacto"
+              onClick={onNavigate}
+              className="flex items-center justify-center gap-2 rounded-xl bg-[#8a0808] px-8 py-3 font-semibold shadow-lg transition-all duration-200 hover:scale-105 hover:bg-[#a90a0a] active:scale-95"
+            >
+              <FaShoppingBasket aria-hidden="true" />
+              Contacto
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 };

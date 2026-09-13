@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { categorias } from "../../data-cerdo/categorias";
 
 interface CategoryFilterProps {
@@ -8,42 +7,39 @@ interface CategoryFilterProps {
   setCategoriaSeleccionada: (categoria: string) => void;
 }
 
+/**
+ * Sin framer-motion: el hover y la pulsación son clases de Tailwind.
+ * Se quitó además un `div` que envolvía a otro `div` idéntico.
+ */
 export const CategoryFilter = ({
   categoriaSeleccionada,
   setCategoriaSeleccionada,
 }: CategoryFilterProps) => {
+  const opciones = [
+    { clave: "Todos", etiqueta: "🐷 Todos" },
+    ...categorias.map((c) => ({ clave: c.nombre, etiqueta: `${c.icon} ${c.nombre}` })),
+  ];
+
   return (
-    <div className="flex flex-wrap gap-3 mb-8">
-      {/* Botones de categorías */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        <motion.button
-          onClick={() => setCategoriaSeleccionada("Todos")}
-          className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
-            categoriaSeleccionada === "Todos"
-              ? "bg-[#a90a0a] text-white"
-              : "bg-[#fff4bf] text-[#a90a0a] hover:bg-[#a90a0a] hover:text-white"
-          }`}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          🐷 Todos
-        </motion.button>
-        {categorias.map((categoria) => (
-          <motion.button
-            key={categoria.id}
-            onClick={() => setCategoriaSeleccionada(categoria.nombre)}
-            className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
-              categoriaSeleccionada === categoria.nombre
+    <div className="mb-8 flex flex-wrap gap-3">
+      {opciones.map(({ clave, etiqueta }) => {
+        const activo = categoriaSeleccionada === clave;
+        return (
+          <button
+            type="button"
+            key={clave}
+            aria-pressed={activo}
+            onClick={() => setCategoriaSeleccionada(clave)}
+            className={`rounded-full px-6 py-2 font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
+              activo
                 ? "bg-[#a90a0a] text-white"
                 : "bg-[#fff4bf] text-[#a90a0a] hover:bg-[#a90a0a] hover:text-white"
             }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
-            {categoria.icon} {categoria.nombre}
-          </motion.button>
-        ))}
-      </div>
+            {etiqueta}
+          </button>
+        );
+      })}
     </div>
   );
 };

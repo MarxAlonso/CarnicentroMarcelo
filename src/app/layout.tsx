@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer/Footer";
 import Chatbot from "@/components/Chatbot/Chatbot";
 import { SITE } from "@/lib/site";
 import { buildLocalBusinessSchema, buildOrganizationSchema, jsonLd } from "@/lib/schema";
+import { REVEAL_SCRIPT } from "@/components/Reveal/Reveal";
 
 /**
  * Antes se pedían las dos familias completas a Google Fonts: nueve pesos, en
@@ -76,6 +77,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLd([buildLocalBusinessSchema(), buildOrganizationSchema()])}
         />
+        {/* Marca el documento antes del primer pintado para que el revelado no
+            parpadee. Son ~400 bytes inline: no hay petición de red ni espera a
+            que React hidrate. */}
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
       </head>
       <body className="bg-white text-gray-900 antialiased">
         <a

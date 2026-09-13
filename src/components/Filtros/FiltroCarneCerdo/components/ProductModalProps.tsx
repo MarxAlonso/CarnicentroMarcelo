@@ -1,56 +1,37 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { ProductoCerdo } from "../../data-cerdo/productosCerdo";
+import { Modal } from "@/components/Modal/Modal";
 
 interface ProductModalProps {
   producto: ProductoCerdo;
   onClose: () => void;
 }
 
+/**
+ * Usa el modal compartido: con eso hereda cierre por Escape, bloqueo del
+ * scroll de fondo y devolución del foco, que esta implementación no tenía.
+ */
 export const ProductModal = ({ producto, onClose }: ProductModalProps) => {
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="bg-white rounded-xl p-6 max-w-md w-full relative"
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.9 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
-        >
-          ✕
-        </button>
+    <Modal abierto onClose={onClose} etiqueta={producto.nombre}>
+      {producto.imagen && (
+        <Image
+          src={producto.imagen}
+          alt={producto.nombre}
+          width={600}
+          height={400}
+          sizes="(max-width: 768px) 90vw, 600px"
+          className="mb-4 w-full rounded-lg object-cover"
+        />
+      )}
 
-        {producto.imagen && (
-          <Image
-            src={producto.imagen}
-            alt={producto.nombre}
-            width={600}
-            height={400}
-            sizes="(max-width: 768px) 90vw, 600px"
-            className="mb-4 w-full rounded-lg object-cover"
-          />
-        )}
-
-        <h2 className="text-2xl font-bold text-[#a90a0a] mb-2">
-          {producto.nombre}
-        </h2>
-        <p className="text-gray-600 mb-4">{producto.descripcion}</p>
-        <p className="text-[#a90a0a] font-bold mb-6">
-          S/ {producto.precio.toFixed(2)} / kg
-        </p>
-      </motion.div>
-    </motion.div>
+      <h2 className="mb-2 text-2xl font-bold text-[#a90a0a]">{producto.nombre}</h2>
+      <p className="mb-4 text-gray-600">{producto.descripcion}</p>
+      <p className="mb-2 font-bold tabular-nums text-[#a90a0a]">
+        S/ {producto.precio.toFixed(2)} / kg
+      </p>
+    </Modal>
   );
 };

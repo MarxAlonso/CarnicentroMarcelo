@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
 import { GiCow, GiMeat } from 'react-icons/gi';
@@ -13,19 +12,24 @@ import lomo from '../../assets/carnes/lomo.webp';
 import asado from '../../assets/carnes/asado.webp';
 import churrasco from '../../assets/carnes/churrasco.webp';
 
-// Definir el tipo de los elementos del menú
+/**
+ * Sigue siendo de cliente porque guarda qué categoría está seleccionada, pero
+ * ya sin framer-motion: la entrada la hace `data-reveal` y el hover/pulsación,
+ * clases de Tailwind. Además cada chip es ahora un `<button>` de verdad, así
+ * que responde al teclado; antes era un `div` con `onClick`, invisible para
+ * quien navega con Tab.
+ */
+
 interface MenuItem {
   menu_name: string;
   menu_image: StaticImageData;
 }
 
-// Definir el tipo de las props para ExplorarCarnes
 interface ExplorarCarnesProps {
   category: string;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-// La lista de los elementos del menú (carnes)
 const menu_list: MenuItem[] = [
   { menu_name: "Panceta", menu_image: panceta },
   { menu_name: "Carne Molida", menu_image: carnemolida },
@@ -37,66 +41,71 @@ const menu_list: MenuItem[] = [
   { menu_name: "Churrasco", menu_image: churrasco },
 ];
 
-// Componente ExplorarCarnes
 export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCategory }) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col items-center gap-8 py-12 bg-[#fff4bf] rounded-xl shadow-lg px-4 md:px-8"
+    <div
+      data-reveal="up"
+      className="flex flex-col items-center gap-8 rounded-xl bg-[#fff4bf] px-4 py-12 shadow-lg md:px-8"
       id="explorar-carnes"
     >
-      <div className="text-center space-y-4">
-        <motion.div 
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-3 mb-2"
-        >
-          <GiCow className="text-[#a90a0a] text-4xl" />
-          <h1 className="text-4xl md:text-5xl font-bold text-[#a90a0a]">Explora Nuestras Carnes</h1>
-          <GiMeat className="text-[#a90a0a] text-4xl" />
-        </motion.div>
-        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Descubre nuestra selección premium de cortes de res y cerdo, criados con los más altos estándares de calidad</p>
+      <div className="space-y-4 text-center">
+        <div className="mb-2 flex items-center justify-center gap-3">
+          <GiCow className="text-4xl text-[#a90a0a]" aria-hidden="true" />
+          <h2 className="text-4xl font-bold text-[#a90a0a] md:text-5xl">Explora Nuestras Carnes</h2>
+          <GiMeat className="text-4xl text-[#a90a0a]" aria-hidden="true" />
+        </div>
+        <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
+          Descubre nuestra selección premium de cortes de res y cerdo, criados con los más altos
+          estándares de calidad
+        </p>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6 lg:gap-8">
-          {menu_list.map((item, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setCategory(prev => (prev === item.menu_name ? "Mas" : item.menu_name))}
-              key={index}
-              className="flex flex-col items-center justify-center cursor-pointer group"
-            >
-              <div 
-                className={`relative rounded-full overflow-hidden w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 ${category === item.menu_name ? 'ring-4 ring-[#a90a0a] ring-offset-2' : 'ring-2 ring-transparent hover:ring-[#a90a0a]/50'}`}
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          data-reveal-group=""
+          className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-8 lg:gap-8"
+        >
+          {menu_list.map((item) => {
+            const activo = category === item.menu_name;
+            return (
+              <button
+                type="button"
+                key={item.menu_name}
+                data-reveal="up"
+                aria-pressed={activo}
+                onClick={() =>
+                  setCategory((prev) => (prev === item.menu_name ? "Mas" : item.menu_name))
+                }
+                className="group flex cursor-pointer flex-col items-center justify-center transition-transform duration-200 hover:scale-105 active:scale-95"
               >
-                <Image
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  src={item.menu_image}
-                  alt={item.menu_name}
-                  width={128}
-                  height={128}
-                  sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
-                />
-              </div>
-              <p className="mt-3 text-sm sm:text-base md:text-lg font-medium text-gray-800 group-hover:text-[#a90a0a] transition-colors text-center">
-                {item.menu_name}
-              </p>
-            </motion.div>
-          ))}
+                <span
+                  className={`relative block h-24 w-24 overflow-hidden rounded-full sm:h-28 sm:w-28 md:h-32 md:w-32 ${
+                    activo
+                      ? 'ring-4 ring-[#a90a0a] ring-offset-2'
+                      : 'ring-2 ring-transparent hover:ring-[#a90a0a]/50'
+                  }`}
+                >
+                  <Image
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    src={item.menu_image}
+                    alt={item.menu_name}
+                    width={128}
+                    height={128}
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
+                  />
+                </span>
+                <span className="mt-3 text-center text-sm font-medium text-gray-800 transition-colors group-hover:text-[#a90a0a] sm:text-base md:text-lg">
+                  {item.menu_name}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="h-px bg-gradient-to-r from-transparent via-[#a90a0a]/20 to-transparent" />
       </div>
-    </motion.div>
+    </div>
   );
 };

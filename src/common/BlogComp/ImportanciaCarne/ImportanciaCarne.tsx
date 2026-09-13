@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { GiHealthNormal, GiBrain, GiMuscleUp } from 'react-icons/gi';
 import { FaUserGraduate, FaChild, FaUserAlt, FaBone } from 'react-icons/fa';
 
@@ -12,7 +11,7 @@ const ImportanciaCarne: React.FC = () => {
       {/* Hero Header */}
       <div className="relative h-[60vh] overflow-hidden">
         <Image
-          src="/blog/blog_header_nutrition_beef.png"
+          src="/blog/blog_header_nutrition_beef.webp"
           alt="Importancia de la carne de res"
           fill
           priority
@@ -21,11 +20,7 @@ const ImportanciaCarne: React.FC = () => {
           />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-12 w-full text-white">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div data-reveal="up">
               <span className="bg-[#a90a0a] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 inline-block">Nutrición y Salud</span>
               <h1 className="text-4xl md:text-6xl font-black leading-tight">
                 La Importancia de la Carne de Res en el Desarrollo Humano
@@ -33,7 +28,7 @@ const ImportanciaCarne: React.FC = () => {
               <p className="mt-4 text-xl text-gray-200 max-w-3xl">
                 Un análisis profundo sobre cómo la proteína de alta calidad y los micronutrientes de la carne roja impactan en cada etapa de la vida.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -67,12 +62,8 @@ const ImportanciaCarne: React.FC = () => {
         {/* Life Stages */}
         <div className="space-y-24 mt-20">
           {/* Niños */}
-          <motion.section
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row gap-12 items-start"
-          >
+          <section data-reveal="left"
+            className="flex flex-col md:flex-row gap-12 items-start">
             <div className="w-16 h-16 bg-[#a90a0a] rounded-full flex items-center justify-center shrink-0">
               <FaChild className="text-3xl text-[#fff4bf]" />
             </div>
@@ -87,15 +78,11 @@ const ImportanciaCarne: React.FC = () => {
                 <li>Fundamental para el desarrollo cognitivo temprano.</li>
               </ul>
             </div>
-          </motion.section>
+          </section>
 
           {/* Jóvenes */}
-          <motion.section
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row-reverse gap-12 items-start"
-          >
+          <section data-reveal="right"
+            className="flex flex-col md:flex-row-reverse gap-12 items-start">
             <div className="w-16 h-16 bg-[#a90a0a] rounded-full flex items-center justify-center shrink-0">
               <FaUserGraduate className="text-3xl text-[#fff4bf]" />
             </div>
@@ -109,15 +96,11 @@ const ImportanciaCarne: React.FC = () => {
                 <p className="m-0 font-medium italic">&ldquo;La carne roja es el combustible metabólico más eficiente para el desarrollo de la masa muscular magra.&rdquo;</p>
               </div>
             </div>
-          </motion.section>
+          </section>
 
           {/* Adultos */}
-          <motion.section
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row gap-12 items-start"
-          >
+          <section data-reveal="left"
+            className="flex flex-col md:flex-row gap-12 items-start">
             <div className="w-16 h-16 bg-[#a90a0a] rounded-full flex items-center justify-center shrink-0">
               <FaUserAlt className="text-3xl text-[#fff4bf]" />
             </div>
@@ -131,7 +114,7 @@ const ImportanciaCarne: React.FC = () => {
                 <p className="m-0 font-medium italic">Previene la debilidad articular y mantiene los niveles de energía estables durante el día.</p>
               </div>
             </div>
-          </motion.section>
+          </section>
         </div>
 
         {/* Conclusion */}

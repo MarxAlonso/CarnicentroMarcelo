@@ -1,7 +1,6 @@
 "use client";
 
 
-import { motion } from 'framer-motion';
 import { GiMeat, GiCow, GiPig, GiKnifeFork, GiWeight } from 'react-icons/gi';
 import { BannerNosotros } from '../../components/Banner/BannerNosotros';
 
@@ -25,17 +24,12 @@ export const NosotrosInicio = () => {
         <div className="min-h-screen bg-gradient-to-b from-carni-cream to-white">
             <BannerNosotros />
             
-            <motion.div 
+            <div 
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={containerVariants}
-            >
-                <motion.section 
-                    className="mb-20"
-                    variants={cardVariants}
-                >
+
+>
+                <section 
+                    className="mb-20">
                     <div className="flex items-center justify-center mb-8">
                         <GiKnifeFork className="text-carni-red text-4xl mr-4 transform -rotate-12" />
                         <h2 className="text-4xl font-bold text-carni-dark-red">Nuestra Misión</h2>
@@ -45,12 +39,10 @@ export const NosotrosInicio = () => {
                         garantizando cortes precisos, frescura excepcional y un servicio personalizado 
                         que satisfaga las exigencias de nuestros clientes.
                     </p>
-                </motion.section>
+                </section>
 
-                <motion.section 
-                    className="mb-20"
-                    variants={cardVariants}
-                >
+                <section 
+                    className="mb-20">
                     <div className="flex items-center justify-center mb-8">
                         <GiWeight className="text-carni-red text-4xl mr-4" />
                         <h2 className="text-4xl font-bold text-carni-dark-red">Nuestra Visión</h2>
@@ -60,12 +52,10 @@ export const NosotrosInicio = () => {
                         cortes de res y cerdo, manteniendo los más altos estándares de calidad y 
                         ofreciendo una experiencia de compra única.
                     </p>
-                </motion.section>
+                </section>
 
-                <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
-                    variants={containerVariants}
-                >
+                <div 
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     {[
                         {
                             icon: GiCow,
@@ -88,12 +78,9 @@ export const NosotrosInicio = () => {
                             description: "Cada corte pasa por un riguroso control de calidad para asegurar la mejor experiencia en su mesa."
                         }
                     ].map((item, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            variants={cardVariants}
-                            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border-2 border-carni-red/10"
-                            whileHover={{ scale: 1.03 }}
-                        >
+                            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border-2 border-carni-red/10 transition-transform duration-200 hover:scale-105">
                             <div className="flex items-center justify-center mb-6">
                                 <item.icon className="text-6xl text-carni-red transform hover:scale-110 transition-transform duration-300" />
                             </div>
@@ -103,10 +90,10 @@ export const NosotrosInicio = () => {
                             <p className="text-gray-600 text-center leading-relaxed">
                                 {item.description}
                             </p>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
-            </motion.div>
+                </div>
+            </div>
         </div>
     );
 };

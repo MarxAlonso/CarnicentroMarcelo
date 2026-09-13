@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { GiCow, GiMeat, GiChefToque } from 'react-icons/gi';
 import { FaHome, FaArrowLeft } from 'react-icons/fa';
@@ -38,64 +37,42 @@ const NotFound = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#fff4bf] via-white to-[#fff4bf] flex items-center justify-center px-4">
-            <motion.div
+            <div
                 className="text-center max-w-2xl mx-auto"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-            >
+
+>
                 {/* Iconos flotantes */}
                 <div className="relative mb-8">
-                    <motion.div
-                        className="absolute -top-10 -left-10 text-[#a90a0a] text-4xl opacity-20"
-                        animate={floatingAnimation}
-                    >
+                    <div
+                        className="absolute -top-10 -left-10 text-[#a90a0a] text-4xl opacity-20">
                         <GiCow />
-                    </motion.div>
-                    <motion.div
-                        className="absolute -top-5 -right-8 text-[#a90a0a] text-3xl opacity-20"
-                        animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 1 } }}
-                    >
+                    </div>
+                    <div
+                        className="absolute -top-5 -right-8 text-[#a90a0a] text-3xl opacity-20">
                         <GiMeat />
-                    </motion.div>
-                    <motion.div
-                        className="absolute -bottom-5 left-5 text-[#a90a0a] text-3xl opacity-20"
-                        animate={{ ...floatingAnimation, transition: { ...floatingAnimation.transition, delay: 2 } }}
-                    >
+                    </div>
+                    <div
+                        className="absolute -bottom-5 left-5 text-[#a90a0a] text-3xl opacity-20">
                         <GiChefToque />
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Número 404 */}
-                <motion.div
-                    className="mb-8"
-                    variants={itemVariants}
-                >
+                <div
+                    className="mb-8">
                     <h1 className="text-9xl md:text-[12rem] font-bold text-[#a90a0a] leading-none">
                         4
-                        <motion.span
-                            className="inline-block"
-                            animate={{
-                                rotate: [0, 10, -10, 0],
-                                scale: [1, 1.1, 1]
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut" as const
-                            }}
-                        >
+                        <span
+                            className="inline-block">
                             0
-                        </motion.span>
+                        </span>
                         4
                     </h1>
-                </motion.div>
+                </div>
 
                 {/* Mensaje principal */}
-                <motion.div
-                    className="mb-8"
-                    variants={itemVariants}
-                >
+                <div
+                    className="mb-8">
                     <h2 className="text-3xl md:text-4xl font-bold text-[#a90a0a] mb-4">
                         ¡Ups! Página no encontrada
                     </h2>
@@ -105,65 +82,39 @@ const NotFound = () => {
                     <p className="text-base md:text-lg text-gray-600">
                         La página que buscas no existe o ha sido movida.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Ilustración con carne */}
-                <motion.div
-                    className="mb-8 flex justify-center"
-                    variants={itemVariants}
-                >
-                    <motion.div
-                        className="bg-white rounded-full p-8 shadow-lg border-4 border-[#a90a0a]"
-                        whileHover={{ scale: 1.05 }}
-                        animate={{
-                            boxShadow: [
-                                "0 10px 30px rgba(169, 10, 10, 0.2)",
-                                "0 15px 40px rgba(169, 10, 10, 0.3)",
-                                "0 10px 30px rgba(169, 10, 10, 0.2)"
-                            ]
-                        }}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    >
+                <div
+                    className="mb-8 flex justify-center">
+                    <div
+                        className="bg-white rounded-full p-8 shadow-lg border-4 border-[#a90a0a] transition-transform duration-200 hover:scale-105">
                         <GiMeat className="text-6xl md:text-8xl text-[#a90a0a]" />
-                    </motion.div>
-                </motion.div>
+                    </div>
+                </div>
 
                 {/* Botones de navegación */}
-                <motion.div
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                    variants={itemVariants}
-                >
+                <div
+                    className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Link href="/">
-                        <motion.button
-                            className="bg-[#a90a0a] text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-3 hover:bg-red-800 transition-colors duration-300 shadow-lg"
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
+                        <button
+                            className="bg-[#a90a0a] text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-3 hover:bg-red-800 transition-colors duration-300 shadow-lg transition-transform duration-200 hover:-translate-y-1.5 hover:scale-105 active:scale-95">
                             <FaHome className="text-xl" />
                             Ir al Inicio
-                        </motion.button>
+                        </button>
                     </Link>
                     
-                    <motion.button
+                    <button
                         onClick={() => window.history.back()}
-                        className="bg-white text-[#a90a0a] px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-3 border-2 border-[#a90a0a] hover:bg-[#fff4bf] transition-colors duration-300 shadow-lg"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
+                        className="bg-white text-[#a90a0a] px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-3 border-2 border-[#a90a0a] hover:bg-[#fff4bf] transition-colors duration-300 shadow-lg transition-transform duration-200 hover:-translate-y-1.5 hover:scale-105 active:scale-95">
                         <FaArrowLeft className="text-xl" />
                         Volver Atrás
-                    </motion.button>
-                </motion.div>
+                    </button>
+                </div>
 
                 {/* Mensaje adicional */}
-                <motion.div
-                    className="mt-12 p-6 bg-white/80 rounded-lg border border-[#a90a0a]/20"
-                    variants={itemVariants}
-                >
+                <div
+                    className="mt-12 p-6 bg-white/80 rounded-lg border border-[#a90a0a]/20">
                     <p className="text-[#a90a0a] font-medium text-lg mb-2">
                         🥩 CarnicentroMarcelo
                     </p>
@@ -172,24 +123,20 @@ const NotFound = () => {
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 mt-4">
                         <Link href="/carne-de-res">
-                            <motion.span
-                                className="text-[#a90a0a] hover:text-red-800 font-medium underline cursor-pointer"
-                                whileHover={{ scale: 1.05 }}
-                            >
+                            <span
+                                className="text-[#a90a0a] hover:text-red-800 font-medium underline cursor-pointer transition-transform duration-200 hover:scale-105">
                                 Carne de Res
-                            </motion.span>
+                            </span>
                         </Link>
                         <Link href="/carne-de-cerdo">
-                            <motion.span
-                                className="text-[#a90a0a] hover:text-red-800 font-medium underline cursor-pointer"
-                                whileHover={{ scale: 1.05 }}
-                            >
+                            <span
+                                className="text-[#a90a0a] hover:text-red-800 font-medium underline cursor-pointer transition-transform duration-200 hover:scale-105">
                                 Carne de Cerdo
-                            </motion.span>
+                            </span>
                         </Link>
                     </div>
-                </motion.div>
-            </motion.div>
+                </div>
+            </div>
         </div>
     );
 };

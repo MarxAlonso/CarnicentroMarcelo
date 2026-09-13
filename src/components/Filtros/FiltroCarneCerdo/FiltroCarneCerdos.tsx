@@ -66,7 +66,13 @@ export const FiltroCarneCerdos = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {productosFiltrados.map((producto) => (
-          <ProductCard key={producto.id} producto={producto} onClick={() => setModalProducto(producto)} />
+          // El estado del filtro entra en el key: al cambiarlo React monta
+          // nodos nuevos y la animación de entrada vuelve a ejecutarse.
+          <ProductCard
+            key={`${categoriaSeleccionada}-${ordenPrecio}-${producto.id}`}
+            producto={producto}
+            onClick={() => setModalProducto(producto)}
+          />
         ))}
       </div>
 

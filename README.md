@@ -47,8 +47,30 @@ Son cuatro y conviene no saltárselas:
 
 4. **Un artículo nuevo se da de alta en `content/posts.ts`.** De ese registro
    salen el listado, la ruta estática, el sitemap y los metadatos. Además hay
-   que escribir su componente y añadirlo al mapa `CUERPOS` de
-   `app/blog/[slug]/page.tsx`.
+   que escribir su componente usando `components/Blog/ArticleLayout` y
+   añadirlo al mapa `CUERPOS` de `app/blog/[slug]/page.tsx`.
+
+## Animaciones: nada de librerías
+
+El sitio no usa framer-motion. Se quitó porque costaba 172 KB en todas las
+páginas y, sobre todo, porque dejaba el contenido en `opacity: 0` hasta que
+React hidrataba: el HTML llegaba rápido pero la página se veía vacía.
+
+En su lugar hay dos mecanismos, ambos en CSS:
+
+- **Revelado al entrar en pantalla.** Pon `data-reveal="up"` (o `fade`, `left`,
+  `right`, `scale`) en el elemento. Para escalonar hermanos, envuélvelos en un
+  `data-reveal-group` y el retraso lo calcula el CSS con `nth-child`.
+- **Entrada inmediata**, para lo que ya está en pantalla al cargar: clase
+  `hero-enter`, con `--hero-delay` si quieres escalonar.
+
+La regla que no se rompe: **el HTML sale visible**. El sistema solo se activa
+si un script inline de ~400 bytes marca el documento antes del primer pintado.
+Si el JavaScript falla, o el visitante pidió menos movimiento en su sistema, se
+ve todo sin animación. Nunca al revés.
+
+Al añadir animación, quédate en `opacity` y `transform`: son las dos
+propiedades que el compositor resuelve sin recalcular maquetación.
 
 ## Datos que faltan
 

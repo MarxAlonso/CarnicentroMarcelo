@@ -35,7 +35,7 @@ export default function BlogListing() {
               className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg"
             >
               <div className="relative h-64 overflow-hidden">
-                {post.imagen && (
+                {post.imagen ? (
                   <Image
                     src={post.imagen}
                     alt=""
@@ -46,6 +46,14 @@ export default function BlogListing() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
+                ) : (
+                  /* Los artículos sin foto de cabecera no dejan un hueco gris:
+                     llevan una portada tipográfica con el color de la marca. */
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-carni-red to-carni-dark-red p-8">
+                    <span className="text-center font-display text-2xl font-bold leading-snug text-carni-cream">
+                      {post.titulo}
+                    </span>
+                  </div>
                 )}
                 <span className="absolute left-4 top-4 rounded-full bg-carni-red px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
                   {post.categoria}

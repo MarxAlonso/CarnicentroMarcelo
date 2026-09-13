@@ -1,39 +1,44 @@
 "use client";
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { GiMeat, GiWeight } from 'react-icons/gi';
+import { Modal } from '@/components/Modal/Modal';
 
-// Datos de ejemplo de productos
 import { productosRes } from '../data/productosRes';
 import { categorias } from '../data/categorias';
 
+/**
+ * Sin framer-motion. Cambios de paso:
+ *   · El modal pasa al compartido (Escape, scroll bloqueado, foco devuelto).
+ *   · Las tarjetas son `<button>` y no `div` con `onClick`: antes no se podían
+ *     abrir con teclado.
+ *   · El modal se sacó de dentro de la rejilla de productos, donde estaba
+ *     anidado como si fuera una tarjeta más.
+ */
 export const FiltroCarneRes = () => {
     const [busqueda, setBusqueda] = useState('');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
     const [sugerencias, setSugerencias] = useState<string[]>([]);
-    //asegura que el estado del modal tendrá el mismo tipo que un producto, o null cuando no se esté mostrando.
-    const [modalProducto, setModalProducto] = useState<typeof productosRes[0] | null>(null);
+    const [modalProducto, setModalProducto] = useState<(typeof productosRes)[0] | null>(null);
 
-    // Filtrar productos según búsqueda y categoría
-    const productosFiltrados = productosRes.filter(producto => {
+    const productosFiltrados = productosRes.filter((producto) => {
         const coincideBusqueda = producto.nombre.toLowerCase().includes(busqueda.toLowerCase());
-        const coincideCategoria = categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada;
+        const coincideCategoria =
+            categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada;
         return coincideBusqueda && coincideCategoria;
     });
 
-    // Manejar cambios en la búsqueda y mostrar sugerencias
     const handleBusquedaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valor = e.target.value;
         setBusqueda(valor);
 
-        // Generar sugerencias
         if (valor) {
-            const sugerenciasFiltradas = productosRes
-                .filter(p => p.nombre.toLowerCase().includes(valor.toLowerCase()))
-                .map(p => p.nombre);
-            setSugerencias(sugerenciasFiltradas);
+            setSugerencias(
+                productosRes
+                    .filter((p) => p.nombre.toLowerCase().includes(valor.toLowerCase()))
+                    .map((p) => p.nombre)
+            );
         } else {
             setSugerencias([]);
         }
@@ -41,139 +46,126 @@ export const FiltroCarneRes = () => {
 
     return (
         <div className="container mx-auto px-4 py-8" id="productosres">
-            {/* Barra de búsqueda */}
             <div className="relative mb-8">
-                <div className="flex items-center bg-white rounded-lg shadow-lg overflow-hidden border-2 border-carni-red focus-within:border-carni-dark-red transition-colors duration-300">
-                    <GiMeat className="text-carni-red text-2xl ml-4" />
+                <label htmlFor="buscar-corte-res" className="sr-only">
+                    Buscar corte de carne de res
+                </label>
+                <div className="flex items-center overflow-hidden rounded-lg border-2 border-carni-red bg-white shadow-lg transition-colors duration-300 focus-within:border-carni-dark-red">
+                    <GiMeat className="ml-4 text-2xl text-carni-red" aria-hidden="true" />
                     <input
-                        type="text"
+                        id="buscar-corte-res"
+                        type="search"
                         value={busqueda}
                         onChange={handleBusquedaChange}
                         placeholder="Buscar corte de carne..."
-                        className="w-full py-3 px-4 outline-none text-lg"
+                        autoComplete="off"
+                        className="w-full px-4 py-3 text-lg outline-none"
                     />
                 </div>
-                
-                {/* Sugerencias de autocompletado */}
-                <AnimatePresence>
-                    {sugerencias.length > 0 && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="absolute w-full bg-white mt-2 rounded-lg shadow-lg z-10 border border-gray-200"
+
+                {sugerencias.length > 0 && (
+                    <div className="submenu-in absolute z-10 mt-2 w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
+                        {sugerencias.map((sugerencia) => (
+                            <button
+                                type="button"
+                                key={sugerencia}
+                                onClick={() => {
+                                    setBusqueda(sugerencia);
+                                    setSugerencias([]);
+                                }}
+                                className="block w-full px-4 py-2 text-left transition-all duration-200 hover:translate-x-2 hover:bg-carni-cream/20"
+                            >
+                                {sugerencia}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            <div className="mb-8 flex flex-wrap gap-3">
+                {categorias.map((categoria) => {
+                    const activo = categoriaSeleccionada === categoria;
+                    return (
+                        <button
+                            type="button"
+                            key={categoria}
+                            aria-pressed={activo}
+                            onClick={() => setCategoriaSeleccionada(categoria)}
+                            className={`rounded-full px-6 py-2 font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
+                                activo
+                                    ? 'bg-carni-red text-white'
+                                    : 'bg-carni-cream text-carni-red hover:bg-carni-red hover:text-white'
+                            }`}
                         >
-                            {sugerencias.map((sugerencia, index) => (
-                                <motion.button
-                                    key={index}
-                                    onClick={() => {
-                                        setBusqueda(sugerencia);
-                                        setSugerencias([]);
-                                    }}
-                                    className="w-full text-left px-4 py-2 hover:bg-carni-cream/20 transition-colors duration-200"
-                                    whileHover={{ x: 10 }}
-                                >
-                                    {sugerencia}
-                                </motion.button>
-                            ))}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                            {categoria}
+                        </button>
+                    );
+                })}
             </div>
 
-            {/* Botones de categorías */}
-            <div className="flex flex-wrap gap-3 mb-8">
-                {categorias.map((categoria, index) => (
-                    <motion.button
-                        key={index}
-                        onClick={() => setCategoriaSeleccionada(categoria)}
-                        className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${categoriaSeleccionada === categoria ? 'bg-carni-red text-white' : 'bg-carni-cream text-carni-red hover:bg-carni-red hover:text-white'}`}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {categoria}
-                    </motion.button>
-                ))}
-            </div>
-            {/* Grid de productos */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {productosFiltrados.map((producto) => (
-                    <motion.div
-                    key={producto.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => setModalProducto(producto)}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl cursor-pointer"
-                >
-                    {/* Imagen del producto */}
-                    {producto.imagen && (
-                        <Image
-                            src={producto.imagen}
-                            alt={producto.nombre}
-                            width={400}
-                            height={192}
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="h-48 w-full object-cover"
-                        />
-                    )}
+                    <button
+                        type="button"
+                        key={`${categoriaSeleccionada}-${producto.id}`}
+                        onClick={() => setModalProducto(producto)}
+                        className="card-in group w-full cursor-pointer overflow-hidden rounded-xl bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                    >
+                        {producto.imagen && (
+                            <Image
+                                src={producto.imagen}
+                                alt={producto.nombre}
+                                width={400}
+                                height={192}
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                        )}
 
-                    <div className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xl font-bold text-carni-red">{producto.nombre}</h3>
-                            <span className="bg-carni-cream text-carni-red px-3 py-1 rounded-full text-sm font-semibold">
-                                {producto.categoria}
-                            </span>
-                        </div>
-                        <p className="text-gray-600 mb-4">{producto.descripcion}</p>
-                        <div className="flex items-center justify-between">
+                        <div className="p-6">
+                            <div className="mb-4 flex items-center justify-between gap-3">
+                                <h3 className="text-xl font-bold text-carni-red">{producto.nombre}</h3>
+                                <span className="shrink-0 rounded-full bg-carni-cream px-3 py-1 text-sm font-semibold text-carni-red">
+                                    {producto.categoria}
+                                </span>
+                            </div>
+                            <p className="mb-4 text-gray-600">{producto.descripcion}</p>
                             <div className="flex items-center text-carni-dark-red">
-                                <GiWeight className="text-xl mr-2" />
-                                <span className="font-bold text-lg">S/ {producto.precio}.00/kg</span>
+                                <GiWeight className="mr-2 text-xl" aria-hidden="true" />
+                                <span className="text-lg font-bold tabular-nums">
+                                    S/ {producto.precio.toFixed(2)} / kg
+                                </span>
                             </div>
                         </div>
-                    </div>
-                </motion.div>
-                ))}
-                {modalProducto && (
-                <motion.div
-                    className="fixed top-0 left-0 w-full h-full bg-black/50 z-50 flex items-center justify-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={() => setModalProducto(null)}
-                >
-                    <motion.div
-                    className="bg-white rounded-xl p-6 max-w-md w-full relative"
-                    initial={{ scale: 0.9 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0.9 }}
-                    onClick={(e) => e.stopPropagation()}
-                    >
-                    <button
-                        onClick={() => setModalProducto(null)}
-                        className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
-                    >
-                        ✕
                     </button>
-                    <Image
-                        src={modalProducto.imagen}
-                        alt={modalProducto.nombre}
-                        width={600}
-                        height={400}
-                        sizes="(max-width: 768px) 90vw, 600px"
-                        className="mb-4 w-full rounded-lg object-cover"
-                    />
-                    <h2 className="text-2xl font-bold text-carni-red mb-2">{modalProducto.nombre}</h2>
-                    <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
-                    <p className="text-carni-dark-red font-bold mb-6">S/ {modalProducto.precio}.00 /kg</p>
-                    </motion.div>
-                </motion.div>
-                )}
-
+                ))}
             </div>
+
+            <Modal
+                abierto={modalProducto !== null}
+                onClose={() => setModalProducto(null)}
+                etiqueta={modalProducto?.nombre ?? 'Detalle del corte'}
+            >
+                {modalProducto && (
+                    <>
+                        <Image
+                            src={modalProducto.imagen}
+                            alt={modalProducto.nombre}
+                            width={600}
+                            height={400}
+                            sizes="(max-width: 768px) 90vw, 600px"
+                            className="mb-4 w-full rounded-lg object-cover"
+                        />
+                        <h2 className="mb-2 text-2xl font-bold text-carni-red">
+                            {modalProducto.nombre}
+                        </h2>
+                        <p className="mb-4 text-gray-600">{modalProducto.descripcion}</p>
+                        <p className="mb-2 font-bold tabular-nums text-carni-dark-red">
+                            S/ {modalProducto.precio.toFixed(2)} / kg
+                        </p>
+                    </>
+                )}
+            </Modal>
         </div>
     );
 };

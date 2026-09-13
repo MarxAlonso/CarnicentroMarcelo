@@ -13,6 +13,70 @@
   }
 }
 
+/* ────────────────────────────────────────────────────────────────────────
+   REVELADO AL ENTRAR EN PANTALLA
+
+   Reemplaza las animaciones de entrada de framer-motion. Ver el porqué en
+   `src/components/Reveal/Reveal.tsx`.
+
+   Regla de oro: sin el atributo `data-reveal-on` en el <html>, todo esto no
+   existe y el contenido se ve. El atributo lo pone un script inline antes del
+   primer pintado, así que no hay parpadeo.
+   ──────────────────────────────────────────────────────────────────────── */
+
+[data-reveal-on] [data-reveal] {
+  opacity: 0;
+  /* `will-change` solo mientras está pendiente: mantenerlo después obliga al
+     navegador a reservar una capa de más por cada elemento, para nada. */
+  will-change: opacity, transform;
+}
+
+[data-reveal-on] [data-reveal="up"] {
+  transform: translate3d(0, 18px, 0);
+}
+[data-reveal-on] [data-reveal="left"] {
+  transform: translate3d(-22px, 0, 0);
+}
+[data-reveal-on] [data-reveal="right"] {
+  transform: translate3d(22px, 0, 0);
+}
+[data-reveal-on] [data-reveal="scale"] {
+  transform: scale(0.96);
+}
+[data-reveal-on] [data-reveal="fade"] {
+  transform: none;
+}
+
+[data-reveal-on] [data-reveal][data-reveal-seen] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+  transition:
+    opacity 520ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+/* Escalonado automático de hermanos: el retraso lo calcula el CSS, así que
+   añadir o quitar tarjetas no obliga a renumerar nada a mano. */
+[data-reveal-on] [data-reveal-group] > *:nth-child(1) {
+  --reveal-delay: 0ms;
+}
+[data-reveal-on] [data-reveal-group] > *:nth-child(2) {
+  --reveal-delay: 70ms;
+}
+[data-reveal-on] [data-reveal-group] > *:nth-child(3) {
+  --reveal-delay: 140ms;
+}
+[data-reveal-on] [data-reveal-group] > *:nth-child(4) {
+  --reveal-delay: 210ms;
+}
+[data-reveal-on] [data-reveal-group] > *:nth-child(5) {
+  --reveal-delay: 280ms;
+}
+[data-reveal-on] [data-reveal-group] > *:nth-child(n + 6) {
+  --reveal-delay: 340ms;
+}
+
 @layer components {
   /* Brillo de los skeletons. Un degradado que recorre la caja, no una
      opacidad que parpadea: se lee como "está llegando" y no como un error. */
@@ -37,9 +101,185 @@
       background-position: 100% 0;
     }
   }
+
+  /* Entrada de la portada: arranca sola al cargar, sin esperar al observador,
+     porque ya está en pantalla. */
+  .hero-enter {
+    animation: hero-in 620ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Apertura del modal. Sustituye a AnimatePresence: mismo efecto, cero JS. */
+  .modal-backdrop {
+    animation: modal-fade 180ms ease-out both;
+  }
+  .modal-panel {
+    animation: modal-pop 220ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes modal-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modal-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.94) translate3d(0, 8px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Frase que rota en el banner de Nosotros. */
+  .frase-in {
+    animation: frase-in 500ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes frase-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Barra decorativa del pie de los banners, que crece de izquierda a derecha. */
+  .bar-grow {
+    transform-origin: left;
+    animation: bar-grow 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes bar-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Menú móvil y su submenú desplegable. */
+  .menu-movil-in {
+    animation: menu-drop 260ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  .submenu-in {
+    animation: submenu-open 200ms ease-out both;
+  }
+
+  @keyframes menu-drop {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -24px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes submenu-open {
+    from {
+      opacity: 0;
+      /* `grid-template-rows` de 0fr a 1fr anima una altura desconocida sin
+         medirla en JavaScript, que es lo que hacía AnimatePresence. */
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 320px;
+    }
+  }
+
+  /* Entrada de las tarjetas de producto al cambiar de filtro. */
+  .card-in {
+    animation: card-in 320ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes card-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 10px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Cursor del texto que se escribe solo en el banner de cerdo. */
+  .caret-blink {
+    animation: caret 1s steps(2, start) infinite;
+  }
+
+  @keyframes caret {
+    to {
+      visibility: hidden;
+    }
+  }
+
+  /* Flotación suave de los iconos decorativos. Sustituye a los bucles
+     infinitos de framer-motion, que mantenían JavaScript trabajando en cada
+     fotograma mientras el banner estuviera visible. */
+  .float-slow {
+    animation: float-y 5s ease-in-out infinite;
+  }
+  .float-slow-delayed {
+    animation: float-y 6s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+  .sway-slow {
+    animation: sway 6s ease-in-out infinite;
+  }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(0, -18px, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      transform: rotate(8deg) scale(1.04);
+    }
+    75% {
+      transform: rotate(-8deg) scale(1.04);
+    }
+  }
 }
 
-/* Quien pidió menos movimiento ve un bloque quieto, no un destello. */
+/* Quien pidió menos movimiento ve la página quieta: el script ni siquiera
+   activa el sistema de revelado, y aquí se apaga todo lo demás. */
 @media (prefers-reduced-motion: reduce) {
   .skeleton-shimmer {
     animation: none;

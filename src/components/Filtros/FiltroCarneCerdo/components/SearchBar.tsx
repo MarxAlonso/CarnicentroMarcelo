@@ -1,7 +1,6 @@
 "use client";
 
 import { GiMeat } from 'react-icons/gi';
-import { motion, AnimatePresence } from 'framer-motion';
 
 interface SearchBarProps {
     busqueda: string;
@@ -10,41 +9,48 @@ interface SearchBarProps {
     onSugerenciaClick: (sugerencia: string) => void;
 }
 
-export const SearchBar = ({ busqueda, onBusquedaChange, sugerencias, onSugerenciaClick }: SearchBarProps) => {
+/**
+ * Sin framer-motion: el desplegable de sugerencias entra con `submenu-in`.
+ * El campo lleva ahora una etiqueta asociada, que antes no tenía.
+ */
+export const SearchBar = ({
+    busqueda,
+    onBusquedaChange,
+    sugerencias,
+    onSugerenciaClick,
+}: SearchBarProps) => {
     return (
         <div className="relative mb-8">
-            <div className="flex items-center bg-white rounded-lg shadow-lg overflow-hidden border-2 border-[#a90a0a] focus-within:border-[#a90a0a] transition-colors duration-300">
-                <GiMeat className="text-[#a90a0a] text-2xl ml-4" />
+            <label htmlFor="buscar-corte" className="sr-only">
+                Buscar corte de carne
+            </label>
+            <div className="flex items-center overflow-hidden rounded-lg border-2 border-[#a90a0a] bg-white shadow-lg transition-colors duration-300 focus-within:border-[#8a0808]">
+                <GiMeat className="ml-4 text-2xl text-[#a90a0a]" aria-hidden="true" />
                 <input
-                    type="text"
+                    id="buscar-corte"
+                    type="search"
                     value={busqueda}
                     onChange={onBusquedaChange}
                     placeholder="Buscar corte de carne..."
-                    className="w-full py-3 px-4 outline-none text-lg"
+                    autoComplete="off"
+                    className="w-full px-4 py-3 text-lg outline-none"
                 />
             </div>
-            
-            <AnimatePresence>
-                {sugerencias.length > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute w-full bg-white mt-2 rounded-lg shadow-lg z-10 border border-gray-200"
-                    >
-                        {sugerencias.map((sugerencia, index) => (
-                            <motion.button
-                                key={index}
-                                onClick={() => onSugerenciaClick(sugerencia)}
-                                className="w-full text-left px-4 py-2 hover:bg-[#fff4bf]/20 transition-colors duration-200"
-                                whileHover={{ x: 10 }}
-                            >
-                                {sugerencia}
-                            </motion.button>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+
+            {sugerencias.length > 0 && (
+                <div className="submenu-in absolute z-10 mt-2 w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
+                    {sugerencias.map((sugerencia) => (
+                        <button
+                            type="button"
+                            key={sugerencia}
+                            onClick={() => onSugerenciaClick(sugerencia)}
+                            className="block w-full px-4 py-2 text-left transition-all duration-200 hover:translate-x-2 hover:bg-[#fff4bf]/20"
+                        >
+                            {sugerencia}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

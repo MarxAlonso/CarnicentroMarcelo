@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { GiMuscleUp, GiCookingPot } from 'react-icons/gi';
 import { FaCheckCircle, FaAppleAlt } from 'react-icons/fa';
 
@@ -12,7 +11,7 @@ const BeneficiosGym: React.FC = () => {
       {/* Hero Header */}
       <div className="relative h-[60vh] overflow-hidden">
         <Image
-          src="/blog/gym_blog_header.png"
+          src="/blog/gym_blog_header.webp"
           alt="Beneficios de la carne para el progreso en el gimnasio"
           fill
           priority
@@ -21,11 +20,7 @@ const BeneficiosGym: React.FC = () => {
           />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-12 w-full text-white">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div data-reveal="up">
               <span className="bg-[#a90a0a] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 inline-block">Fitness y Rendimiento</span>
               <h1 className="text-4xl md:text-6xl font-black leading-tight">
                 La Carne de Res y Cerdo: Claves para tu Progreso en el Gimnasio
@@ -33,7 +28,7 @@ const BeneficiosGym: React.FC = () => {
               <p className="mt-4 text-xl text-gray-200 max-w-3xl">
                 Descubre cómo los cortes magros potencian la síntesis proteica, aceleran la recuperación y maximizan la ganancia de masa muscular.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

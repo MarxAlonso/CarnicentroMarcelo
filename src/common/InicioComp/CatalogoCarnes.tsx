@@ -1,19 +1,24 @@
 "use client";
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
 import { GiCow, GiPig, GiMeat, GiWeight, GiPriceTag } from 'react-icons/gi';
-import { FaTimes } from 'react-icons/fa';
-import  lomofino  from '../../assets/catalogoinicio/lomofino.webp';
-import  chuletacerdo  from '../../assets/catalogoinicio/chuletacerdo.webp';
-import  bife  from '../../assets/catalogoinicio/bife.webp';
-import  pancetadecerdo  from '../../assets/catalogoinicio/pancetadecerdo.webp';
-import  bondiolasinhueso  from '../../assets/catalogoinicio/bondiolasinhueso.webp';
-import  cuadrildecadera  from '../../assets/catalogoinicio/cuadrildecadera.webp';
-import  carnemolidaespecial  from '../../assets/catalogoinicio/carnemolidaespecial.webp';
+import { Modal } from '@/components/Modal/Modal';
+import lomofino from '../../assets/catalogoinicio/lomofino.webp';
+import chuletacerdo from '../../assets/catalogoinicio/chuletacerdo.webp';
+import bife from '../../assets/catalogoinicio/bife.webp';
+import pancetadecerdo from '../../assets/catalogoinicio/pancetadecerdo.webp';
+import bondiolasinhueso from '../../assets/catalogoinicio/bondiolasinhueso.webp';
+import cuadrildecadera from '../../assets/catalogoinicio/cuadrildecadera.webp';
+import carnemolidaespecial from '../../assets/catalogoinicio/carnemolidaespecial.webp';
 
+/**
+ * Sigue siendo de cliente por el filtro y el modal, pero ya sin framer-motion.
+ * La entrada de las tarjetas la hace la clase `card-in`, y el `key` que incluye
+ * el filtro es lo que hace que la animación se repita en cada cambio, sin
+ * necesidad de `AnimatePresence`.
+ */
 
 interface Producto {
     id: number;
@@ -94,68 +99,61 @@ const productos: Producto[] = [
   }
 ];
 
+const filtros = [
+    { id: 'todos', nombre: 'Todos', icono: GiMeat },
+    { id: 'res', nombre: 'Res', icono: GiCow },
+    { id: 'cerdo', nombre: 'Cerdo', icono: GiPig },
+    { id: 'molida', nombre: 'Molida', icono: GiMeat }
+] as const;
+
+type FiltroId = (typeof filtros)[number]['id'];
+
 export const CatalogoCarnes = () => {
-    const [filtroActivo, setFiltroActivo] = useState<'todos' | 'res' | 'cerdo' | 'molida'>('todos');
+    const [filtroActivo, setFiltroActivo] = useState<FiltroId>('todos');
     const [productoSeleccionado, setProductoSeleccionado] = useState<Producto | null>(null);
 
-    const filtros = [
-        { id: 'todos', nombre: 'Todos', icono: GiMeat },
-        { id: 'res', nombre: 'Res', icono: GiCow },
-        { id: 'cerdo', nombre: 'Cerdo', icono: GiPig },
-        { id: 'molida', nombre: 'Molida', icono: GiMeat }
-    ];
-
-    const productosFiltrados = filtroActivo === 'todos' 
-        ? productos 
-        : productos.filter(p => p.tipo === filtroActivo);
+    const productosFiltrados =
+        filtroActivo === 'todos' ? productos : productos.filter((p) => p.tipo === filtroActivo);
 
     return (
-        <div className="py-12 px-4 sm:px-6 lg:px-8 bg-[#fff4bf]/10">
-            {/* Filtros */}
-            <div className="max-w-7xl mx-auto mb-8">
+        <div className="bg-[#fff4bf]/10 px-4 py-12 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-8 max-w-7xl">
                 <div className="flex flex-wrap justify-center gap-4">
                     {filtros.map((filtro) => {
                         const Icono = filtro.icono;
+                        const activo = filtroActivo === filtro.id;
                         return (
-                            <motion.button
+                            <button
+                                type="button"
                                 key={filtro.id}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => setFiltroActivo(filtro.id as typeof filtroActivo)}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-full text-lg font-medium transition-all
-                                    ${filtroActivo === filtro.id 
-                                        ? 'bg-[#a90a0a] text-white shadow-lg' 
-                                        : 'bg-white text-gray-700 hover:bg-[#a90a0a]/10'}`}
+                                aria-pressed={activo}
+                                onClick={() => setFiltroActivo(filtro.id)}
+                                className={`flex items-center gap-2 rounded-full px-6 py-3 text-lg font-medium transition-all duration-200 hover:scale-105 active:scale-95 ${
+                                    activo
+                                        ? 'bg-[#a90a0a] text-white shadow-lg'
+                                        : 'bg-white text-gray-700 hover:bg-[#a90a0a]/10'
+                                }`}
                             >
-                                <Icono className="text-xl" />
+                                <Icono className="text-xl" aria-hidden="true" />
                                 {filtro.nombre}
-                            </motion.button>
+                            </button>
                         );
                     })}
                 </div>
             </div>
 
-            {/* Catálogo */}
-            <div className="max-w-7xl mx-auto">
-                <motion.div 
-                    layout
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                >
+            <div className="mx-auto max-w-7xl">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {productosFiltrados.map((producto) => (
-                        <motion.div
-                            key={producto.id}
-                            layout
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            whileHover={{ y: -5 }}
-                            className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group"
+                        <button
+                            type="button"
+                            // El filtro entra en el key: al cambiarlo React monta nodos
+                            // nuevos y la animación de entrada vuelve a ejecutarse.
+                            key={`${filtroActivo}-${producto.id}`}
                             onClick={() => setProductoSeleccionado(producto)}
+                            className="card-in group cursor-pointer overflow-hidden rounded-xl bg-white text-left shadow-lg transition-transform duration-200 hover:-translate-y-1.5"
                         >
-                            <div className="h-56 bg-gray-200 overflow-hidden">
-                                {/* El zoom al pasar el cursor pasa a CSS: hace
-                                    lo mismo sin que framer-motion tenga que
-                                    seguir una decena de imágenes a la vez. */}
+                            <div className="h-56 overflow-hidden bg-gray-200">
                                 <Image
                                     src={producto.imagen}
                                     alt={producto.nombre}
@@ -167,82 +165,66 @@ export const CatalogoCarnes = () => {
                             </div>
 
                             <div className="p-4">
-                                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-[#a90a0a] transition-colors">
+                                <h3 className="text-xl font-semibold text-gray-800 transition-colors group-hover:text-[#a90a0a]">
                                     {producto.nombre}
                                 </h3>
                                 <div className="mt-2 flex items-center gap-2 text-[#a90a0a]">
-                                    <GiPriceTag />
-                                    <span className="font-medium">S/. {producto.precio.toFixed(2)}</span>
+                                    <GiPriceTag aria-hidden="true" />
+                                    <span className="font-medium tabular-nums">
+                                        S/ {producto.precio.toFixed(2)}
+                                    </span>
                                 </div>
                                 <div className="mt-1 flex items-center gap-2 text-gray-600">
-                                    <GiWeight />
+                                    <GiWeight aria-hidden="true" />
                                     <span>{producto.peso}</span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </button>
                     ))}
-                </motion.div>
+                </div>
             </div>
 
-            {/* Modal */}
-            <AnimatePresence>
+            <Modal
+                abierto={productoSeleccionado !== null}
+                onClose={() => setProductoSeleccionado(null)}
+                etiqueta={productoSeleccionado?.nombre ?? 'Detalle del corte'}
+            >
                 {productoSeleccionado && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-                        onClick={() => setProductoSeleccionado(null)}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="bg-white rounded-2xl max-w-2xl w-full p-6 relative"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <button
-                                onClick={() => setProductoSeleccionado(null)}
-                                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-                            >
-                                <FaTimes className="text-2xl" />
-                            </button>
+                    <>
+                        <div className="mb-6 overflow-hidden rounded-xl">
+                            <Image
+                                src={productoSeleccionado.imagen}
+                                alt={productoSeleccionado.nombre}
+                                width={800}
+                                height={450}
+                                sizes="(max-width: 768px) 90vw, 800px"
+                                className="h-full w-full object-cover"
+                            />
+                        </div>
 
-                            <div className="aspect-w-16 aspect-h-9 mb-6 overflow-hidden rounded-xl">
-                                <Image
-                                    src={productoSeleccionado.imagen}
-                                    alt={productoSeleccionado.nombre}
-                                    width={800}
-                                    height={450}
-                                    sizes="(max-width: 768px) 90vw, 800px"
-                                    className="h-full w-full object-cover"
-                                />
+                        <h2 className="mb-4 text-3xl font-bold text-gray-800">
+                            {productoSeleccionado.nombre}
+                        </h2>
+
+                        <div className="mb-6 grid grid-cols-2 gap-4">
+                            <div className="flex items-center gap-2 text-[#a90a0a]">
+                                <GiPriceTag className="text-xl" aria-hidden="true" />
+                                <span className="text-xl font-semibold tabular-nums">
+                                    S/ {productoSeleccionado.precio.toFixed(2)}
+                                </span>
                             </div>
-
-                            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                                {productoSeleccionado.nombre}
-                            </h2>
-
-                            <div className="grid grid-cols-2 gap-4 mb-6">
-                                <div className="flex items-center gap-2 text-[#a90a0a]">
-                                    <GiPriceTag className="text-xl" />
-                                    <span className="text-xl font-semibold">
-                                        S/. {productoSeleccionado.precio.toFixed(2)}
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <GiWeight className="text-xl" />
-                                    <span className="text-lg">{productoSeleccionado.peso}</span>
-                                </div>
+                            <div className="flex items-center gap-2 text-gray-600">
+                                <GiWeight className="text-xl" aria-hidden="true" />
+                                <span className="text-lg">{productoSeleccionado.peso}</span>
                             </div>
+                        </div>
 
-                            <p className="text-gray-600 text-lg leading-relaxed">
-                                {productoSeleccionado.descripcion}
-                            </p>
-                        </motion.div>
-                    </motion.div>
+                        <p className="text-lg leading-relaxed text-gray-600">
+                            {productoSeleccionado.descripcion}
+                        </p>
+                    </>
                 )}
-            </AnimatePresence>
+            </Modal>
         </div>
     );
 };

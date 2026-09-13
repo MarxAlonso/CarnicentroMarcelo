@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import ImportanciaCarne from "@/common/BlogComp/ImportanciaCarne/ImportanciaCarne";
 import BeneficiosNutritivos from "@/common/BlogComp/BeneficiosNutritivos/BeneficiosNutritivos";
 import BeneficiosGym from "@/common/BlogComp/BeneficiosGym/BeneficiosGym";
+import CortesDeRes from "@/common/BlogComp/CortesDeRes/CortesDeRes";
+import CortePorPlato from "@/common/BlogComp/CortePorPlato/CortePorPlato";
+import TiposCarneMolida from "@/common/BlogComp/TiposCarneMolida/TiposCarneMolida";
+import CortesDeCerdo from "@/common/BlogComp/CortesDeCerdo/CortesDeCerdo";
 import { ArticulosDelPilar } from "@/components/Pilar/ArticulosDelPilar";
 import { PILARES } from "@/lib/pilares";
 import { getPost, postsPublicados } from "@/content/posts";
@@ -22,6 +26,10 @@ const CUERPOS: Record<string, React.ComponentType> = {
   "importancia-carne-res": ImportanciaCarne,
   "beneficios-nutritivos-carne-res": BeneficiosNutritivos,
   "beneficios-carne-gym": BeneficiosGym,
+  "cortes-de-carne-de-res-peru": CortesDeRes,
+  "que-corte-de-res-para-cada-plato": CortePorPlato,
+  "tipos-de-carne-molida": TiposCarneMolida,
+  "panceta-bondiola-chuleta-cual-elegir": CortesDeCerdo,
 };
 
 /** Genera una ruta estática por artículo en el build. */

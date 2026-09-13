@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { GiHealthNormal, GiBrain, GiMuscleUp, GiElectric } from 'react-icons/gi';
 import { FaShieldAlt, FaAppleAlt } from 'react-icons/fa';
 
@@ -12,7 +11,7 @@ const BeneficiosNutritivos: React.FC = () => {
       {/* Hero Header */}
       <div className="relative h-[60vh] overflow-hidden">
         <Image
-          src="/blog/nutricion_carne_header.png"
+          src="/blog/nutricion_carne_header.webp"
           alt="Beneficios nutritivos de la carne de res"
           fill
           priority
@@ -21,11 +20,7 @@ const BeneficiosNutritivos: React.FC = () => {
           />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-12 w-full text-white">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div data-reveal="up">
               <span className="bg-[#a90a0a] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 inline-block">Nutrición y Salud</span>
               <h1 className="text-4xl md:text-6xl font-black leading-tight">
                 Beneficios Nutritivos al Consumir Carne de Res
@@ -33,7 +28,7 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="mt-4 text-xl text-gray-200 max-w-3xl">
                 Un análisis detallado sobre el elevado valor nutricional y el aporte de proteínas de alta calidad que la carne roja brinda al organismo humano.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -58,10 +53,8 @@ const BeneficiosNutritivos: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
             {/* Hierro */}
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-[#a90a0a] shadow-sm"
-            >
+            <div
+              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-[#a90a0a] shadow-sm transition-transform duration-200 hover:-translate-y-1.5">
               <div className="flex items-center gap-3 mb-4 text-[#a90a0a]">
                 <GiHealthNormal className="text-3xl" />
                 <h3 className="text-lg font-bold m-0 leading-tight">Fuente de Hierro</h3>
@@ -69,13 +62,11 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="text-sm leading-relaxed">
                 El **hierro hemo** de la carne de res es absorbido con mayor facilidad, fundamental para la formación de hemoglobina y la prevención de la anemia.
               </p>
-            </motion.div>
+            </div>
 
             {/* Vitamina B */}
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-gray-900 shadow-sm"
-            >
+            <div
+              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-gray-900 shadow-sm transition-transform duration-200 hover:-translate-y-1.5">
               <div className="flex items-center gap-3 mb-4 text-gray-900">
                 <GiBrain className="text-3xl" />
                 <h3 className="text-lg font-bold m-0 leading-tight">Complejo B</h3>
@@ -83,13 +74,11 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="text-sm leading-relaxed">
                 Aporte significativo de **vitaminas B6 y B12**, esenciales para la producción de energía, formación de glóbulos rojos y el sistema nervioso.
               </p>
-            </motion.div>
+            </div>
 
             {/* Desarrollo Muscular */}
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-[#a90a0a] shadow-sm"
-            >
+            <div
+              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-[#a90a0a] shadow-sm transition-transform duration-200 hover:-translate-y-1.5">
               <div className="flex items-center gap-3 mb-4 text-[#a90a0a]">
                 <GiMuscleUp className="text-3xl" />
                 <h3 className="text-lg font-bold m-0 leading-tight">Mantenimiento Muscular</h3>
@@ -97,13 +86,11 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="text-sm leading-relaxed">
                 Sus proteínas de alta calidad favorecen la **síntesis y reparación de tejidos**, vital para deportistas y adultos mayores.
               </p>
-            </motion.div>
+            </div>
 
             {/* Minerales */}
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-gray-900 shadow-sm"
-            >
+            <div
+              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-gray-900 shadow-sm transition-transform duration-200 hover:-translate-y-1.5">
               <div className="flex items-center gap-3 mb-4 text-gray-900">
                 <FaShieldAlt className="text-3xl" />
                 <h3 className="text-lg font-bold m-0 leading-tight">Minerales Esenciales</h3>
@@ -111,13 +98,11 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="text-sm leading-relaxed">
                 Contiene **zinc, fósforo, potasio y magnesio**, que fortalecen el sistema inmune y la salud ósea y dental.
               </p>
-            </motion.div>
+            </div>
 
             {/* Energía */}
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-[#a90a0a] shadow-sm"
-            >
+            <div
+              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-[#a90a0a] shadow-sm transition-transform duration-200 hover:-translate-y-1.5">
               <div className="flex items-center gap-3 mb-4 text-[#a90a0a]">
                 <GiElectric className="text-3xl" />
                 <h3 className="text-lg font-bold m-0 leading-tight">Metabolismo Energético</h3>
@@ -125,13 +110,11 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="text-sm leading-relaxed">
                 Compuestos como **carnitina y creatina** ayudan a producir energía y mejoran el rendimiento físico durante el esfuerzo muscular.
               </p>
-            </motion.div>
+            </div>
 
             {/* Antioxidantes */}
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-gray-900 shadow-sm"
-            >
+            <div
+              className="bg-gray-50 p-6 rounded-2xl border-b-4 border-gray-900 shadow-sm transition-transform duration-200 hover:-translate-y-1.5">
               <div className="flex items-center gap-3 mb-4 text-gray-900">
                 <FaAppleAlt className="text-3xl" />
                 <h3 className="text-lg font-bold m-0 leading-tight">Efecto Antioxidante</h3>
@@ -139,7 +122,7 @@ const BeneficiosNutritivos: React.FC = () => {
               <p className="text-sm leading-relaxed">
                 Posee compuestos bioactivos como el **ácido linoleico conjugado (CLA)**, que protegen las células frente al daño oxidativo.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
