@@ -1,0 +1,14 @@
+# pnpm bloquea por defecto los scripts de postinstall de las dependencias y
+# falla la instalacion si encuentra alguno sin decidir. Aqui queda decidido y
+# versionado, para que Netlify instale igual que en local sin preguntar.
+
+# Permitido: sharp es el optimizador de imagenes de Next y compila binarios.
+onlyBuiltDependencies:
+  - sharp
+
+# Denegado a proposito. unrs-resolver compila un binario nativo para acelerar
+# la resolucion de imports en eslint, pero tiene camino de respaldo en JS.
+# Comprobado: `next build` y `next lint` pasan sin el. No compensa ejecutar
+# codigo de postinstall a cambio de unos milisegundos de lint.
+allowBuilds:
+  unrs-resolver: false

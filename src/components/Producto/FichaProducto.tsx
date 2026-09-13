@@ -8,7 +8,7 @@ import { Resenas } from "./Resenas";
 import { RelatedProducts } from "./RelatedProducts";
 import { TrustBanner } from "./TrustBanner";
 import { getCorte, type Corte, type TipoCarne } from "@/content/catalogo";
-import { resenasDe } from "@/content/resenas";
+import { resenasParaSchema } from "@/content/resenas";
 import { PILARES } from "@/lib/pilares";
 import { buildBreadcrumbSchema, buildProductSchema, jsonLd } from "@/lib/schema";
 
@@ -51,7 +51,7 @@ export function metadataDeCorte(tipo: TipoCarne, slug: string): Metadata {
 
 export function FichaProducto({ corte }: { corte: Corte }) {
   const pilar = PILARES[corte.tipo];
-  const resenas = resenasDe(corte.slug);
+  const resenas = resenasParaSchema(corte.slug);
 
   const schema = [
     buildProductSchema({

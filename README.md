@@ -6,13 +6,24 @@ TypeScript y Tailwind.
 
 ## Arrancar
 
+El proyecto usa **pnpm**. La versión está fijada en `packageManager`, así que
+Corepack la instala sola.
+
 ```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # genera el HTML estático de todas las rutas
-npm run start    # sirve el build
-npm run lint
+pnpm install
+pnpm dev      # http://localhost:3000
+pnpm build    # genera el HTML estático de todas las rutas
+pnpm start    # sirve el build
+pnpm lint
 ```
+
+No mezclar gestores: un `package-lock.json` junto al `pnpm-lock.yaml` haría que
+Netlify eligiera mal y compilara con un árbol de dependencias distinto al local.
+
+`pnpm-workspace.yaml` decide qué dependencias pueden ejecutar scripts de
+instalación. pnpm **falla la instalación** si encuentra alguna sin decidir, así
+que al añadir un paquete con `postinstall` hay que declararlo ahí — permitido en
+`onlyBuiltDependencies` o denegado en `allowBuilds`.
 
 ## Cómo está organizado
 
@@ -140,16 +151,28 @@ activo, y el texto largo —que es justo el que posiciona— no llegaría a Goog
 
 ### Reseñas
 
-`content/resenas.ts` está vacío a propósito y **no hay que rellenarlo con
-reseñas inventadas**. El marcado `Review` y `AggregateRating` con reseñas falsas
-es una de las causas más comunes de acción manual de Google, y la sanción no se
-queda en la ficha: baja el dominio entero. En Perú, además, es publicidad
-engañosa ante Indecopi.
+⚠️ **Las reseñas de `content/resenas.ts` son de demostración, no son clientes
+reales.** Están para ver el diseño funcionando y para que las fichas no salgan
+con un hueco.
 
-El sistema ya está montado: en cuanto lleguen reseñas reales se añaden al
-archivo, la sección aparece sola y el JSON-LD las emite. Mientras tanto la ficha
-muestra una invitación a dejar la primera, que es honesto y es lo que consigue
-las siguientes.
+La bandera `RESENAS_REALES` controla el JSON-LD y está en `false`. Con ese
+valor, la sección se pinta pero **no se emite marcado `Review` ni
+`AggregateRating`**. Es deliberado: declarar valoraciones inventadas en datos
+estructurados es una de las causas más frecuentes de acción manual de Google, y
+la sanción baja el dominio entero, no solo la ficha. En Perú, además, es
+publicidad engañosa ante Indecopi.
+
+`resenasParaSchema()` es el único camino por el que las reseñas llegan al
+marcado, así que esa bandera es la única puerta que hay que vigilar.
+
+**Cuando lleguen las reales:**
+
+1. Sustituir el contenido de `RESENAS` por las de verdad, con permiso del autor.
+2. Poner `RESENAS_REALES = true`.
+3. El schema se emite solo, sin tocar nada más.
+
+Conseguirlas es más fácil de lo que parece: pedir una línea al cliente por
+WhatsApp después de cada entrega.
 
 ## Animaciones: nada de librerías
 

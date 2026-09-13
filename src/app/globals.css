@@ -68,6 +68,9 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* La barra ahora es fija, así que un salto a `#productosres` dejaría el
+       título tapado debajo. Este margen reserva su altura. */
+    scroll-padding-top: 5.5rem;
   }
   body {
     /* La fuente ya llega autoalojada por next/font: sin petición a Google
@@ -75,6 +78,56 @@
     font-family: var(--font-poppins), system-ui, sans-serif;
     background-color: rgb(var(--page));
     color: rgb(var(--ink));
+  }
+
+  /* ── Barra de desplazamiento con los colores de la marca ──
+     Se declara con los dos mecanismos porque ninguno cubre todo: la propiedad
+     estándar `scrollbar-color` funciona en Firefox y navegadores recientes, y
+     `::-webkit-scrollbar` cubre Chrome, Edge y Safari. Ambos leen las mismas
+     variables, así que la barra cambia sola con el tema. */
+  html {
+    scrollbar-color: rgb(var(--brand)) rgb(var(--surface-2));
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--surface-2));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--brand));
+    border-radius: 999px;
+    /* El borde del color de la pista deja el pulgar algo más fino y separado
+       del canto, que es lo que hace que no parezca pegado al borde. */
+    border: 3px solid rgb(var(--surface-2));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--brand-deep));
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: rgb(var(--surface-2));
+  }
+
+  /* En modo oscuro el rojo profundo se pierde contra el fondo: aquí conviene
+     el rojo de texto, que es el que sí contrasta. */
+  /* `.dark` va en el propio <html>, así que basta la clase a secas. */
+  .dark {
+    scrollbar-color: rgb(var(--brand-ink) / 0.6) rgb(var(--surface-2));
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(var(--brand-ink) / 0.55);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--brand-ink) / 0.8);
   }
 
   /* Sin esto, al cambiar de tema el color salta de golpe. Solo se animan
@@ -295,6 +348,23 @@
   .tabs-producto > input[type="radio"]:nth-of-type(4):checked ~ .tabs-paneles > .tabs-panel:nth-child(4) {
     display: block;
     animation: card-in 260ms ease-out both;
+  }
+
+  /* Apertura del buscador en la barra: crece desde la izquierda. */
+  .buscador-abre {
+    animation: buscador-abre 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: left;
+  }
+
+  @keyframes buscador-abre {
+    from {
+      opacity: 0;
+      transform: scaleX(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scaleX(1);
+    }
   }
 
   /* Frase que rota en el banner de Nosotros. */

@@ -1,6 +1,11 @@
 [build]
-  command = "npm run build"
+  # pnpm se detecta solo por pnpm-lock.yaml, pero el comando se declara
+  # explicito para que no dependa de la heuristica.
+  command = "pnpm build"
   publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
