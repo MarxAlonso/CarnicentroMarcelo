@@ -1,19 +1,24 @@
+"use client";
+
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { GiHealthNormal, GiBrain, GiMuscleUp } from 'react-icons/gi';
 import { FaUserGraduate, FaChild, FaUserAlt, FaBone } from 'react-icons/fa';
-import imageHeader from '../../../assets/blog/blog_header_nutrition_beef.png';
 
 const ImportanciaCarne: React.FC = () => {
   return (
     <article className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
       <div className="relative h-[60vh] overflow-hidden">
-        <img
-          src={imageHeader}
+        <Image
+          src="/blog/blog_header_nutrition_beef.png"
           alt="Importancia de la carne de res"
-          className="w-full h-full object-cover"
-        />
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-12 w-full text-white">
             <motion.div
@@ -101,7 +106,7 @@ const ImportanciaCarne: React.FC = () => {
               </p>
               <div className="flex items-center gap-4 bg-gray-50 p-6 rounded-xl border-l-4 border-[#a90a0a]">
                 <GiMuscleUp className="text-4xl text-[#a90a0a]" />
-                <p className="m-0 font-medium italic">"La carne roja es el combustible metabólico más eficiente para el desarrollo de la masa muscular magra."</p>
+                <p className="m-0 font-medium italic">&ldquo;La carne roja es el combustible metabólico más eficiente para el desarrollo de la masa muscular magra.&rdquo;</p>
               </div>
             </div>
           </motion.section>
@@ -137,7 +142,7 @@ const ImportanciaCarne: React.FC = () => {
             En Carnicentro Marcelo, seleccionamos cada pieza con rigurosidad médica y técnica. Comer carne de calidad es invertir en tu futuro y el de tu familia.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-6">
-            <a href="/carneres" className="bg-[#fff4bf] text-[#a90a0a] px-8 py-3 rounded-full font-bold hover:bg-white transition-colors transform hover:scale-105">Explorar Cortes de Res</a>
+            <a href="/carne-de-res" className="bg-[#fff4bf] text-[#a90a0a] px-8 py-3 rounded-full font-bold hover:bg-white transition-colors transform hover:scale-105">Explorar Cortes de Res</a>
             <a href="/contacto" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#a90a0a] transition-all">Hablar con un Maestro Carnicero</a>
           </div>
         </div>

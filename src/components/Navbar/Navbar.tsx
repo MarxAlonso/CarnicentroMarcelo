@@ -1,8 +1,12 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { MdMenu, MdKeyboardArrowDown } from "react-icons/md";
 //import { GiCow, GiPig } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
-import { ResponsiveMenu } from "./ResponsiveMenu.tsx";
+import { ResponsiveMenu } from "./ResponsiveMenu";
 import { NavbarMenu } from "./NavbarData";
 //import {logoimagen} from "../../assets/logo2-carnicentromarcelo.png";
 export const Navbar = () => {
@@ -26,12 +30,18 @@ export const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-2 font-bold text-[#fff4bf]"
           >
-            {/* Logo image */}
-            <img 
-              src="/logo2-carnicentromarcelo.png"
-              alt="Logo Carnicentro Marcelo"
-              className="w-full h-24 object-cover rounded-[20px] cursor-pointer shadow-lg"
-            />
+            {/* El logo lleva a la portada: es lo primero que intenta pulsar
+                quien quiere volver al inicio, y antes no era un enlace. */}
+            <Link href="/" aria-label="Carnicentro Marcelo, ir al inicio">
+              <Image
+                src="/logo2-carnicentromarcelo.png"
+                alt="Carnicentro Marcelo"
+                width={240}
+                height={96}
+                priority
+                className="h-24 w-auto rounded-[20px] object-contain shadow-lg"
+              />
+            </Link>
           </motion.div>
           {/* Menu section */}
           <div className="hidden md:block">
@@ -46,14 +56,14 @@ export const Navbar = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <div className="flex items-center gap-1">
-                    <a
+                    <Link
                       href={item.link}
                       className="inline-block py-2 px-4 text-[#fff4bf] hover:text-white hover:bg-[#8a0808] rounded-lg transition-all duration-300 font-semibold"
                       onClick={item.submenu ? (e) => e.preventDefault() : undefined}
                     >
                       {item.title}
                       {item.submenu && <MdKeyboardArrowDown className="inline ml-1" />}
-                    </a>
+                    </Link>
                   </div>
                   
                   {/* Submenu */}
@@ -70,12 +80,12 @@ export const Navbar = () => {
                             key={index}
                             whileHover={{ x: 5 }}
                           >
-                            <a
+                            <Link
                               href={subItem.link}
                               className="block px-4 py-2 text-[#fff4bf] hover:text-white hover:bg-[#8a0808] transition-all duration-300"
                             >
                               {subItem.title}
-                            </a>
+                            </Link>
                           </motion.li>
                         ))}
                       </motion.ul>

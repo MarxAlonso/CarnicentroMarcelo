@@ -1,4 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ProductoCerdo } from "../../data-cerdo/productosCerdo";
 import { categorias } from "../../data-cerdo/categorias";
 import { GiWeight } from "react-icons/gi";
@@ -23,7 +26,14 @@ export const ProductCard = ({ producto, onClick }: ProductCardProps) => {
       className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl cursor-pointer"
     >
       {producto.imagen && (
-        <img src={producto.imagen} alt={producto.nombre} className="w-full h-48 object-cover" />
+        <Image
+          src={producto.imagen}
+          alt={producto.nombre}
+          width={400}
+          height={192}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="h-48 w-full object-cover"
+        />
       )}
 
       <div className="p-6">

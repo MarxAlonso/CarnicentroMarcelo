@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { ProductoCerdo, productosCerdo } from "../data-cerdo/productosCerdo";
 import { categorias } from "../data-cerdo/categorias";

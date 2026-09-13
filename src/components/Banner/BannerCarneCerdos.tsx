@@ -1,20 +1,25 @@
+"use client";
+
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { GiPig, GiMeat, GiKnifeFork } from 'react-icons/gi';
 import { useState, useEffect } from 'react';
 import banner4cerdo from "../../assets/banner/banner4-cerdo.webp";
+
+// Fuera del componente: la lista es fija, así que no hace falta recrearla en
+// cada render ni declararla como dependencia del efecto.
+const phrases = [
+    "La mejor carne de cerdo",
+    "Cortes premium seleccionados",
+    "Sabor y calidad garantizada",
+    "Del campo a tu mesa"
+];
 
 export const BannerCarneCerdos = () => {
     const [text, setText] = useState('');
     const [fullText, setFullText] = useState('');
     const [index, setIndex] = useState(0);
     const [currentPhrase, setCurrentPhrase] = useState(0);
-
-    const phrases = [
-        "La mejor carne de cerdo",
-        "Cortes premium seleccionados",
-        "Sabor y calidad garantizada",
-        "Del campo a tu mesa"
-    ];
 
     // Efecto de escritura de texto
     useEffect(() => {
@@ -67,7 +72,16 @@ export const BannerCarneCerdos = () => {
         <div className="relative h-[80vh] overflow-hidden bg-gradient-to-r from-[#a90a0a] to-[#a90a0a]/80">
             {/* Fondo con patrón */}
             <div className="absolute inset-0 opacity-50">
-                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${banner4cerdo})` }} />
+                <Image
+                    src={banner4cerdo}
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    quality={70}
+                    placeholder="blur"
+                    className="object-cover object-center"
+                />
             </div>
             
             {/* Contenido principal */}

@@ -1,3 +1,5 @@
+"use client";
+
 import { GiMeat } from 'react-icons/gi';
 import { motion, AnimatePresence } from 'framer-motion';
 

@@ -1,4 +1,8 @@
+"use client";
+
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 import { GiCow, GiMeat } from 'react-icons/gi';
 import carnemolida from '../../assets/carnes/carnemolida.webp';
 import panceta from '../../assets/cerdos/panceta.webp';
@@ -12,7 +16,7 @@ import churrasco from '../../assets/carnes/churrasco.webp';
 // Definir el tipo de los elementos del menú
 interface MenuItem {
   menu_name: string;
-  menu_image: string;
+  menu_image: StaticImageData;
 }
 
 // Definir el tipo de las props para ExplorarCarnes
@@ -73,11 +77,13 @@ export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCat
               <div 
                 className={`relative rounded-full overflow-hidden w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 ${category === item.menu_name ? 'ring-4 ring-[#a90a0a] ring-offset-2' : 'ring-2 ring-transparent hover:ring-[#a90a0a]/50'}`}
               >
-                <motion.img 
-                  whileHover={{ scale: 1.1 }}
-                  className="w-full h-full object-cover transition-transform duration-300"
-                  src={item.menu_image} 
-                  alt={item.menu_name} 
+                <Image
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  src={item.menu_image}
+                  alt={item.menu_name}
+                  width={128}
+                  height={128}
+                  sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
                 />
               </div>
               <p className="mt-3 text-sm sm:text-base md:text-lg font-medium text-gray-800 group-hover:text-[#a90a0a] transition-colors text-center">

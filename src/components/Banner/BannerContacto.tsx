@@ -1,13 +1,20 @@
+"use client";
+
 import React from "react";
+import Image from "next/image";
 import bannercontacto from "../../assets/banner/banner2-vacas.webp"
 export const BannerContacto: React.FC = () => {
   return (
     <section className="relative overflow-hidden">
       <div className="relative bg-gradient-to-r from-[#8B0000] to-[#5B0000]">
-        <img
+        <Image
           src={bannercontacto}
-          alt="Carnicentro Marcelo"
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          placeholder="blur"
+          className="object-cover opacity-50"
         />
         <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20">
           <div className="max-w-3xl">

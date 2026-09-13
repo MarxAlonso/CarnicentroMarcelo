@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef, useEffect } from 'react';
 import { Message, ChatbotState } from './types/chatbot.types';
 import { INITIAL_MESSAGE } from './constants/chatbot.constants';

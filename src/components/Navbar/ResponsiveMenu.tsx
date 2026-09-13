@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { NavbarMenu } from "./NavbarData";
@@ -42,13 +45,13 @@ export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ open }) => {
                     onClick={() => item.submenu && toggleSubmenu(item.id)}
                     className="cursor-pointer"
                   >
-                    <a
+                    <Link
                       href={item.link}
                       onClick={(e) => item.submenu && e.preventDefault()}
                       className="inline-block w-full py-3 px-6 text-lg font-semibold hover:bg-[#8a0808] rounded-xl transition-all duration-300"
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Submenu */}
@@ -66,12 +69,12 @@ export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ open }) => {
                             whileHover={{ x: 10 }}
                             className="w-full"
                           >
-                            <a
+                            <Link
                               href={subItem.link}
                               className="block w-full py-2 px-8 text-[#fff4bf] hover:text-white hover:bg-[#8a0808] transition-all duration-300 text-left"
                             >
                               {subItem.title}
-                            </a>
+                            </Link>
                           </motion.li>
                         ))}
                       </motion.ul>
@@ -79,10 +82,10 @@ export const ResponsiveMenu: React.FC<ResponsiveMenuProps> = ({ open }) => {
                   </AnimatePresence>
                 </motion.li>
               ))}
+              {/* Es una página del propio sitio: no tiene por qué abrirse en
+                  una pestaña nueva. */}
               <motion.a
                 href="/contacto"
-                target="_blank"
-                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="mt-4 px-8 py-3 bg-[#8a0808] hover:bg-[#a90a0a] rounded-xl font-semibold transition-colors duration-300 shadow-lg flex items-center justify-center gap-2"

@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 import { GiCow } from 'react-icons/gi';
 import  banner1vacas  from '../../assets/banner/banner1-vacas.webp';
@@ -8,8 +10,14 @@ export const BannerCarneRes = () => {
             {/* Fondo con imagen y degradado */}
             <div 
                 className="absolute inset-0 bg-gradient-to-r from-carni-red/90 to-carni-dark-red/90"
-                style={{ 
-                    backgroundImage: `url(${banner1vacas})`,
+                style={{
+                    /* `.src`: la importación estática devuelve un objeto con
+                       ruta y dimensiones, no una cadena. Interpolarlo directo
+                       escribía "[object Object]" y el fondo no se veía.
+                       Se queda como background porque el `backgroundBlendMode`
+                       de abajo compone la imagen con el degradado; pasarlo a
+                       next/image cambiaría ese mezclado. */
+                    backgroundImage: `url(${banner1vacas.src})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundBlendMode: 'overlay'

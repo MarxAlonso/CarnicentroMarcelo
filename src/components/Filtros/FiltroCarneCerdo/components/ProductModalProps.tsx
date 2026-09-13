@@ -1,4 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ProductoCerdo } from "../../data-cerdo/productosCerdo";
 
 interface ProductModalProps {
@@ -30,10 +33,13 @@ export const ProductModal = ({ producto, onClose }: ProductModalProps) => {
         </button>
 
         {producto.imagen && (
-          <img
+          <Image
             src={producto.imagen}
             alt={producto.nombre}
-            className="rounded-lg mb-4 w-full object-cover"
+            width={600}
+            height={400}
+            sizes="(max-width: 768px) 90vw, 600px"
+            className="mb-4 w-full rounded-lg object-cover"
           />
         )}
 
