@@ -171,8 +171,15 @@ marcado, así que esa bandera es la única puerta que hay que vigilar.
 2. Poner `RESENAS_REALES = true`.
 3. El schema se emite solo, sin tocar nada más.
 
-Conseguirlas es más fácil de lo que parece: pedir una línea al cliente por
-WhatsApp después de cada entrega.
+**Qué esperar de eso, siendo realistas:** Google no muestra estrellas en los
+resultados a partir de reseñas que el propio negocio publica sobre sí mismo —
+su regla anti «auto-elogio» deja fuera del formato de estrellas a las páginas
+con `LocalBusiness` u `Organization` cuando el negocio controla las reseñas.
+Las reseñas de la web sirven para convencer a quien ya llegó a la ficha, que no
+es poco, pero no para ganar posiciones.
+
+Las estrellas que sí aparecen en Google salen de la **ficha de Google Business
+Profile**. Ahí es donde hay que pedirlas, y es lo que mueve el ranking local.
 
 ## Animaciones: nada de librerías
 

@@ -5,7 +5,11 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # pnpm 11 exige Node >= 22.13. Con Node 20 el binario ni arranca: falla al
+  # cargar `node:sqlite`, que es un modulo interno que no existe en esa rama.
+  # Si alguna vez se baja la version de Node, hay que bajar tambien la de pnpm
+  # en `packageManager`.
+  NODE_VERSION = "22"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
