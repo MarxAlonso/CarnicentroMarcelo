@@ -1,3 +1,5 @@
+"use client";
+
 
 import { motion } from 'framer-motion';
 import { GiMeat, GiCow, GiPig, GiKnifeFork, GiWeight } from 'react-icons/gi';

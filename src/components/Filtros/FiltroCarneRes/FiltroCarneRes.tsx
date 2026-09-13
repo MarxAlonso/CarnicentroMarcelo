@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { GiMeat, GiWeight } from 'react-icons/gi';
 
 // Datos de ejemplo de productos
@@ -107,10 +110,13 @@ export const FiltroCarneRes = () => {
                 >
                     {/* Imagen del producto */}
                     {producto.imagen && (
-                        <img
+                        <Image
                             src={producto.imagen}
                             alt={producto.nombre}
-                            className="w-full h-48 object-cover"
+                            width={400}
+                            height={192}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="h-48 w-full object-cover"
                         />
                     )}
 
@@ -152,7 +158,14 @@ export const FiltroCarneRes = () => {
                     >
                         ✕
                     </button>
-                    <img src={modalProducto.imagen} alt={modalProducto.nombre} className="rounded-lg mb-4" />
+                    <Image
+                        src={modalProducto.imagen}
+                        alt={modalProducto.nombre}
+                        width={600}
+                        height={400}
+                        sizes="(max-width: 768px) 90vw, 600px"
+                        className="mb-4 w-full rounded-lg object-cover"
+                    />
                     <h2 className="text-2xl font-bold text-carni-red mb-2">{modalProducto.nombre}</h2>
                     <p className="text-gray-600 mb-4">{modalProducto.descripcion}</p>
                     <p className="text-carni-dark-red font-bold mb-6">S/ {modalProducto.precio}.00 /kg</p>

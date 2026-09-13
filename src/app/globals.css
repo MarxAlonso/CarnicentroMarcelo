@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    /* La fuente ya llega autoalojada por next/font: sin petición a Google
+       Fonts y sin salto de texto mientras carga. */
+    font-family: var(--font-poppins), system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Brillo de los skeletons. Un degradado que recorre la caja, no una
+     opacidad que parpadea: se lee como "está llegando" y no como un error. */
+  .skeleton-shimmer {
+    background-color: #e9e4dc;
+    background-image: linear-gradient(
+      90deg,
+      rgba(233, 228, 220, 0) 0%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(233, 228, 220, 0) 100%
+    );
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    animation: skeleton-sweep 1.4s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-sweep {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+}
+
+/* Quien pidió menos movimiento ve un bloque quieto, no un destello. */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background-image: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

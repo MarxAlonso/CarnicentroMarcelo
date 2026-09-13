@@ -6,12 +6,20 @@ import brazuelodeshuesado from "../../../assets/cerdos/brazuelodeshuesado.webp";
 import chuletadelomo from "../../../assets/cerdos/chuletadelomo.webp";
 import chuletadebondiola from "../../../assets/cerdos/chuletadebondiola.webp";
 
+import type { StaticImageData } from "next/image";
+
 export interface ProductoCerdo {
   id: number;
   nombre: string;
   precio: number;
   categoria: number;
-  imagen: string;
+  /**
+   * Los valores son importaciones estáticas, que Next resuelve como
+   * `StaticImageData` (ruta, ancho, alto y placeholder). Declararlo como
+   * `string` —como estaba— hacía perder las dimensiones intrínsecas, que son
+   * justo lo que evita el salto de maquetación al cargar la foto.
+   */
+  imagen: StaticImageData;
   descripcion: string;
 }
 

@@ -1,5 +1,9 @@
+"use client";
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 import { GiCow, GiPig, GiMeat, GiWeight, GiPriceTag } from 'react-icons/gi';
 import { FaTimes } from 'react-icons/fa';
 import  lomofino  from '../../assets/catalogoinicio/lomofino.webp';
@@ -17,7 +21,7 @@ interface Producto {
     tipo: 'res' | 'cerdo' | 'molida';
     precio: number;
     peso: string;
-    imagen: string;
+    imagen: StaticImageData;
     descripcion: string;
 }
 
@@ -149,11 +153,16 @@ export const CatalogoCarnes = () => {
                             onClick={() => setProductoSeleccionado(producto)}
                         >
                             <div className="h-56 bg-gray-200 overflow-hidden">
-                                <motion.img 
-                                    whileHover={{ scale: 1.1 }}
-                                    src={producto.imagen} 
+                                {/* El zoom al pasar el cursor pasa a CSS: hace
+                                    lo mismo sin que framer-motion tenga que
+                                    seguir una decena de imágenes a la vez. */}
+                                <Image
+                                    src={producto.imagen}
                                     alt={producto.nombre}
-                                    className="w-full h-full object-cover transition-transform duration-300"
+                                    width={400}
+                                    height={224}
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                 />
                             </div>
 
@@ -200,12 +209,13 @@ export const CatalogoCarnes = () => {
                             </button>
 
                             <div className="aspect-w-16 aspect-h-9 mb-6 overflow-hidden rounded-xl">
-                                <motion.img
-                                    initial={{ scale: 1.2 }}
-                                    animate={{ scale: 1 }}
+                                <Image
                                     src={productoSeleccionado.imagen}
                                     alt={productoSeleccionado.nombre}
-                                    className="w-full h-full object-cover"
+                                    width={800}
+                                    height={450}
+                                    sizes="(max-width: 768px) 90vw, 800px"
+                                    className="h-full w-full object-cover"
                                 />
                             </div>
 

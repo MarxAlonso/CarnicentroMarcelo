@@ -1,8 +1,9 @@
+"use client";
+
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { GiCow, GiMeat, GiChefToque } from 'react-icons/gi';
 import { FaHome, FaArrowLeft } from 'react-icons/fa';
-import SEO from '../SEO/SEO';
 
 const NotFound = () => {
     const containerVariants = {
@@ -37,7 +38,6 @@ const NotFound = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#fff4bf] via-white to-[#fff4bf] flex items-center justify-center px-4">
-            <SEO title="404 - Página no encontrada" description="La página que buscas no existe en Carnicentro Marcelo." />
             <motion.div
                 className="text-center max-w-2xl mx-auto"
                 variants={containerVariants}
@@ -137,7 +137,7 @@ const NotFound = () => {
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                     variants={itemVariants}
                 >
-                    <Link to="/">
+                    <Link href="/">
                         <motion.button
                             className="bg-[#a90a0a] text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-3 hover:bg-red-800 transition-colors duration-300 shadow-lg"
                             whileHover={{ scale: 1.05, y: -2 }}
@@ -171,7 +171,7 @@ const NotFound = () => {
                         ¿Buscas nuestras carnes premium? Visita nuestro catálogo de productos
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 mt-4">
-                        <Link to="/carneres">
+                        <Link href="/carne-de-res">
                             <motion.span
                                 className="text-[#a90a0a] hover:text-red-800 font-medium underline cursor-pointer"
                                 whileHover={{ scale: 1.05 }}
@@ -179,7 +179,7 @@ const NotFound = () => {
                                 Carne de Res
                             </motion.span>
                         </Link>
-                        <Link to="/carnecerdo">
+                        <Link href="/carne-de-cerdo">
                             <motion.span
                                 className="text-[#a90a0a] hover:text-red-800 font-medium underline cursor-pointer"
                                 whileHover={{ scale: 1.05 }}

@@ -1,4 +1,7 @@
+"use client";
+
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { GiCow, GiPig, GiMeat, GiSteak } from 'react-icons/gi';
 import { useState, useEffect } from 'react';
 import banner4 from '../../assets/banner/banner4.webp';
@@ -23,10 +26,14 @@ export const BannerNosotros = () => {
     return (
         <div className="relative h-[80vh] overflow-hidden">
             <div className="absolute inset-0 z-0">
-                <img 
-                    src={banner4} 
-                    alt="Banner Carnicentro" 
-                    className="w-full h-full object-cover"
+                <Image
+                    src={banner4}
+                    alt=""
+                    fill
+                    priority
+                    sizes="100vw"
+                    placeholder="blur"
+                    className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-carni-red/60 to-carni-dark-red/60" />
             </div>

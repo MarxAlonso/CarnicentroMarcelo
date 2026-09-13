@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
@@ -44,7 +46,7 @@ const TestimonioCard: React.FC<{ testimonio: Testimonio; index: number }> = ({ t
         ))}
       </div>
       <p className="text-gray-700 italic text-lg leading-relaxed mb-6">
-        "{testimonio.comentario}"
+        “{testimonio.comentario}”
       </p>
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 bg-[#fff4bf] rounded-full flex items-center justify-center font-bold text-[#a90a0a]">

@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GiMeatCleaver, GiGrass, GiHeartBeats, GiTrophy } from 'react-icons/gi';
@@ -110,7 +112,7 @@ const ExperienciaCarnicera: React.FC = () => {
               La <strong>carne de chancho</strong> (o cerdo) que procesamos destaca por su jugosidad. Cortes como la bondiola o la chuleta de lomo pasan por rigurosos controles sanitarios, asegurando que su aporte nutricional y sabor sean siempre de primer nivel.
             </p>
             <div className="pt-4 border-l-4 border-[#a90a0a] pl-6 italic text-gray-600">
-              "El secreto de un buen asado no está solo en el fuego, sino en la mano que elige la pieza correcta." — Marcelo, Maestro Carnicero.
+              &ldquo;El secreto de un buen asado no está solo en el fuego, sino en la mano que elige la pieza correcta.&rdquo; — Marcelo, Maestro Carnicero.
             </div>
           </motion.div>
           

@@ -1,19 +1,24 @@
+"use client";
+
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { GiHealthNormal, GiBrain, GiMuscleUp, GiElectric } from 'react-icons/gi';
 import { FaShieldAlt, FaAppleAlt } from 'react-icons/fa';
-import imageHeader from '../../../assets/blog/nutricion_carne_header.png';
 
 const BeneficiosNutritivos: React.FC = () => {
   return (
     <article className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
       <div className="relative h-[60vh] overflow-hidden">
-        <img
-          src={imageHeader}
+        <Image
+          src="/blog/nutricion_carne_header.png"
           alt="Beneficios nutritivos de la carne de res"
-          className="w-full h-full object-cover"
-        />
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-12 w-full text-white">
             <motion.div
@@ -159,7 +164,7 @@ const BeneficiosNutritivos: React.FC = () => {
             En Carnicentro Marcelo, nos comprometemos con la calidad. Cada corte que ofrecemos está pensado para brindar no solo el mejor sabor, sino también el máximo valor nutricional para usted y su familia.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-6">
-            <a href="/carneres" className="bg-[#a90a0a] text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#a90a0a] transition-all transform hover:scale-105">Ver Cortes Premium</a>
+            <a href="/carne-de-res" className="bg-[#a90a0a] text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#a90a0a] transition-all transform hover:scale-105">Ver Cortes Premium</a>
             <a href="/nosotros" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-900 transition-all">Nuestra Tradición</a>
           </div>
         </div>

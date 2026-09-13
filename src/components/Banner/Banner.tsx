@@ -1,4 +1,7 @@
+"use client";
+
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { GiMeat, GiCow, GiPig } from 'react-icons/gi';
 import { BsArrowRightCircle, BsArrowLeftCircle } from 'react-icons/bs';
@@ -61,12 +64,23 @@ export const Banner = () => {
                         ease: 'easeInOut'
                     }}
                     className="absolute inset-0"
-                    style={{
-                        backgroundImage: `url(${bannerImages[imageIndex]})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    }}
                 >
+                    {/* La portada es el elemento más grande de la primera
+                        pantalla: va por next/image con `priority` para que se
+                        precargue y se sirva en AVIF al tamaño de la pantalla.
+                        Antes era un `background-image`, que el navegador no
+                        descubre hasta haber descargado y aplicado el CSS. */}
+                    <Image
+                        src={bannerImages[imageIndex]}
+                        alt=""
+                        fill
+                        priority={imageIndex === 0}
+                        sizes="100vw"
+                        quality={70}
+                        placeholder="blur"
+                        className="object-cover object-center"
+                    />
+
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/40" />
 
@@ -90,7 +104,7 @@ export const Banner = () => {
                         </p>
 
                         <motion.a
-                            href="/carneres"
+                            href="/carne-de-res"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.97 }}
                             className="flex items-center gap-2 bg-[#a90a0a] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#8a0808] transition-colors w-fit"

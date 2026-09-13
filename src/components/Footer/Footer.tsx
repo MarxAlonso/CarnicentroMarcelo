@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { GiCow, GiPig, GiMeat } from 'react-icons/gi';
 import { MdPhone } from 'react-icons/md';
@@ -11,10 +13,13 @@ export const Footer = () => {
                     <div className="space-y-4">
                         <div className="flex items-center gap-4">
                             {/* Imagen del logo */}
-                            <img
-                            src="/logo2-carnicentromarcelo.png"
-                            alt="Logo Carnicentro Marcelo"
-                            className="w-full h-24 rounded-[20px] shadow-lg"
+                            <Image
+                                src="/logo2-carnicentromarcelo.png"
+                                alt="Carnicentro Marcelo"
+                                width={240}
+                                height={96}
+                                loading="lazy"
+                                className="h-24 w-auto rounded-[20px] object-contain shadow-lg"
                             />
                         </div>
                         <p className="text-gray-700">Ofrecemos la mejor calidad en carnes de res y cerdo. Nuestra experiencia y dedicación nos respaldan para brindarle los mejores cortes.</p>
@@ -36,24 +41,24 @@ export const Footer = () => {
                         <h2 className="text-xl font-bold text-[#a90a0a]">Enlaces Rápidos</h2>
                         <ul className="space-y-2">
                             <li>
-                                <a href="/carneres" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                <Link href="/carne-de-res" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
                                     <GiMeat className="text-[#a90a0a]" /> Carne de Res
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/carnecerdo" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                <Link href="/carne-de-cerdo" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
                                     <GiPig className="text-[#a90a0a]" /> Carne de Cerdo
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/nosotros" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                <Link href="/nosotros" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
                                     <GiCow className="text-[#a90a0a]" /> Nosotros
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/contacto" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
+                                <Link href="/contacto" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
                                     <GiPig className="text-[#a90a0a]" /> Contacto
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

@@ -1,19 +1,24 @@
+"use client";
+
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { GiMuscleUp, GiCookingPot } from 'react-icons/gi';
 import { FaCheckCircle, FaAppleAlt } from 'react-icons/fa';
-import imageHeader from '../../../assets/blog/gym_blog_header.png';
 
 const BeneficiosGym: React.FC = () => {
   return (
     <article className="bg-white min-h-screen pb-20">
       {/* Hero Header */}
       <div className="relative h-[60vh] overflow-hidden">
-        <img
-          src={imageHeader}
+        <Image
+          src="/blog/gym_blog_header.png"
           alt="Beneficios de la carne para el progreso en el gimnasio"
-          className="w-full h-full object-cover"
-        />
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-12 w-full text-white">
             <motion.div
@@ -66,7 +71,7 @@ const BeneficiosGym: React.FC = () => {
               <GiMuscleUp className="text-5xl text-red-600 mb-6" />
               <h3 className="text-2xl font-bold mb-4">Efecto Anabólico</h3>
               <p className="text-gray-300 italic">
-                "La combinación de estas proteínas con el entrenamiento de fuerza y un descanso adecuado de 7–8 horas maximiza la regeneración muscular y evita la fatiga crónica."
+                &ldquo;La combinación de estas proteínas con el entrenamiento de fuerza y un descanso adecuado de 7–8 horas maximiza la regeneración muscular y evita la fatiga crónica.&rdquo;
               </p>
             </div>
           </div>
@@ -135,8 +140,8 @@ const BeneficiosGym: React.FC = () => {
             Visita nuestra tienda online y descubre más cortes magros seleccionados para tu dieta deportiva. ¡Calidad garantizada para tu progreso!
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="/carneres" className="bg-white text-[#a90a0a] px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">Ver Cortes de Res</a>
-            <a href="/carnecerdo" className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-[#a90a0a] transition-all">Ver Cortes de Cerdo</a>
+            <a href="/carne-de-res" className="bg-white text-[#a90a0a] px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">Ver Cortes de Res</a>
+            <a href="/carne-de-cerdo" className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-[#a90a0a] transition-all">Ver Cortes de Cerdo</a>
           </div>
         </div>
       </div>
