@@ -125,7 +125,7 @@ export default function CortesDeRes() {
                 <div
                   key={corte.id}
                   data-reveal="up"
-                  className="overflow-hidden rounded-2xl border border-gray-200 bg-white"
+                  className="overflow-hidden rounded-2xl border border-line bg-surface"
                 >
                   <Image
                     src={corte.imagen}
@@ -137,26 +137,26 @@ export default function CortesDeRes() {
                   />
                   <div className="p-5">
                     <div className="flex items-baseline justify-between gap-3">
-                      <h3 className="!mt-0 !mb-0 text-lg font-bold text-gray-900">
+                      <h3 className="!mt-0 !mb-0 text-lg font-bold text-ink">
                         {corte.nombre}
                       </h3>
-                      <span className="shrink-0 font-bold tabular-nums text-carni-red">
+                      <span className="shrink-0 font-bold tabular-nums text-brand-ink">
                         S/ {corte.precio.toFixed(2)}
                       </span>
                     </div>
 
-                    <p className="!mb-0 !mt-2 !text-[15px] text-gray-600">{corte.descripcion}</p>
+                    <p className="!mb-0 !mt-2 !text-[15px] text-ink-muted">{corte.descripcion}</p>
 
                     {extra && (
-                      <dl className="mt-3 space-y-1 border-t border-gray-100 pt-3 text-sm">
+                      <dl className="mt-3 space-y-1 border-t border-line pt-3 text-sm">
                         <div>
-                          <dt className="inline font-semibold text-gray-900">Para: </dt>
-                          <dd className="inline text-gray-600">{extra.plato}</dd>
+                          <dt className="inline font-semibold text-ink">Para: </dt>
+                          <dd className="inline text-ink-muted">{extra.plato}</dd>
                         </div>
                         {extra.fuera && (
                           <div>
-                            <dt className="inline font-semibold text-gray-900">Fuera del Perú: </dt>
-                            <dd className="inline text-gray-600">{extra.fuera}</dd>
+                            <dt className="inline font-semibold text-ink">Fuera del Perú: </dt>
+                            <dd className="inline text-ink-muted">{extra.fuera}</dd>
                           </div>
                         )}
                       </dl>

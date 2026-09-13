@@ -14,9 +14,9 @@ export function ArticulosDelPilar({ pilar, titulo }: { pilar: Pilar; titulo?: st
   if (posts.length === 0) return null;
 
   return (
-    <section className="bg-gray-50 py-16" aria-labelledby="articulos-pilar">
+    <section className="bg-surface-2 py-16" aria-labelledby="articulos-pilar">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 id="articulos-pilar" className="font-display text-3xl font-bold text-carni-dark-red md:text-4xl">
+        <h2 id="articulos-pilar" className="font-display text-3xl font-bold text-brand-ink-deep md:text-4xl">
           {titulo ?? "Para leer antes de pedir"}
         </h2>
 
@@ -25,13 +25,13 @@ export function ArticulosDelPilar({ pilar, titulo }: { pilar: Pilar; titulo?: st
             <li key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="flex h-full flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-6 transition-colors hover:border-carni-red"
+                className="flex h-full flex-col gap-2 rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-brand"
               >
-                <span className="text-xs font-bold uppercase tracking-widest text-carni-red">
+                <span className="text-xs font-bold uppercase tracking-widest text-brand-ink">
                   {post.categoria}
                 </span>
-                <span className="text-lg font-bold leading-snug text-gray-900">{post.titulo}</span>
-                <span className="text-sm leading-relaxed text-gray-600">{post.descripcion}</span>
+                <span className="text-lg font-bold leading-snug text-ink">{post.titulo}</span>
+                <span className="text-sm leading-relaxed text-ink-muted">{post.descripcion}</span>
               </Link>
             </li>
           ))}

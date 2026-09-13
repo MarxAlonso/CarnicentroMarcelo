@@ -120,7 +120,7 @@ export default function CortesDeCerdo() {
           <div
             key={p.id}
             data-reveal="up"
-            className="overflow-hidden rounded-2xl border border-gray-200 bg-white"
+            className="overflow-hidden rounded-2xl border border-line bg-surface"
           >
             <Image
               src={p.imagen}
@@ -132,12 +132,12 @@ export default function CortesDeCerdo() {
             />
             <div className="p-5">
               <div className="flex items-baseline justify-between gap-3">
-                <h3 className="!mb-0 !mt-0 text-lg font-bold text-gray-900">{p.nombre}</h3>
-                <span className="shrink-0 font-bold tabular-nums text-carni-red">
+                <h3 className="!mb-0 !mt-0 text-lg font-bold text-ink">{p.nombre}</h3>
+                <span className="shrink-0 font-bold tabular-nums text-brand-ink">
                   S/ {p.precio.toFixed(2)}
                 </span>
               </div>
-              <p className="!mb-0 !mt-2 !text-[15px] text-gray-600">{p.descripcion}</p>
+              <p className="!mb-0 !mt-2 !text-[15px] text-ink-muted">{p.descripcion}</p>
             </div>
           </div>
         ))}

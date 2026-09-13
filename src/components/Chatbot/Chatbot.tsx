@@ -49,7 +49,7 @@ const Chatbot = () => {
       {/* Botón del chatbot */}
       <button 
         onClick={toggleChat}
-        className="bg-[#8B0000] hover:bg-[#6B0000] text-white rounded-full p-4 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105"
+        className="bg-brand hover:bg-brand-deep text-white rounded-full p-4 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105"
       >
         {state.showChat ? (
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,16 +64,16 @@ const Chatbot = () => {
       
       {/* Ventana del chatbot */}
       {state.showChat && (
-        <div className="absolute bottom-16 right-0 w-80 sm:w-96 bg-white rounded-lg shadow-xl border border-[#8B0000] flex flex-col transition-all duration-300 animate-fadeIn">
+        <div className="absolute bottom-16 right-0 w-80 sm:w-96 bg-surface rounded-lg shadow-xl border border-brand flex flex-col transition-all duration-300 animate-fadeIn">
           {/* Encabezado */}
-          <div className="bg-gradient-to-r from-[#8B0000] to-[#6B0000] text-white p-4 rounded-t-lg flex justify-between items-center">
+          <div className="bg-gradient-to-r from-brand to-brand-deep text-white p-4 rounded-t-lg flex justify-between items-center">
             <div className="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
               <h3 className="font-medium">Asistente de Carnicentro Marcelo</h3>
             </div>
-            <button onClick={toggleChat} className="text-white hover:text-gray-200 transition-colors">
+            <button onClick={toggleChat} className="text-white hover:text-cream/80 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -81,31 +81,31 @@ const Chatbot = () => {
           </div>
           
           {/* Mensajes */}
-          <div className="flex-1 p-4 overflow-y-auto max-h-80 bg-[#FFF8F8]">
+          <div className="flex-1 p-4 overflow-y-auto max-h-80 bg-surface-2">
             {state.messages.map((message, index) => (
               <div 
                 key={index} 
                 className={`mb-3 flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
               >
                 {message.isBot && (
-                  <div className="h-8 w-8 rounded-full bg-[#8B0000] flex items-center justify-center text-white mr-2 flex-shrink-0">
+                  <div className="h-8 w-8 rounded-full bg-brand-deep flex items-center justify-center text-white mr-2 flex-shrink-0">
                     <span className="text-xs font-bold">CM</span>
                   </div>
                 )}
                 <div 
                   className={`p-3 rounded-lg max-w-[80%] shadow-sm ${
                     message.isBot 
-                      ? 'bg-white border border-[#8B0000]/20 text-gray-800 rounded-bl-none' 
-                      : 'bg-gradient-to-r from-[#8B0000] to-[#6B0000] text-white rounded-br-none'
+                      ? 'bg-surface border border-brand/20 text-ink rounded-bl-none' 
+                      : 'bg-gradient-to-r from-brand to-brand-deep text-white rounded-br-none'
                   }`}
                 >
                   {message.text}
-                  <div className={`text-xs mt-1 ${message.isBot ? 'text-gray-500' : 'text-gray-300'}`}>
+                  <div className={`text-xs mt-1 ${message.isBot ? 'text-ink-subtle' : 'text-cream/70'}`}>
                     {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                   </div>
                 </div>
                 {!message.isBot && (
-                  <div className="h-8 w-8 rounded-full bg-gray-500 flex items-center justify-center text-white ml-2 flex-shrink-0">
+                  <div className="ml-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-deep text-white">
                     <span className="text-xs font-bold">TÚ</span>
                   </div>
                 )}
@@ -115,17 +115,17 @@ const Chatbot = () => {
           </div>
           
           {/* Input */}
-          <div className="border-t border-[#8B0000]/20 p-3 flex bg-white rounded-b-lg">
+          <div className="border-t border-brand/20 p-3 flex bg-surface rounded-b-lg">
             <input
               type="text"
               value={state.userInput}
               onChange={handleInputChange}
               placeholder="Escribe tu pregunta..."
-              className="flex-1 border border-[#8B0000]/30 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#8B0000] bg-[#FFF8F8]"
+              className="flex-1 border border-brand/30 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand bg-surface-2"
             />
             <button
               onClick={handleSubmit}
-              className="bg-gradient-to-r from-[#8B0000] to-[#6B0000] hover:from-[#6B0000] hover:to-[#5B0000] text-white px-4 py-2 rounded-r-lg transition-colors"
+              className="bg-gradient-to-r from-brand to-brand-deep hover:from-brand-deep hover:to-brand text-white px-4 py-2 rounded-r-lg transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

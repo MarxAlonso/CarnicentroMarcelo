@@ -32,8 +32,8 @@ export const CategoryFilter = ({
             onClick={() => setCategoriaSeleccionada(clave)}
             className={`rounded-full px-6 py-2 font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
               activo
-                ? "bg-[#a90a0a] text-white"
-                : "bg-[#fff4bf] text-[#a90a0a] hover:bg-[#a90a0a] hover:text-white"
+                ? "bg-brand text-white"
+                : "bg-surface-warm text-brand-ink hover:bg-brand hover:text-white"
             }`}
           >
             {etiqueta}

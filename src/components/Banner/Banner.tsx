@@ -47,7 +47,7 @@ export const Banner = () => {
     }, [page, autoPlay]);
 
     return (
-        <div className="relative h-[80vh] overflow-hidden md:h-[70vh] lg:h-[80vh]">
+        <div className="relative h-[clamp(420px,72vh,620px)] overflow-hidden">
             {/* Las fotos se cruzan por opacidad en vez de montarse y
                 desmontarse: así el cambio de slide no dispara una descarga a
                 mitad de la transición. */}
@@ -74,10 +74,10 @@ export const Banner = () => {
 
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 md:px-12 lg:px-24">
+            <div className="relative mx-auto flex h-full max-w-site flex-col justify-center px-6 md:px-12 lg:px-24">
                 <div className="hero-enter mb-4 flex items-center gap-3">
-                    <GiCow className="text-4xl text-[#fff4bf] md:text-5xl" aria-hidden="true" />
-                    <GiPig className="text-4xl text-[#fff4bf] md:text-5xl" aria-hidden="true" />
+                    <GiCow className="text-4xl text-cream md:text-5xl" aria-hidden="true" />
+                    <GiPig className="text-4xl text-cream md:text-5xl" aria-hidden="true" />
                 </div>
 
                 <h1
@@ -85,7 +85,7 @@ export const Banner = () => {
                     style={{ '--hero-delay': '80ms' } as React.CSSProperties}
                 >
                     Las Mejores Carnes
-                    <span className="block text-[#fff4bf]">Para Tu Mesa</span>
+                    <span className="block text-cream">Para Tu Mesa</span>
                 </h1>
 
                 <p
@@ -98,7 +98,7 @@ export const Banner = () => {
 
                 <Link
                     href="/carne-de-res"
-                    className="hero-enter flex w-fit items-center gap-2 rounded-full bg-[#a90a0a] px-8 py-3 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-[#8a0808] active:scale-[0.97]"
+                    className="hero-enter flex w-fit items-center gap-2 rounded-full bg-brand px-8 py-3 text-lg font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-brand-deep active:scale-[0.97]"
                     style={{ '--hero-delay': '240ms' } as React.CSSProperties}
                 >
                     <GiMeat className="text-xl" aria-hidden="true" />
@@ -136,7 +136,7 @@ export const Banner = () => {
                             setPage(index);
                         }}
                         className={`h-3 w-3 rounded-full transition-colors ${
-                            index === imageIndex ? 'bg-[#fff4bf]' : 'bg-white/50 hover:bg-white/70'
+                            index === imageIndex ? 'bg-surface-warm' : 'bg-surface/50 hover:bg-surface/70'
                         }`}
                     />
                 ))}

@@ -34,7 +34,7 @@ export const ContactGrid: React.FC = () => {
           Para cortes especiales y pedidos personalizados, contáctanos y agenda con
           un día de anticipación para garantizar disponibilidad y preparación.
         </p>
-        <ul className="mt-3 text-sm text-gray-600 list-disc pl-5">
+        <ul className="mt-3 text-sm text-ink-muted list-disc pl-5">
           <li>Pedidos coordinados con 24 horas de anticipación.</li>
           <li>Disponibles cortes para parrilla, restaurantes y eventos.</li>
           <li>Asesoría sobre gramajes y presentaciones.</li>
@@ -51,7 +51,7 @@ export const ContactGrid: React.FC = () => {
           Ofrecemos servicio de delivery coordinado. Agenda tu entrega con un
           día de anticipación para organizar rutas y tiempos.
         </p>
-        <ul className="mt-3 text-sm text-gray-600 list-disc pl-5">
+        <ul className="mt-3 text-sm text-ink-muted list-disc pl-5">
           <li>Entrega coordinada y confirmada previamente.</li>
           <li>Horarios de entrega según disponibilidad de ruta.</li>
           <li>Empaque seguro y cadena de frío garantizada.</li>
@@ -67,7 +67,7 @@ export const ContactGrid: React.FC = () => {
           Atendemos contratos para restaurantes, hoteles y eventos. Escríbenos
           para cotizaciones, acuerdos y programación de entregas.
         </p>
-        <ul className="mt-3 text-sm text-gray-600 list-disc pl-5">
+        <ul className="mt-3 text-sm text-ink-muted list-disc pl-5">
           <li>Planificación con anticipación para garantizar stock.</li>
           <li>Facturación y documentación a solicitud.</li>
           <li>Atención personalizada según tipo de negocio.</li>

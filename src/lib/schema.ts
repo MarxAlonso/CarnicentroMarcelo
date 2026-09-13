@@ -113,6 +113,69 @@ export function buildProductListSchema(
   };
 }
 
+/**
+ * Ficha de un solo corte.
+ *
+ * `aggregateRating` y `review` se emiten **solo** si llegan reseñas reales.
+ * Declarar valoraciones inventadas es la vía más rápida a una acción manual de
+ * Google, y esa sanción no se queda en la ficha: baja el dominio entero.
+ */
+export function buildProductSchema(p: {
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagen: string;
+  url: string;
+  categoria: string;
+  resenas?: { autor: string; estrellas: number; fecha: string; texto: string }[];
+}): Json {
+  const schema: Json = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.nombre,
+    description: p.descripcion,
+    image: absoluteUrl(p.imagen),
+    category: p.categoria,
+    brand: { "@type": "Brand", name: SITE.name },
+    offers: {
+      "@type": "Offer",
+      price: p.precio,
+      priceCurrency: "PEN",
+      // La unidad de venta real es el kilo, no la pieza.
+      eligibleQuantity: { "@type": "QuantitativeValue", unitCode: "KGM", value: 1 },
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      url: absoluteUrl(p.url),
+      seller: { "@id": BUSINESS_ID },
+    },
+  };
+
+  if (p.resenas && p.resenas.length > 0) {
+    const suma = p.resenas.reduce((acc, r) => acc + r.estrellas, 0);
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: Math.round((suma / p.resenas.length) * 10) / 10,
+      reviewCount: p.resenas.length,
+      bestRating: 5,
+      worstRating: 1,
+    };
+    schema.review = p.resenas.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.autor },
+      datePublished: r.fecha,
+      reviewBody: r.texto,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.estrellas,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    }));
+  }
+
+  return schema;
+}
+
 export type Faq = { pregunta: string; respuesta: string };
 
 /** Las mismas preguntas deben estar visibles en la página. Sin excepción. */

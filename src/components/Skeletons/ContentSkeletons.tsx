@@ -29,7 +29,7 @@ export function BlogListSkeleton({ count = 3 }: { count?: number }) {
     <SkeletonBlock label="Cargando artículos">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: count }, (_, i) => (
-          <div key={i} className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm">
+          <div key={i} className="overflow-hidden rounded-3xl border border-line bg-surface shadow-sm">
             <Skeleton className="h-64 w-full rounded-none" />
             <div className="flex flex-col gap-4 p-8">
               <Skeleton className="h-3 w-24" />

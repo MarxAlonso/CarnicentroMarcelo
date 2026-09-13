@@ -6,7 +6,7 @@ import { FiltroCarneRes } from "@/components/Filtros/FiltroCarneRes/FiltroCarneR
 import { FaqVisible } from "@/components/Pilar/FaqVisible";
 import { ArticulosDelPilar } from "@/components/Pilar/ArticulosDelPilar";
 import { TablaPrecios } from "@/components/Pilar/TablaPrecios";
-import { productosRes } from "@/components/Filtros/data/productosRes";
+import { cortesPorTipo } from "@/content/catalogo";
 import { PILARES } from "@/lib/pilares";
 import { PRECIOS_ACTUALIZADOS, whatsappUrl } from "@/lib/site";
 import {
@@ -31,14 +31,7 @@ export const metadata: Metadata = {
 };
 
 export default function CarneDeResPage() {
-  const cortes = productosRes.map((p) => ({
-    id: p.id,
-    nombre: p.nombre,
-    precio: p.precio,
-    descripcion: p.descripcion,
-    imagen: p.imagen,
-    categoria: p.categoria,
-  }));
+  const cortes = cortesPorTipo("res");
 
   const schema = [
     buildProductListSchema(
@@ -46,7 +39,7 @@ export default function CarneDeResPage() {
         nombre: c.nombre,
         descripcion: c.descripcion,
         precio: c.precio,
-        imagen: typeof c.imagen === "string" ? c.imagen : c.imagen.src,
+        imagen: c.imagen.src,
       })),
       { nombreLista: "Cortes de carne de res", url: pilar.ruta }
     ),
@@ -66,22 +59,22 @@ export default function CarneDeResPage() {
       {/* La respuesta directa, en las dos primeras líneas: es lo que lee quien
           tiene prisa y lo que citan los buscadores con IA. */}
       <section className="mx-auto max-w-3xl px-6 pt-14">
-        <h1 className="font-display text-4xl font-bold leading-tight text-carni-dark-red md:text-5xl">
+        <h1 className="font-display text-4xl font-bold leading-tight text-brand-ink-deep md:text-5xl">
           {pilar.h1}
         </h1>
-        <p className="mt-5 text-lg leading-relaxed text-gray-700">{pilar.entradilla}</p>
+        <p className="mt-5 text-lg leading-relaxed text-ink-muted">{pilar.entradilla}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a
             href={whatsappUrl("Hola, quiero hacer un pedido de carne de res.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-carni-red px-5 py-3 font-semibold text-white transition-colors hover:bg-carni-dark-red"
+            className="rounded-lg bg-brand px-5 py-3 font-semibold text-white transition-colors hover:bg-brand-deep"
           >
             Pedir por WhatsApp
           </a>
           <Link
             href="/delivery-de-carne-en-lima"
-            className="rounded-lg border border-carni-red px-5 py-3 font-semibold text-carni-red transition-colors hover:bg-carni-cream"
+            className="rounded-lg border border-brand px-5 py-3 font-semibold text-brand-ink transition-colors hover:bg-surface-warm"
           >
             Ver cobertura de delivery
           </Link>

@@ -24,8 +24,8 @@ export const SearchBar = ({
             <label htmlFor="buscar-corte" className="sr-only">
                 Buscar corte de carne
             </label>
-            <div className="flex items-center overflow-hidden rounded-lg border-2 border-[#a90a0a] bg-white shadow-lg transition-colors duration-300 focus-within:border-[#8a0808]">
-                <GiMeat className="ml-4 text-2xl text-[#a90a0a]" aria-hidden="true" />
+            <div className="flex items-center overflow-hidden rounded-lg border-2 border-brand bg-surface shadow-lg transition-colors duration-300 focus-within:border-brand-deep">
+                <GiMeat className="ml-4 text-2xl text-brand-ink" aria-hidden="true" />
                 <input
                     id="buscar-corte"
                     type="search"
@@ -38,13 +38,13 @@ export const SearchBar = ({
             </div>
 
             {sugerencias.length > 0 && (
-                <div className="submenu-in absolute z-10 mt-2 w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
+                <div className="submenu-in absolute z-10 mt-2 w-full overflow-hidden rounded-lg border border-line bg-surface shadow-lg">
                     {sugerencias.map((sugerencia) => (
                         <button
                             type="button"
                             key={sugerencia}
                             onClick={() => onSugerenciaClick(sugerencia)}
-                            className="block w-full px-4 py-2 text-left transition-all duration-200 hover:translate-x-2 hover:bg-[#fff4bf]/20"
+                            className="block w-full px-4 py-2 text-left transition-all duration-200 hover:translate-x-2 hover:bg-surface-warm/20"
                         >
                             {sugerencia}
                         </button>

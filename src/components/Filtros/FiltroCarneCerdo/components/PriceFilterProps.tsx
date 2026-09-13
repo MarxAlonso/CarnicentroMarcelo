@@ -17,7 +17,7 @@ const ORDENES = [
 export const PriceFilter = ({ ordenPrecio, setOrdenPrecio }: PriceFilterProps) => {
   return (
     <div className="mb-6 flex flex-wrap items-center gap-3">
-      <span className="flex items-center font-semibold text-[#a90a0a]">
+      <span className="flex items-center font-semibold text-brand-ink">
         <GiWeight className="mr-2" aria-hidden="true" /> Ordenar por precio:
       </span>
       {ORDENES.map(({ valor, etiqueta }) => {
@@ -29,7 +29,7 @@ export const PriceFilter = ({ ordenPrecio, setOrdenPrecio }: PriceFilterProps) =
             aria-pressed={activo}
             onClick={() => setOrdenPrecio(valor)}
             className={`rounded-lg px-4 py-2 font-medium transition-all duration-200 hover:scale-105 active:scale-95 ${
-              activo ? "bg-[#a90a0a] text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              activo ? "bg-brand text-white" : "bg-surface-2 text-ink-muted hover:bg-line"
             }`}
           >
             {etiqueta}

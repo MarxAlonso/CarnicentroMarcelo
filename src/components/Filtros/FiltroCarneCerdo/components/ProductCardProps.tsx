@@ -1,58 +1,58 @@
-"use client";
-
 import Image from "next/image";
-import { ProductoCerdo } from "../../data-cerdo/productosCerdo";
-import { categorias } from "../../data-cerdo/categorias";
+import Link from "next/link";
 import { GiWeight } from "react-icons/gi";
-
-interface ProductCardProps {
-  producto: ProductoCerdo;
-  onClick: () => void;
-}
+import type { Corte } from "@/content/catalogo";
 
 /**
- * Sin framer-motion: la entrada la hace la clase `card-in`.
- * Es un `<button>` y no un `div` con `onClick`, así que se puede abrir con
- * teclado; antes no.
+ * Tarjeta de corte de cerdo.
+ *
+ * Ahora es un enlace a la ficha, no un disparador de modal: el modal mostraba
+ * la misma información sin dirección propia, así que no se podía enlazar,
+ * compartir ni indexar.
+ *
+ * Al no necesitar estado ni manejador, pasa a ser componente de servidor.
  */
-export const ProductCard = ({ producto, onClick }: ProductCardProps) => {
-  const categoriaNombre =
-    categorias.find((cat) => cat.id === producto.categoria)?.nombre || "Sin categoría";
-
+export const ProductCard = ({ corte }: { corte: Corte }) => {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="card-in group w-full cursor-pointer overflow-hidden rounded-xl bg-white text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-    >
-      {producto.imagen && (
+    <article className="card-in group relative overflow-hidden rounded-xl border border-line bg-surface shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+      <div className="relative h-48 overflow-hidden bg-surface-2">
         <Image
-          src={producto.imagen}
-          alt={producto.nombre}
-          width={400}
-          height={192}
+          src={corte.imagen}
+          alt={corte.nombre}
+          fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
-      )}
+      </div>
 
       <div className="p-6">
         <div className="mb-4 flex items-center justify-between gap-3">
-          <h3 className="text-xl font-bold text-[#a90a0a]">{producto.nombre}</h3>
-          <span className="shrink-0 rounded-full bg-[#fff4bf] px-3 py-1 text-sm font-semibold text-[#a90a0a]">
-            {categoriaNombre}
+          <h3 className="text-xl font-bold text-brand-ink">
+            <Link href={corte.ruta}>
+              {/* El enlace cubre la tarjeta entera. */}
+              <span className="absolute inset-0" aria-hidden="true" />
+              {corte.nombre}
+            </Link>
+          </h3>
+          <span className="shrink-0 rounded-full bg-surface-warm px-3 py-1 text-sm font-semibold text-brand-ink">
+            {corte.categoria}
           </span>
         </div>
 
-        <p className="mb-4 text-gray-600">{producto.descripcion}</p>
+        <p className="mb-4 text-ink-muted">{corte.descripcion}</p>
 
-        <div className="flex items-center text-[#a90a0a]">
-          <GiWeight className="mr-2 text-xl" aria-hidden="true" />
-          <span className="text-lg font-bold tabular-nums">
-            S/ {producto.precio.toFixed(2)} / kg
+        <div className="flex items-center justify-between gap-3">
+          <span className="flex items-center text-brand-ink-deep">
+            <GiWeight className="mr-2 text-xl" aria-hidden="true" />
+            <span className="text-lg font-bold tabular-nums">
+              S/ {corte.precio.toFixed(2)} / kg
+            </span>
+          </span>
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-ink transition-transform group-hover:translate-x-1">
+            Ver corte →
           </span>
         </div>
       </div>
-    </button>
+    </article>
   );
 };

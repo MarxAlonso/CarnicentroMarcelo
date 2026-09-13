@@ -64,14 +64,14 @@ export function Modal({
         aria-modal="true"
         aria-label={etiqueta}
         tabIndex={-1}
-        className="modal-panel relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 outline-none"
+        className="modal-panel relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-surface p-6 outline-none"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Cerrar"
-          className="absolute right-4 top-4 z-10 text-gray-500 transition-colors hover:text-gray-700"
+          className="absolute right-4 top-4 z-10 text-ink-subtle transition-colors hover:text-ink-muted"
         >
           <FaTimes className="text-2xl" aria-hidden="true" />
         </button>

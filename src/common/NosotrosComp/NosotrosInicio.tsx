@@ -21,20 +21,20 @@ const containerVariants = {
 
 export const NosotrosInicio = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-carni-cream to-white">
+        <div className="min-h-screen bg-gradient-to-b from-surface-warm to-white">
             <BannerNosotros />
             
             <div 
-                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
+                className="max-w-site mx-auto px-4 sm:px-6 lg:px-8 py-16"
 
 >
                 <section 
                     className="mb-20">
                     <div className="flex items-center justify-center mb-8">
-                        <GiKnifeFork className="text-carni-red text-4xl mr-4 transform -rotate-12" />
-                        <h2 className="text-4xl font-bold text-carni-dark-red">Nuestra Misión</h2>
+                        <GiKnifeFork className="text-brand-ink text-4xl mr-4 transform -rotate-12" />
+                        <h2 className="text-4xl font-bold text-brand-ink-deep">Nuestra Misión</h2>
                     </div>
-                    <p className="text-xl text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-ink-muted text-center max-w-3xl mx-auto leading-relaxed">
                         Ofrecer la mejor selección de carnes de res y cerdo de primera calidad, 
                         garantizando cortes precisos, frescura excepcional y un servicio personalizado 
                         que satisfaga las exigencias de nuestros clientes.
@@ -44,10 +44,10 @@ export const NosotrosInicio = () => {
                 <section 
                     className="mb-20">
                     <div className="flex items-center justify-center mb-8">
-                        <GiWeight className="text-carni-red text-4xl mr-4" />
-                        <h2 className="text-4xl font-bold text-carni-dark-red">Nuestra Visión</h2>
+                        <GiWeight className="text-brand-ink text-4xl mr-4" />
+                        <h2 className="text-4xl font-bold text-brand-ink-deep">Nuestra Visión</h2>
                     </div>
-                    <p className="text-xl text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-ink-muted text-center max-w-3xl mx-auto leading-relaxed">
                         Ser la carnicería líder en la región, reconocida por la excelencia de nuestros 
                         cortes de res y cerdo, manteniendo los más altos estándares de calidad y 
                         ofreciendo una experiencia de compra única.
@@ -80,14 +80,14 @@ export const NosotrosInicio = () => {
                     ].map((item, index) => (
                         <div
                             key={index}
-                            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border-2 border-carni-red/10 transition-transform duration-200 hover:scale-105">
+                            className="bg-surface p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 border-2 border-brand/10 transition-transform duration-200 hover:scale-105">
                             <div className="flex items-center justify-center mb-6">
-                                <item.icon className="text-6xl text-carni-red transform hover:scale-110 transition-transform duration-300" />
+                                <item.icon className="text-6xl text-brand-ink transform hover:scale-110 transition-transform duration-300" />
                             </div>
-                            <h3 className="text-2xl font-bold text-carni-dark-red text-center mb-4">
+                            <h3 className="text-2xl font-bold text-brand-ink-deep text-center mb-4">
                                 {item.title}
                             </h3>
-                            <p className="text-gray-600 text-center leading-relaxed">
+                            <p className="text-ink-muted text-center leading-relaxed">
                                 {item.description}
                             </p>
                         </div>

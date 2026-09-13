@@ -3,7 +3,7 @@ import { Skeleton, SkeletonBlock } from "./Skeleton";
 /** Una tarjeta de corte: foto cuadrada, nombre, categoría y precio. */
 export function ProductCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-sm">
       <Skeleton className="aspect-square w-full rounded-none" />
       <div className="flex flex-col gap-3 p-5">
         <Skeleton className="h-5 w-3/4" />
@@ -51,7 +51,7 @@ export function FiltrosSkeleton() {
 export function TablaPreciosSkeleton({ filas = 10 }: { filas?: number }) {
   return (
     <SkeletonBlock label="Cargando precios por kilo">
-      <div className="divide-y divide-gray-100 rounded-xl border border-gray-100 bg-white">
+      <div className="divide-y divide-line rounded-xl border border-line bg-surface">
         {Array.from({ length: filas }, (_, i) => (
           <div key={i} className="flex items-center gap-4 px-5 py-4">
             <Skeleton className="h-12 w-12 shrink-0 rounded-lg" />

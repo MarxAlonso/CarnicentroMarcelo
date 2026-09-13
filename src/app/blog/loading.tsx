@@ -3,8 +3,8 @@ import { Skeleton } from "@/components/Skeletons/Skeleton";
 
 export default function Loading() {
   return (
-    <section className="min-h-screen bg-gray-50 py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="min-h-screen bg-surface-2 py-20">
+      <div className="mx-auto max-w-site px-6">
         <div className="mx-auto mb-16 flex max-w-2xl flex-col items-center gap-4">
           <Skeleton className="h-3 w-28" />
           <Skeleton className="h-10 w-full" />

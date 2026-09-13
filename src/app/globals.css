@@ -2,6 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ────────────────────────────────────────────────────────────────────────
+   TEMAS
+
+   Los valores van en R G B separados por espacios porque es el formato que
+   necesita Tailwind para que sigan funcionando los modificadores de opacidad
+   (`bg-brand/90`). Ver el mapa de tokens en `tailwind.config.mjs`.
+
+   El tema se decide en este orden: lo que el visitante eligió a mano (guardado
+   en localStorage) y, si no eligió nada, lo que pida su sistema operativo.
+   Lo aplica un script inline antes del primer pintado — ver `ThemeScript`.
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --brand: 169 10 10; /* #a90a0a */
+  --brand-deep: 138 8 8; /* #8a0808 */
+  --brand-ink: 169 10 10;
+  --brand-ink-deep: 138 8 8;
+  --cream: 255 244 191; /* #fff4bf */
+
+  --page: 255 255 255;
+  --surface: 255 255 255;
+  --surface-2: 249 250 251;
+  --surface-warm: 255 244 191;
+
+  --ink: 17 24 39;
+  --ink-muted: 75 85 99;
+  --ink-subtle: 107 114 128;
+  --line: 229 231 235;
+
+  --skeleton: 233 228 220;
+  --skeleton-shine: 255 255 255;
+
+  color-scheme: light;
+}
+
+.dark {
+  /* El rojo de fondo se mantiene profundo: la barra de navegación debe seguir
+     leyéndose como la misma marca. El rojo de texto, en cambio, se aclara
+     hasta un coral que sí contrasta contra las superficies oscuras. */
+  --brand: 154 17 17;
+  --brand-deep: 122 12 12;
+  --brand-ink: 255 138 122;
+  --brand-ink-deep: 255 185 173;
+  --cream: 255 244 191;
+
+  /* Neutros cálidos, no grises puros: un gris neutro junto a este rojo se ve
+     sucio. Todos llevan una pizca del tono de la marca. */
+  --page: 20 17 16;
+  --surface: 28 24 22;
+  --surface-2: 37 32 30;
+  --surface-warm: 48 39 24;
+
+  --ink: 243 236 230;
+  --ink-muted: 183 171 162;
+  --ink-subtle: 145 133 124;
+  --line: 58 50 45;
+
+  --skeleton: 45 39 36;
+  --skeleton-shine: 74 65 60;
+
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -10,6 +73,22 @@
     /* La fuente ya llega autoalojada por next/font: sin petición a Google
        Fonts y sin salto de texto mientras carga. */
     font-family: var(--font-poppins), system-ui, sans-serif;
+    background-color: rgb(var(--page));
+    color: rgb(var(--ink));
+  }
+
+  /* Sin esto, al cambiar de tema el color salta de golpe. Solo se animan
+     color y fondo, que no provocan recálculo de maquetación. */
+  body,
+  header,
+  footer,
+  section,
+  article,
+  aside {
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease;
   }
 }
 
@@ -81,12 +160,12 @@
   /* Brillo de los skeletons. Un degradado que recorre la caja, no una
      opacidad que parpadea: se lee como "está llegando" y no como un error. */
   .skeleton-shimmer {
-    background-color: #e9e4dc;
+    background-color: rgb(var(--skeleton));
     background-image: linear-gradient(
       90deg,
-      rgba(233, 228, 220, 0) 0%,
-      rgba(255, 255, 255, 0.85) 50%,
-      rgba(233, 228, 220, 0) 100%
+      rgb(var(--skeleton) / 0) 0%,
+      rgb(var(--skeleton-shine) / 0.85) 50%,
+      rgb(var(--skeleton) / 0) 100%
     );
     background-size: 200% 100%;
     background-repeat: no-repeat;
@@ -146,6 +225,76 @@
       opacity: 1;
       transform: none;
     }
+  }
+
+  /* ── Pestañas de la ficha de producto, sin JavaScript ──
+     Los radios están ocultos pero siguen siendo enfocables a través de sus
+     etiquetas, así que las pestañas se recorren con Tab y flechas como
+     cualquier grupo de radios nativo.
+
+     Se escriben cuatro juegos de reglas (hay como mucho cuatro pestañas)
+     porque `nth-of-type` no acepta variables. Si algún día hiciera falta una
+     quinta, se añade el bloque correspondiente. */
+  .tabs-producto > input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tabs-etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    border-bottom: 1px solid rgb(var(--line));
+  }
+
+  .tabs-etiquetas > label {
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(var(--ink-muted));
+    transition:
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .tabs-etiquetas > label:hover {
+    color: rgb(var(--brand-ink));
+  }
+
+  .tabs-panel {
+    display: none;
+    padding-block: 1.75rem;
+  }
+
+  /* El foco del radio oculto se pinta sobre su etiqueta. */
+  .tabs-producto > input[type="radio"]:nth-of-type(1):focus-visible ~ .tabs-etiquetas > label:nth-child(1),
+  .tabs-producto > input[type="radio"]:nth-of-type(2):focus-visible ~ .tabs-etiquetas > label:nth-child(2),
+  .tabs-producto > input[type="radio"]:nth-of-type(3):focus-visible ~ .tabs-etiquetas > label:nth-child(3),
+  .tabs-producto > input[type="radio"]:nth-of-type(4):focus-visible ~ .tabs-etiquetas > label:nth-child(4) {
+    outline: 2px solid rgb(var(--brand));
+    outline-offset: -2px;
+  }
+
+  .tabs-producto > input[type="radio"]:nth-of-type(1):checked ~ .tabs-etiquetas > label:nth-child(1),
+  .tabs-producto > input[type="radio"]:nth-of-type(2):checked ~ .tabs-etiquetas > label:nth-child(2),
+  .tabs-producto > input[type="radio"]:nth-of-type(3):checked ~ .tabs-etiquetas > label:nth-child(3),
+  .tabs-producto > input[type="radio"]:nth-of-type(4):checked ~ .tabs-etiquetas > label:nth-child(4) {
+    border-bottom-color: rgb(var(--brand));
+    color: rgb(var(--brand-ink));
+  }
+
+  .tabs-producto > input[type="radio"]:nth-of-type(1):checked ~ .tabs-paneles > .tabs-panel:nth-child(1),
+  .tabs-producto > input[type="radio"]:nth-of-type(2):checked ~ .tabs-paneles > .tabs-panel:nth-child(2),
+  .tabs-producto > input[type="radio"]:nth-of-type(3):checked ~ .tabs-paneles > .tabs-panel:nth-child(3),
+  .tabs-producto > input[type="radio"]:nth-of-type(4):checked ~ .tabs-paneles > .tabs-panel:nth-child(4) {
+    display: block;
+    animation: card-in 260ms ease-out both;
   }
 
   /* Frase que rota en el banner de Nosotros. */

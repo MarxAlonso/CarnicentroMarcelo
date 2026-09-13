@@ -37,37 +37,37 @@ const faqs: Faq[] = [
 
 const FAQSection: React.FC = () => {
   return (
-    <section className="overflow-hidden bg-gray-50 py-24">
+    <section className="overflow-hidden bg-surface-2 py-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(buildFaqSchema(faqs))} />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div data-reveal="up" className="mb-16 text-center">
-          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-[#a90a0a]">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
             Ayuda y Soporte
           </h2>
-          <h3 className="text-4xl font-extrabold text-gray-900">Preguntas Frecuentes</h3>
-          <div className="mx-auto mt-6 h-1 w-20 bg-[#a90a0a]"></div>
+          <h3 className="text-4xl font-extrabold text-ink">Preguntas Frecuentes</h3>
+          <div className="mx-auto mt-6 h-1 w-20 bg-brand"></div>
         </div>
 
-        <div data-reveal="up" className="rounded-3xl bg-white p-8 shadow-xl md:p-12">
+        <div data-reveal="up" className="rounded-3xl bg-surface p-8 shadow-xl md:p-12">
           {faqs.map((faq) => (
-            <details key={faq.pregunta} className="group border-b border-gray-200 last:border-b-0">
+            <details key={faq.pregunta} className="group border-b border-line last:border-b-0">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-left marker:hidden">
-                <span className="text-lg font-bold text-gray-800 transition-colors duration-300 group-hover:text-[#a90a0a] group-open:text-[#a90a0a]">
+                <span className="text-lg font-bold text-ink transition-colors duration-300 group-hover:text-brand-ink group-open:text-brand-ink">
                   {faq.pregunta}
                 </span>
                 <FaChevronDown
                   aria-hidden="true"
-                  className="shrink-0 text-gray-400 transition-transform duration-300 group-open:rotate-180 group-open:text-[#a90a0a]"
+                  className="shrink-0 text-ink-subtle transition-transform duration-300 group-open:rotate-180 group-open:text-brand-ink"
                 />
               </summary>
-              <p className="pb-6 text-lg leading-relaxed text-gray-600">{faq.respuesta}</p>
+              <p className="pb-6 text-lg leading-relaxed text-ink-muted">{faq.respuesta}</p>
             </details>
           ))}
         </div>
 
         <div data-reveal="fade" className="mt-12 text-center">
-          <p className="mb-4 font-medium text-gray-600">¿Aún tienes dudas?</p>
+          <p className="mb-4 font-medium text-ink-muted">¿Aún tienes dudas?</p>
           <a
             href={whatsappUrl('Hola, tengo una consulta sobre sus cortes.')}
             target="_blank"

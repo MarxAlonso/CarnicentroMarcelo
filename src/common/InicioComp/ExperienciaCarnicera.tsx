@@ -56,16 +56,16 @@ const PILARES = [
 
 const ExperienciaCarnicera: React.FC = () => {
   return (
-    <section className="overflow-hidden bg-white py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="overflow-hidden bg-surface py-20">
+      <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
         <div data-reveal="up" className="mb-16 text-center">
-          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-[#a90a0a]">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
             Pasión por la Tradición
           </h2>
-          <h3 className="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
-            El Arte de la <span className="text-[#a90a0a]">Carnicería</span> de Verdad
+          <h3 className="text-4xl font-extrabold leading-tight text-ink md:text-5xl">
+            El Arte de la <span className="text-brand-ink">Carnicería</span> de Verdad
           </h3>
-          <p className="mx-auto mt-4 max-w-3xl text-xl leading-relaxed text-gray-600">
+          <p className="mx-auto mt-4 max-w-3xl text-xl leading-relaxed text-ink-muted">
             En Carnicentro Marcelo, no solo vendemos carne; honramos el trabajo del ganadero y la
             maestría del carnicero para llevar lo mejor a su mesa.
           </p>
@@ -82,64 +82,64 @@ const ExperienciaCarnicera: React.FC = () => {
               data-reveal="up"
               className="group flex flex-col items-center text-center"
             >
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#fff4bf] transition-colors duration-300 group-hover:bg-[#a90a0a]">
-                <Icono className="text-4xl text-[#a90a0a] transition-colors duration-300 group-hover:text-white" />
+              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-surface-warm transition-colors duration-300 group-hover:bg-brand">
+                <Icono className="text-4xl text-brand-ink transition-colors duration-300 group-hover:text-white" />
               </div>
-              <h4 className="mb-3 text-2xl font-bold text-gray-800">{titulo}</h4>
-              <p className="leading-relaxed text-gray-600">{texto}</p>
+              <h4 className="mb-3 text-2xl font-bold text-ink">{titulo}</h4>
+              <p className="leading-relaxed text-ink-muted">{texto}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-24 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <div data-reveal="left" className="space-y-6">
-            <h4 className="text-3xl font-bold text-gray-900">
+            <h4 className="text-3xl font-bold text-ink">
               ¿Por qué elegir nuestras Carnes de Res y Cerdo?
             </h4>
-            <p className="text-justify text-lg leading-relaxed text-gray-700">
+            <p className="text-justify text-lg leading-relaxed text-ink-muted">
               Como conocedores del campo y la mesa, entendemos que la calidad de la carne comienza en
               la crianza. El ganado que seleccionamos para nuestra <strong>carnicería</strong>{' '}
               disfruta de una alimentación controlada y libre de estrés, lo que se traduce en una
               terneza superior de la carne.
             </p>
-            <p className="text-justify text-lg leading-relaxed text-gray-700">
+            <p className="text-justify text-lg leading-relaxed text-ink-muted">
               La <strong>carne de chancho</strong> (o cerdo) que procesamos destaca por su jugosidad.
               Cortes como la bondiola o la chuleta de lomo pasan por rigurosos controles sanitarios,
               asegurando que su aporte nutricional y sabor sean siempre de primer nivel.
             </p>
-            <div className="border-l-4 border-[#a90a0a] pl-6 pt-4 italic text-gray-600">
+            <div className="border-l-4 border-brand pl-6 pt-4 italic text-ink-muted">
               &ldquo;El secreto de un buen asado no está solo en el fuego, sino en la mano que elige
               la pieza correcta.&rdquo; — Marcelo, Maestro Carnicero.
             </div>
           </div>
 
           <div data-reveal="scale" className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-full bg-[#fff4bf]/30 blur-3xl"></div>
+            <div className="absolute -inset-4 -z-10 rounded-full bg-surface-warm/30 blur-3xl"></div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="transform rounded-2xl bg-[#a90a0a] p-8 shadow-xl transition-transform hover:-rotate-2">
+                <div className="transform rounded-2xl bg-brand p-8 shadow-xl transition-transform hover:-rotate-2">
                   <span className="text-5xl font-black text-white">100%</span>
                   <p className="mt-2 font-medium uppercase tracking-wide text-white">
                     Calidad Selecta
                   </p>
                 </div>
-                <div className="transform rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-transform hover:rotate-2">
-                  <span className="text-5xl font-black text-[#a90a0a]">Fresco</span>
-                  <p className="mt-2 font-medium uppercase tracking-wide text-gray-600">
+                <div className="transform rounded-2xl border border-line bg-surface p-8 shadow-xl transition-transform hover:rotate-2">
+                  <span className="text-5xl font-black text-brand-ink">Fresco</span>
+                  <p className="mt-2 font-medium uppercase tracking-wide text-ink-muted">
                     Corte del Día
                   </p>
                 </div>
               </div>
               <div className="mt-8 space-y-4">
-                <div className="transform rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-transform hover:rotate-2">
-                  <span className="text-4xl font-black text-gray-800">Nutritivo</span>
-                  <p className="mt-2 font-medium uppercase tracking-wide text-gray-600">
+                <div className="transform rounded-2xl border border-line bg-surface p-8 shadow-xl transition-transform hover:rotate-2">
+                  <span className="text-4xl font-black text-ink">Nutritivo</span>
+                  <p className="mt-2 font-medium uppercase tracking-wide text-ink-muted">
                     Alto en Proteínas
                   </p>
                 </div>
-                <div className="transform rounded-2xl bg-[#fff4bf] p-8 shadow-xl transition-transform hover:-rotate-2">
-                  <span className="text-4xl font-black text-[#a90a0a]">Tradición</span>
-                  <p className="mt-2 font-medium uppercase tracking-wide text-[#a90a0a]">
+                <div className="transform rounded-2xl bg-surface-warm p-8 shadow-xl transition-transform hover:-rotate-2">
+                  <span className="text-4xl font-black text-brand-ink">Tradición</span>
+                  <p className="mt-2 font-medium uppercase tracking-wide text-brand-ink">
                     Pura Maestría
                   </p>
                 </div>

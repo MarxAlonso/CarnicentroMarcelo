@@ -15,7 +15,7 @@ export default function Loading() {
       <div className="mx-auto w-full max-w-5xl px-6">
         <ProseSkeleton lineas={4} />
       </div>
-      <div className="mx-auto w-full max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-site px-6">
         <ProductGridSkeleton count={8} />
       </div>
     </div>

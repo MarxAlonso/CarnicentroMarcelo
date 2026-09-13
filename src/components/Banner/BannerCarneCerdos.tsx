@@ -48,7 +48,7 @@ export const BannerCarneCerdos = () => {
     }, [index, currentPhrase]);
 
     return (
-        <div className="relative h-[80vh] overflow-hidden bg-gradient-to-r from-[#a90a0a] to-[#a90a0a]/80">
+        <div className="relative h-[clamp(400px,68vh,580px)] overflow-hidden bg-gradient-to-r from-brand to-brand/80">
             <div className="absolute inset-0 opacity-50">
                 <Image
                     src={banner4cerdo}
@@ -65,7 +65,7 @@ export const BannerCarneCerdos = () => {
             <div className="container relative mx-auto flex h-full flex-col items-center justify-between px-6 py-12 md:flex-row">
                 <div className="z-10 mb-10 max-w-xl text-white md:mb-0">
                     <p className="hero-enter mb-6 text-5xl font-bold md:text-6xl">
-                        <span className="text-[#fff4bf]">Carnes de Cerdo</span> Premium
+                        <span className="text-cream">Carnes de Cerdo</span> Premium
                     </p>
 
                     <div
@@ -74,14 +74,14 @@ export const BannerCarneCerdos = () => {
                     >
                         {/* aria-live en "off": es decoración, no hace falta que un
                             lector de pantalla narre cada letra. */}
-                        <span className="text-[#fff4bf]" aria-live="off">
+                        <span className="text-cream" aria-live="off">
                             {text}
                         </span>
                         <span className="caret-blink" aria-hidden="true">|</span>
                     </div>
 
                     <p
-                        className="hero-enter mb-8 text-lg text-[#fff4bf]/90"
+                        className="hero-enter mb-8 text-lg text-cream/90"
                         style={{ '--hero-delay': '160ms' } as React.CSSProperties}
                     >
                         En Carnicentro Marcelo seleccionamos los mejores cortes de cerdo para
@@ -91,7 +91,7 @@ export const BannerCarneCerdos = () => {
 
                     <a
                         href="#productoscerdos"
-                        className="hero-enter inline-block rounded-full bg-[#fff4bf] px-8 py-3 text-lg font-bold text-[#a90a0a] shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white active:scale-95"
+                        className="hero-enter inline-block rounded-full bg-surface-warm px-8 py-3 text-lg font-bold text-brand-ink shadow-lg transition-all duration-200 hover:scale-105 hover:bg-surface active:scale-95"
                         style={{ '--hero-delay': '240ms' } as React.CSSProperties}
                     >
                         Ver Productos
@@ -100,7 +100,7 @@ export const BannerCarneCerdos = () => {
 
                 <div className="relative flex h-[300px] w-full items-center justify-center md:w-1/2">
                     <div className="sway-slow absolute">
-                        <GiPig className="text-[200px] text-[#fff4bf]" aria-hidden="true" />
+                        <GiPig className="text-[200px] text-cream" aria-hidden="true" />
                     </div>
 
                     <div className="float-slow absolute right-1/4 top-0">
@@ -113,7 +113,7 @@ export const BannerCarneCerdos = () => {
                 </div>
             </div>
 
-            <div className="bar-grow absolute bottom-0 left-0 h-4 w-full bg-[#fff4bf]" />
+            <div className="bar-grow absolute bottom-0 left-0 h-4 w-full bg-surface-warm" />
         </div>
     );
 };

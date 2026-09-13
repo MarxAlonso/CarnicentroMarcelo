@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { PILARES_LISTA } from "@/lib/pilares";
 import { postsPublicados } from "@/content/posts";
+import { CATALOGO } from "@/content/catalogo";
 
 /**
  * Sitemap generado en el build a partir de las rutas reales.
@@ -36,5 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...estaticas, ...pilares, ...articulos];
+  // Una entrada por corte. Son 31 paginas que antes no existian: el catalogo
+  // vivia dentro de un filtro de JavaScript, sin URL propia.
+  const fichas: MetadataRoute.Sitemap = CATALOGO.map((corte) => ({
+    url: url(corte.ruta),
+    lastModified: hoy,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...estaticas, ...pilares, ...fichas, ...articulos];
 }

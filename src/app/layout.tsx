@@ -9,6 +9,7 @@ import Chatbot from "@/components/Chatbot/Chatbot";
 import { SITE } from "@/lib/site";
 import { buildLocalBusinessSchema, buildOrganizationSchema, jsonLd } from "@/lib/schema";
 import { REVEAL_SCRIPT } from "@/components/Reveal/Reveal";
+import { TEMA_SCRIPT } from "@/components/Tema/tema";
 
 /**
  * Antes se pedían las dos familias completas a Google Fonts: nueve pesos, en
@@ -69,7 +70,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-PE" className={`${poppins.variable} ${kanit.variable}`}>
+    <html lang="es-PE" suppressHydrationWarning className={`${poppins.variable} ${kanit.variable}`}>
       <head>
         {/* Negocio y organización se declaran una sola vez, en la raíz.
             Las páginas añaden su propio schema específico. */}
@@ -81,11 +82,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             parpadee. Son ~400 bytes inline: no hay petición de red ni espera a
             que React hidrate. */}
         <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
+        {/* Aplica el tema antes del primer pintado. Sin esto la pagina
+            parpadea en blanco antes de pasar a oscuro. */}
+        <script dangerouslySetInnerHTML={{ __html: TEMA_SCRIPT }} />
       </head>
-      <body className="bg-white text-gray-900 antialiased">
+      <body className="bg-page text-ink antialiased">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[2000] focus:rounded-lg focus:bg-carni-red focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[2000] focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
         >
           Saltar al contenido
         </a>

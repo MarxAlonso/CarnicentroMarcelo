@@ -6,8 +6,8 @@ import { MdPhone } from 'react-icons/md';
 //MdEmail, MdLocationOn
 export const Footer = () => {
     return (
-        <footer className="bg-[#fff4bf] pt-12 pb-6">
-            <div className="container mx-auto px-4">
+        <footer className="bg-surface-warm pt-12 pb-6">
+            <div className="mx-auto w-full max-w-site px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Logo y descripción */}
                     <div className="space-y-4">
@@ -19,18 +19,18 @@ export const Footer = () => {
                                 width={240}
                                 height={96}
                                 loading="lazy"
-                                className="h-24 w-auto rounded-[20px] object-contain shadow-lg"
+                                className="h-16 w-auto rounded-xl object-contain shadow-lg"
                             />
                         </div>
-                        <p className="text-gray-700">Ofrecemos la mejor calidad en carnes de res y cerdo. Nuestra experiencia y dedicación nos respaldan para brindarle los mejores cortes.</p>
+                        <p className="text-ink-muted">Ofrecemos la mejor calidad en carnes de res y cerdo. Nuestra experiencia y dedicación nos respaldan para brindarle los mejores cortes.</p>
                         <div className="flex space-x-4">
-                            <a href="#" className="text-[#a90a0a] hover:text-[#8a0808] transition-colors">
+                            <a href="#" className="text-brand-ink hover:text-brand-ink-deep transition-colors">
                                 <FaFacebookF className="text-xl" />
                             </a>
-                            <a href="#" className="text-[#a90a0a] hover:text-[#8a0808] transition-colors">
+                            <a href="#" className="text-brand-ink hover:text-brand-ink-deep transition-colors">
                                 <FaTwitter className="text-xl" />
                             </a>
-                            <a href="#" className="text-[#a90a0a] hover:text-[#8a0808] transition-colors">
+                            <a href="#" className="text-brand-ink hover:text-brand-ink-deep transition-colors">
                                 <FaInstagram className="text-xl" />
                             </a>
                         </div>
@@ -38,26 +38,26 @@ export const Footer = () => {
 
                     {/* Enlaces rápidos */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-bold text-[#a90a0a]">Enlaces Rápidos</h2>
+                        <h2 className="text-xl font-bold text-brand-ink">Enlaces Rápidos</h2>
                         <ul className="space-y-2">
                             <li>
-                                <Link href="/carne-de-res" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
-                                    <GiMeat className="text-[#a90a0a]" /> Carne de Res
+                                <Link href="/carne-de-res" className="text-ink-muted hover:text-brand-ink transition-colors flex items-center gap-2">
+                                    <GiMeat className="text-brand-ink" /> Carne de Res
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/carne-de-cerdo" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
-                                    <GiPig className="text-[#a90a0a]" /> Carne de Cerdo
+                                <Link href="/carne-de-cerdo" className="text-ink-muted hover:text-brand-ink transition-colors flex items-center gap-2">
+                                    <GiPig className="text-brand-ink" /> Carne de Cerdo
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/nosotros" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
-                                    <GiCow className="text-[#a90a0a]" /> Nosotros
+                                <Link href="/nosotros" className="text-ink-muted hover:text-brand-ink transition-colors flex items-center gap-2">
+                                    <GiCow className="text-brand-ink" /> Nosotros
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/contacto" className="text-gray-700 hover:text-[#a90a0a] transition-colors flex items-center gap-2">
-                                    <GiPig className="text-[#a90a0a]" /> Contacto
+                                <Link href="/contacto" className="text-ink-muted hover:text-brand-ink transition-colors flex items-center gap-2">
+                                    <GiPig className="text-brand-ink" /> Contacto
                                 </Link>
                             </li>
                         </ul>
@@ -65,8 +65,8 @@ export const Footer = () => {
 
                     {/* Horario */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-bold text-[#a90a0a]">Horario de Atención</h2>
-                        <ul className="space-y-2 text-gray-700">
+                        <h2 className="text-xl font-bold text-brand-ink">Horario de Atención</h2>
+                        <ul className="space-y-2 text-ink-muted">
                             <li>Lunes - Viernes: 7:00 AM - 2:00 PM</li>
                             <li>Sábados: 7:00 AM - 2:30 PM</li>
                             <li>Domingos: 6:00 AM - 2:30 PM</li>
@@ -75,22 +75,22 @@ export const Footer = () => {
 
                     {/* Contacto */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-bold text-[#a90a0a]">Contacto</h2>
+                        <h2 className="text-xl font-bold text-brand-ink">Contacto</h2>
                         <ul className="space-y-2">
-                            <li className="flex items-center gap-2 text-gray-700">
-                                <MdPhone className="text-[#a90a0a]" />
-                                <a href="tel:+51984620910" className="hover:text-[#a90a0a] transition-colors">+51 984620910</a>
+                            <li className="flex items-center gap-2 text-ink-muted">
+                                <MdPhone className="text-brand-ink" />
+                                <a href="tel:+51984620910" className="hover:text-brand-ink transition-colors">+51 984620910</a>
                             </li>
-                            {/*<li className="flex items-center gap-2 text-gray-700">
-                                <MdEmail className="text-[#a90a0a]" />
-                                <a href="mailto:contacto@carnicentro.com" className="hover:text-[#a90a0a] transition-colors">contacto@carnicentro.com</a>
+                            {/*<li className="flex items-center gap-2 text-ink-muted">
+                                <MdEmail className="text-brand-ink" />
+                                <a href="mailto:contacto@carnicentro.com" className="hover:text-brand-ink transition-colors">contacto@carnicentro.com</a>
                             </li>*/}
-                            <li className="flex items-center gap-2 text-gray-700">
-                                {/*<MdLocationOn className="text-[#a90a0a]" />
+                            <li className="flex items-center gap-2 text-ink-muted">
+                                {/*<MdLocationOn className="text-brand-ink" />
                                 <span>Av. Principal 123, Lima</span>*/}
                             </li>
                             <li className="mt-4">
-                                <a href="https://wa.me/51984620910" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#a90a0a] text-white px-4 py-2 rounded-lg hover:bg-[#8a0808] transition-colors">
+                                <a href="https://wa.me/51984620910" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand-deep transition-colors">
                                     <FaWhatsapp className="text-xl" />
                                     Pedidos por WhatsApp
                                 </a>
@@ -99,8 +99,8 @@ export const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-gray-300">
-                    <p className="text-center text-gray-700">
+                <div className="mt-8 pt-8 border-t border-line">
+                    <p className="text-center text-ink-muted">
                         © {new Date().getFullYear()} Desarrollado por Marx Chipana - Todos los derechos reservados
                     </p>
                 </div>

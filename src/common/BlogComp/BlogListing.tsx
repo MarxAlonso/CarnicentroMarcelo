@@ -13,16 +13,16 @@ import { postsPublicados } from "@/content/posts";
  */
 export default function BlogListing() {
   return (
-    <section className="min-h-screen bg-gray-50 py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="min-h-screen bg-surface-2 py-20">
+      <div className="mx-auto max-w-site px-6">
         <header className="mb-16 text-center">
-          <p className="mb-2 text-sm font-bold uppercase tracking-widest text-carni-red">
+          <p className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
             Nuestro blog
           </p>
-          <h1 className="font-display text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
-            Cultura <span className="text-carni-red">carnívora</span> y bienestar
+          <h1 className="font-display text-4xl font-extrabold leading-tight text-ink md:text-5xl">
+            Cultura <span className="text-brand-ink">carnívora</span> y bienestar
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-xl text-ink-muted">
             Cortes, precios y cocina desde el mostrador: qué pedir para cada plato, cuánto rinde y
             cómo conservarlo.
           </p>
@@ -32,7 +32,7 @@ export default function BlogListing() {
           {postsPublicados.map((post, index) => (
             <article
               key={post.slug}
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg"
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-lg"
             >
               <div className="relative h-64 overflow-hidden">
                 {post.imagen ? (
@@ -49,26 +49,26 @@ export default function BlogListing() {
                 ) : (
                   /* Los artículos sin foto de cabecera no dejan un hueco gris:
                      llevan una portada tipográfica con el color de la marca. */
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-carni-red to-carni-dark-red p-8">
-                    <span className="text-center font-display text-2xl font-bold leading-snug text-carni-cream">
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand to-brand-deep p-8">
+                    <span className="text-center font-display text-2xl font-bold leading-snug text-cream">
                       {post.titulo}
                     </span>
                   </div>
                 )}
-                <span className="absolute left-4 top-4 rounded-full bg-carni-red px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
+                <span className="absolute left-4 top-4 rounded-full bg-brand px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
                   {post.categoria}
                 </span>
               </div>
 
               <div className="flex flex-grow flex-col p-8">
-                <time dateTime={post.publicado} className="mb-2 text-sm text-gray-400">
+                <time dateTime={post.publicado} className="mb-2 text-sm text-ink-subtle">
                   {new Date(`${post.publicado}T12:00:00`).toLocaleDateString("es-PE", {
                     day: "numeric",
                     month: "long",
                     year: "numeric",
                   })}
                 </time>
-                <h2 className="mb-4 text-2xl font-bold leading-snug text-gray-900 transition-colors group-hover:text-carni-red">
+                <h2 className="mb-4 text-2xl font-bold leading-snug text-ink transition-colors group-hover:text-brand-ink">
                   <Link href={`/blog/${post.slug}`}>
                     {/* El enlace cubre la tarjeta entera: el área de clic es la
                         tarjeta, no solo el texto del final. */}
@@ -76,8 +76,8 @@ export default function BlogListing() {
                     {post.titulo}
                   </Link>
                 </h2>
-                <p className="mb-6 flex-grow leading-relaxed text-gray-600">{post.descripcion}</p>
-                <span className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-carni-red transition-transform group-hover:translate-x-2">
+                <p className="mb-6 flex-grow leading-relaxed text-ink-muted">{post.descripcion}</p>
+                <span className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-brand-ink transition-transform group-hover:translate-x-2">
                   Leer artículo completo <span aria-hidden="true">→</span>
                 </span>
               </div>

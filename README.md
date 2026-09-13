@@ -50,6 +50,107 @@ Son cuatro y conviene no saltárselas:
    que escribir su componente usando `components/Blog/ArticleLayout` y
    añadirlo al mapa `CUERPOS` de `app/blog/[slug]/page.tsx`.
 
+## Sistema visual
+
+### Colores: tokens, no valores fijos
+
+Ningún componente escribe un color. Todos usan tokens que apuntan a variables
+CSS, y esas variables cambian de valor en `.dark`. Por eso el modo oscuro
+funciona sin una sola variante `dark:` repartida por el código.
+
+| Token | Para qué | Claro | Oscuro |
+|---|---|---|---|
+| `brand` | Fondos rojos (barra, botones) | `#a90a0a` | `#9a1111` |
+| `brand-deep` | El mismo rojo en hover | `#8a0808` | `#7a0c0c` |
+| `brand-ink` | El rojo **como texto** | `#a90a0a` | `#ff8a7a` |
+| `brand-ink-deep` | Titulares | `#8a0808` | `#ffb9ad` |
+| `cream` | Texto sobre superficies rojas | `#fff4bf` | igual |
+| `page` / `surface` / `surface-2` / `surface-warm` | Fondos | blancos y crema | neutros cálidos oscuros |
+| `ink` / `ink-muted` / `ink-subtle` | Texto | grises oscuros | cremas apagados |
+| `line` | Bordes y separadores | `#e5e7eb` | `#3a322d` |
+
+El detalle que hay que entender antes de tocar esto: **el rojo está partido en
+dos**. `brand` es el rojo de fondo y se mantiene profundo en ambos temas,
+porque la barra de navegación tiene que seguir leyéndose como la misma marca.
+`brand-ink` es el rojo de texto y sí se aclara en oscuro, porque `#a90a0a`
+sobre un fondo oscuro no tiene contraste suficiente. Usar el equivocado no
+rompe el build, solo hace el texto ilegible en un tema.
+
+Lo mismo con la crema: `text-cream` es un claro fijo (siempre va sobre rojo),
+mientras que `bg-surface-warm` es la sección color crema, que sí se oscurece.
+
+### Tipografía
+
+La escala es fluida: cada tamaño interpola con `clamp()` entre un mínimo de
+móvil y un máximo de escritorio, definidos en `tailwind.config.mjs`. Se usan
+las clases de siempre (`text-4xl`, `text-lg`…), pero el valor se adapta al
+ancho de pantalla en vez de saltar por breakpoints. El tope está bastante más
+contenido que los valores por defecto de Tailwind: `text-6xl` llega a 52 px en
+lugar de 60 px.
+
+### Anchos
+
+- `max-w-site` — **1350 px**. El ancho de toda sección.
+- `max-w-prose` (68ch) y `max-w-3xl`/`max-w-2xl` — columnas de lectura. No
+  siguen a `site` a propósito: un párrafo de 1350 px de ancho cansa, el ojo
+  pierde el renglón al volver.
+
+Los banners usan `h-[clamp(...)]` en vez de `vh` puros, para que en un monitor
+grande no ocupen la ventana entera antes de que se vea una palabra.
+
+### Modo claro y oscuro
+
+El interruptor está en la barra de navegación (`components/Tema/BotonTema`).
+Respeta el sistema operativo mientras el visitante no elija a mano; si elige,
+su preferencia se guarda y manda. Un script inline en el `<head>` aplica la
+clase `dark` **antes del primer pintado** — sin él la página parpadearía en
+blanco antes de pasar a oscuro, y eso no se puede arreglar desde React porque
+React llega tarde.
+
+## Fichas de producto
+
+Cada uno de los 30 cortes tiene su propia página, generada en el build:
+
+```
+/carne-de-res/lomo-fino
+/carne-de-res/tira-de-asado
+/carne-de-cerdo/panceta-especial
+…
+```
+
+Antes el catálogo vivía dentro de un filtro de JavaScript y los cortes se
+abrían en un modal: no tenían dirección, así que no se podían enlazar,
+compartir por WhatsApp ni indexar. «lomo fino precio Lima» es una búsqueda real
+que no tenía a dónde llegar.
+
+Todo sale de `content/catalogo.ts`, que unifica res y cerdo, genera los slugs y
+guarda el **saber de carnicero** de cada corte: para qué plato sirve, cómo se
+llama fuera del Perú, cuánto pedir por persona, cuánta grasa tiene. Ese archivo
+alimenta a la vez las fichas, la tabla de precios de los pilares y las guías del
+blog, así que un dato se corrige en un solo sitio.
+
+**Para añadir un corte**: se agrega a `productosRes` o `productosCerdo` y, si
+tiene saber de carnicero, su entrada en `SABER_RES` / `SABER_CERDO`. La ruta, el
+sitemap, los relacionados y el JSON-LD salen solos.
+
+**Las pestañas de la ficha están hechas con CSS**, no con estado de React, y es
+a propósito: así el contenido de las cuatro pestañas queda escrito en el HTML
+aunque solo una esté visible. Con estado de React solo existiría el panel
+activo, y el texto largo —que es justo el que posiciona— no llegaría a Google.
+
+### Reseñas
+
+`content/resenas.ts` está vacío a propósito y **no hay que rellenarlo con
+reseñas inventadas**. El marcado `Review` y `AggregateRating` con reseñas falsas
+es una de las causas más comunes de acción manual de Google, y la sanción no se
+queda en la ficha: baja el dominio entero. En Perú, además, es publicidad
+engañosa ante Indecopi.
+
+El sistema ya está montado: en cuanto lleguen reseñas reales se añaden al
+archivo, la sección aparece sola y el JSON-LD las emite. Mientras tanto la ficha
+muestra una invitación a dejar la primera, que es honesto y es lo que consigue
+las siguientes.
+
 ## Animaciones: nada de librerías
 
 El sitio no usa framer-motion. Se quitó porque costaba 172 KB en todas las

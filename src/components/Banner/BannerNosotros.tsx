@@ -31,7 +31,7 @@ export const BannerNosotros = () => {
     }, []);
 
     return (
-        <div className="relative h-[80vh] overflow-hidden">
+        <div className="relative h-[clamp(400px,68vh,580px)] overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <Image
                     src={banner4}
@@ -43,13 +43,13 @@ export const BannerNosotros = () => {
                     placeholder="blur"
                     className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-carni-red/60 to-carni-dark-red/60" />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand/60 to-brand-deep/60" />
             </div>
 
             <div className="relative z-10 flex h-full flex-col justify-center">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
-                        <h1 className="hero-enter mb-8 text-4xl font-bold text-carni-cream sm:text-5xl lg:text-6xl">
+                        <h1 className="hero-enter mb-8 text-4xl font-bold text-cream sm:text-5xl lg:text-6xl">
                             Carnicentro Marcelo
                         </h1>
 
@@ -65,7 +65,7 @@ export const BannerNosotros = () => {
                         {ICONOS.map((Icono, i) => (
                             <span
                                 key={i}
-                                className="hero-enter inline-block text-carni-cream transition-transform duration-200 hover:scale-110"
+                                className="hero-enter inline-block text-cream transition-transform duration-200 hover:scale-110"
                                 style={{ '--hero-delay': `${160 + i * 70}ms` } as React.CSSProperties}
                             >
                                 <Icono className="h-12 w-12 sm:h-16 sm:w-16" aria-hidden="true" />

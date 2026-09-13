@@ -90,15 +90,15 @@ export default async function ArticuloPage({ params }: { params: Promise<{ slug:
 
       {/* El enlace de ida: cada artículo devuelve al pilar que le corresponde.
           Sin esto la fuerza del artículo se queda donde no vende. */}
-      <section className="bg-carni-cream py-14">
+      <section className="bg-surface-warm py-14">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-display text-2xl font-bold text-carni-dark-red md:text-3xl">
+          <h2 className="font-display text-2xl font-bold text-brand-ink-deep md:text-3xl">
             {pilar.h1}
           </h2>
-          <p className="mx-auto mt-3 max-w-xl leading-relaxed text-gray-700">{pilar.entradilla}</p>
+          <p className="mx-auto mt-3 max-w-xl leading-relaxed text-ink-muted">{pilar.entradilla}</p>
           <Link
             href={pilar.ruta}
-            className="mt-6 inline-block rounded-lg bg-carni-red px-6 py-3 font-semibold text-white transition-colors hover:bg-carni-dark-red"
+            className="mt-6 inline-block rounded-lg bg-brand px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-deep"
           >
             Ver cortes y precios
           </Link>

@@ -45,22 +45,22 @@ export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCat
   return (
     <div
       data-reveal="up"
-      className="flex flex-col items-center gap-8 rounded-xl bg-[#fff4bf] px-4 py-12 shadow-lg md:px-8"
+      className="flex flex-col items-center gap-8 rounded-xl bg-surface-warm px-4 py-12 shadow-lg md:px-8"
       id="explorar-carnes"
     >
       <div className="space-y-4 text-center">
         <div className="mb-2 flex items-center justify-center gap-3">
-          <GiCow className="text-4xl text-[#a90a0a]" aria-hidden="true" />
-          <h2 className="text-4xl font-bold text-[#a90a0a] md:text-5xl">Explora Nuestras Carnes</h2>
-          <GiMeat className="text-4xl text-[#a90a0a]" aria-hidden="true" />
+          <GiCow className="text-4xl text-brand-ink" aria-hidden="true" />
+          <h2 className="text-4xl font-bold text-brand-ink md:text-5xl">Explora Nuestras Carnes</h2>
+          <GiMeat className="text-4xl text-brand-ink" aria-hidden="true" />
         </div>
-        <p className="mx-auto max-w-2xl text-lg text-gray-600 md:text-xl">
+        <p className="mx-auto max-w-2xl text-lg text-ink-muted md:text-xl">
           Descubre nuestra selección premium de cortes de res y cerdo, criados con los más altos
           estándares de calidad
         </p>
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8">
         <div
           data-reveal-group=""
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-8 lg:gap-8"
@@ -81,8 +81,8 @@ export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCat
                 <span
                   className={`relative block h-24 w-24 overflow-hidden rounded-full sm:h-28 sm:w-28 md:h-32 md:w-32 ${
                     activo
-                      ? 'ring-4 ring-[#a90a0a] ring-offset-2'
-                      : 'ring-2 ring-transparent hover:ring-[#a90a0a]/50'
+                      ? 'ring-4 ring-brand ring-offset-2'
+                      : 'ring-2 ring-transparent hover:ring-brand/50'
                   }`}
                 >
                   <Image
@@ -94,7 +94,7 @@ export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCat
                     sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
                   />
                 </span>
-                <span className="mt-3 text-center text-sm font-medium text-gray-800 transition-colors group-hover:text-[#a90a0a] sm:text-base md:text-lg">
+                <span className="mt-3 text-center text-sm font-medium text-ink transition-colors group-hover:text-brand-ink sm:text-base md:text-lg">
                   {item.menu_name}
                 </span>
               </button>
@@ -103,8 +103,8 @@ export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCat
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="h-px bg-gradient-to-r from-transparent via-[#a90a0a]/20 to-transparent" />
+      <div className="mx-auto w-full max-w-site">
+        <div className="h-px bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
       </div>
     </div>
   );

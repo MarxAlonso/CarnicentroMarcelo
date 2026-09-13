@@ -1,28 +1,31 @@
 "use client";
 
 import { useState } from "react";
-import { ProductoCerdo, productosCerdo } from "../data-cerdo/productosCerdo";
-import { categorias } from "../data-cerdo/categorias";
 import { SearchBar } from "./components/SearchBar";
 import { PriceFilter } from "./components/PriceFilterProps";
 import { CategoryFilter } from "./components/CategoryFilterProps";
 import { ProductCard } from "./components/ProductCardProps";
-import { ProductModal } from "./components/ProductModalProps";
+import { cortesPorTipo } from "@/content/catalogo";
 
+/**
+ * Catálogo filtrable de cortes de cerdo.
+ *
+ * Igual que el de res: las tarjetas navegan a la ficha del corte en vez de
+ * abrir un modal, y los datos salen del catálogo unificado.
+ */
 export const FiltroCarneCerdos = () => {
   const [busqueda, setBusqueda] = useState("");
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todos");
   const [ordenPrecio, setOrdenPrecio] = useState<"asc" | "desc" | "none">("none");
   const [sugerencias, setSugerencias] = useState<string[]>([]);
-  const [modalProducto, setModalProducto] = useState<ProductoCerdo | null>(null);
 
-  // Filtrar y ordenar productos según búsqueda, categoría y precio
-  const productosFiltrados = productosCerdo
-    .filter((producto) => {
-      const coincideBusqueda = producto.nombre.toLowerCase().includes(busqueda.toLowerCase());
-      const categoriaObj = categorias.find((cat) => cat.id === producto.categoria);
+  const cortes = cortesPorTipo("cerdo");
+
+  const productosFiltrados = cortes
+    .filter((corte) => {
+      const coincideBusqueda = corte.nombre.toLowerCase().includes(busqueda.toLowerCase());
       const coincideCategoria =
-        categoriaSeleccionada === "Todos" || (categoriaObj && categoriaObj.nombre === categoriaSeleccionada);
+        categoriaSeleccionada === "Todos" || corte.categoria === categoriaSeleccionada;
       return coincideBusqueda && coincideCategoria;
     })
     .sort((a, b) => {
@@ -31,24 +34,18 @@ export const FiltroCarneCerdos = () => {
       return 0;
     });
 
-  // Manejar cambios en la búsqueda y mostrar sugerencias
   const handleBusquedaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const valor = e.target.value;
     setBusqueda(valor);
-
-    // Generar sugerencias
-    if (valor) {
-      const sugerenciasFiltradas = productosCerdo
-        .filter((p) => p.nombre.toLowerCase().includes(valor.toLowerCase()))
-        .map((p) => p.nombre);
-      setSugerencias(sugerenciasFiltradas);
-    } else {
-      setSugerencias([]);
-    }
+    setSugerencias(
+      valor
+        ? cortes.filter((p) => p.nombre.toLowerCase().includes(valor.toLowerCase())).map((p) => p.nombre)
+        : []
+    );
   };
 
   return (
-    <div className="container mx-auto px-4 py-8" id="productoscerdos">
+    <div className="mx-auto w-full max-w-site px-4 py-8" id="productoscerdos">
       <SearchBar
         busqueda={busqueda}
         onBusquedaChange={handleBusquedaChange}
@@ -64,19 +61,19 @@ export const FiltroCarneCerdos = () => {
         setCategoriaSeleccionada={setCategoriaSeleccionada}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {productosFiltrados.map((producto) => (
-          // El estado del filtro entra en el key: al cambiarlo React monta
-          // nodos nuevos y la animación de entrada vuelve a ejecutarse.
-          <ProductCard
-            key={`${categoriaSeleccionada}-${ordenPrecio}-${producto.id}`}
-            producto={producto}
-            onClick={() => setModalProducto(producto)}
-          />
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {productosFiltrados.map((corte) => (
+          // El estado del filtro entra en el key para que la animación de
+          // entrada se repita en cada cambio.
+          <ProductCard key={`${categoriaSeleccionada}-${ordenPrecio}-${corte.slug}`} corte={corte} />
         ))}
       </div>
 
-      {modalProducto && <ProductModal producto={modalProducto} onClose={() => setModalProducto(null)} />}
+      {productosFiltrados.length === 0 && (
+        <p className="py-12 text-center text-ink-muted">
+          No encontramos cortes con ese nombre. Prueba con otra palabra o escríbenos por WhatsApp.
+        </p>
+      )}
     </div>
   );
 };

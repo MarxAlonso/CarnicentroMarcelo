@@ -11,7 +11,7 @@ export default function Loading() {
       <div className="mx-auto w-full max-w-5xl px-6">
         <TablaPreciosSkeleton filas={10} />
       </div>
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6">
+      <div className="mx-auto flex w-full max-w-site flex-col gap-8 px-6">
         <FiltrosSkeleton />
         <ProductGridSkeleton count={8} />
       </div>

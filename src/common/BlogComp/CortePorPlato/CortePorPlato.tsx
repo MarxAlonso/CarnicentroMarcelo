@@ -160,21 +160,21 @@ export default function CortePorPlato() {
           <div
             key={r.plato}
             data-reveal="up"
-            className="rounded-2xl border border-gray-200 bg-white p-6"
+            className="rounded-2xl border border-line bg-surface p-6"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="!mb-0 !mt-0 text-xl font-bold text-carni-dark-red">{r.plato}</h3>
-              <span className="text-sm text-gray-500">{r.cantidad}</span>
+              <h3 className="!mb-0 !mt-0 text-xl font-bold text-brand-ink-deep">{r.plato}</h3>
+              <span className="text-sm text-ink-subtle">{r.cantidad}</span>
             </div>
 
             <p className="!mb-0 !mt-3 !text-base">
-              <strong className="text-gray-900">Pide:</strong>{" "}
-              <span className="font-semibold text-carni-red">{r.principal}</span>{" "}
-              <span className="tabular-nums text-gray-500">({precioDe(r.principal)}/kg)</span>
+              <strong className="text-ink">Pide:</strong>{" "}
+              <span className="font-semibold text-brand-ink">{r.principal}</span>{" "}
+              <span className="tabular-nums text-ink-subtle">({precioDe(r.principal)}/kg)</span>
               {r.alternativa && (
                 <>
                   {" · "}
-                  <span className="text-gray-600">
+                  <span className="text-ink-muted">
                     alternativa: {r.alternativa}{" "}
                     <span className="tabular-nums">({precioDe(r.alternativa)}/kg)</span>
                   </span>
@@ -182,7 +182,7 @@ export default function CortePorPlato() {
               )}
             </p>
 
-            <p className="!mb-0 !mt-3 !text-[15px] text-gray-600">{r.porque}</p>
+            <p className="!mb-0 !mt-3 !text-[15px] text-ink-muted">{r.porque}</p>
           </div>
         ))}
       </div>

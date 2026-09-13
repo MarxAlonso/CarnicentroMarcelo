@@ -6,6 +6,7 @@ import { useState } from "react";
 import { MdMenu, MdClose, MdKeyboardArrowDown } from "react-icons/md";
 import { ResponsiveMenu } from "./ResponsiveMenu";
 import { NavbarMenu } from "./NavbarData";
+import { BotonTema } from "@/components/Tema/BotonTema";
 
 /**
  * Barra de navegación sin framer-motion.
@@ -20,8 +21,8 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="relative z-[1000] bg-[#a90a0a] shadow-lg">
-        <div className="container mx-auto flex items-center justify-between px-6 py-2">
+      <nav className="relative z-[1000] bg-brand shadow-lg">
+        <div className="mx-auto w-full max-w-site flex items-center justify-between px-6 py-2">
           <Link
             href="/"
             aria-label="Carnicentro Marcelo, ir al inicio"
@@ -30,10 +31,10 @@ export const Navbar = () => {
             <Image
               src="/logo2-carnicentromarcelo.png"
               alt="Carnicentro Marcelo"
-              width={240}
-              height={96}
+              width={200}
+              height={64}
               priority
-              className="h-24 w-auto rounded-[20px] object-contain shadow-lg"
+              className="h-14 w-auto rounded-xl object-contain shadow-lg sm:h-16"
             />
           </Link>
 
@@ -48,7 +49,7 @@ export const Navbar = () => {
                       <button
                         type="button"
                         aria-haspopup="true"
-                        className="inline-flex items-center gap-1 rounded-lg px-4 py-2 font-semibold text-[#fff4bf] transition-all duration-300 hover:bg-[#8a0808] hover:text-white"
+                        className="inline-flex items-center gap-1 rounded-lg px-4 py-2 font-semibold text-cream transition-all duration-300 hover:bg-brand-deep hover:text-white"
                       >
                         {item.title}
                         <MdKeyboardArrowDown
@@ -56,12 +57,12 @@ export const Navbar = () => {
                           className="transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
                         />
                       </button>
-                      <ul className="invisible absolute left-0 top-full z-[1001] mt-2 min-w-[200px] -translate-y-1 rounded-lg bg-[#a90a0a] py-2 opacity-0 shadow-lg transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                      <ul className="invisible absolute left-0 top-full z-[1001] mt-2 min-w-[200px] -translate-y-1 rounded-lg bg-brand py-2 opacity-0 shadow-lg transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                         {item.submenu.map((subItem) => (
                           <li key={subItem.link}>
                             <Link
                               href={subItem.link}
-                              className="block px-4 py-2 text-[#fff4bf] transition-all duration-300 hover:translate-x-1 hover:bg-[#8a0808] hover:text-white"
+                              className="block px-4 py-2 text-cream transition-all duration-300 hover:translate-x-1 hover:bg-brand-deep hover:text-white"
                             >
                               {subItem.title}
                             </Link>
@@ -72,7 +73,7 @@ export const Navbar = () => {
                   ) : (
                     <Link
                       href={item.link}
-                      className="inline-block rounded-lg px-4 py-2 font-semibold text-[#fff4bf] transition-all duration-300 hover:scale-105 hover:bg-[#8a0808] hover:text-white"
+                      className="inline-block rounded-lg px-4 py-2 font-semibold text-cream transition-all duration-300 hover:scale-105 hover:bg-brand-deep hover:text-white"
                     >
                       {item.title}
                     </Link>
@@ -82,7 +83,9 @@ export const Navbar = () => {
             </ul>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <BotonTema />
+
             <button
               type="button"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -92,9 +95,9 @@ export const Navbar = () => {
               onClick={() => setOpen((v) => !v)}
             >
               {open ? (
-                <MdClose className="text-4xl transition-colors hover:text-[#fff4bf]" />
+                <MdClose className="text-4xl transition-colors hover:text-cream" />
               ) : (
-                <MdMenu className="text-4xl transition-colors hover:text-[#fff4bf]" />
+                <MdMenu className="text-4xl transition-colors hover:text-cream" />
               )}
             </button>
           </div>

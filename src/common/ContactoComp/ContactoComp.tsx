@@ -4,7 +4,7 @@ import Contacto from "../../components/Contacto/Contacto";
 
 export const ContactoComp: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface">
       <BannerContacto />
       <Contacto />
     </div>
