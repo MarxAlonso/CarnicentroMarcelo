@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { GiHealthNormal, GiBrain, GiMuscleUp } from 'react-icons/gi';
 import { FaUserGraduate, FaChild, FaUserAlt, FaBone } from 'react-icons/fa';
 
@@ -125,8 +126,8 @@ const ImportanciaCarne: React.FC = () => {
             En Carnicentro Marcelo, seleccionamos cada pieza con rigurosidad médica y técnica. Comer carne de calidad es invertir en tu futuro y el de tu familia.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-6">
-            <a href="/carne-de-res" className="bg-surface-warm text-brand-ink px-8 py-3 rounded-full font-bold hover:bg-surface transition-colors transform hover:scale-105">Explorar Cortes de Res</a>
-            <a href="/contacto" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-surface hover:text-brand-ink transition-all">Hablar con un Maestro Carnicero</a>
+            <Link href="/carne-de-res" className="bg-surface-warm text-brand-ink px-8 py-3 rounded-full font-bold hover:bg-surface transition-colors transform hover:scale-105">Explorar Cortes de Res</Link>
+            <Link href="/contacto" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-surface hover:text-brand-ink transition-all">Hablar con un Maestro Carnicero</Link>
           </div>
         </div>
       </div>

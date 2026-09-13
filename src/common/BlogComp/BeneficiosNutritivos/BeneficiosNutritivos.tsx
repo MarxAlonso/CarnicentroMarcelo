@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { GiHealthNormal, GiBrain, GiMuscleUp, GiElectric } from 'react-icons/gi';
 import { FaShieldAlt, FaAppleAlt } from 'react-icons/fa';
 
@@ -147,8 +148,8 @@ const BeneficiosNutritivos: React.FC = () => {
             En Carnicentro Marcelo, nos comprometemos con la calidad. Cada corte que ofrecemos está pensado para brindar no solo el mejor sabor, sino también el máximo valor nutricional para usted y su familia.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-6">
-            <a href="/carne-de-res" className="bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-surface hover:text-brand-ink transition-all transform hover:scale-105">Ver Cortes Premium</a>
-            <a href="/nosotros" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-surface hover:text-ink transition-all">Nuestra Tradición</a>
+            <Link href="/carne-de-res" className="bg-brand text-white px-8 py-3 rounded-full font-bold hover:bg-surface hover:text-brand-ink transition-all transform hover:scale-105">Ver Cortes Premium</Link>
+            <Link href="/nosotros" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-surface hover:text-ink transition-all">Nuestra Tradición</Link>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { GiMuscleUp, GiCookingPot } from 'react-icons/gi';
 import { FaCheckCircle, FaAppleAlt } from 'react-icons/fa';
 
@@ -135,8 +136,8 @@ const BeneficiosGym: React.FC = () => {
             Visita nuestra tienda online y descubre más cortes magros seleccionados para tu dieta deportiva. ¡Calidad garantizada para tu progreso!
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="/carne-de-res" className="bg-surface text-brand-ink px-10 py-4 rounded-full font-bold hover:bg-surface-2 transition-all transform hover:scale-105 shadow-xl">Ver Cortes de Res</a>
-            <a href="/carne-de-cerdo" className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-surface hover:text-brand-ink transition-all">Ver Cortes de Cerdo</a>
+            <Link href="/carne-de-res" className="bg-surface text-brand-ink px-10 py-4 rounded-full font-bold hover:bg-surface-2 transition-all transform hover:scale-105 shadow-xl">Ver Cortes de Res</Link>
+            <Link href="/carne-de-cerdo" className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold hover:bg-surface hover:text-brand-ink transition-all">Ver Cortes de Cerdo</Link>
           </div>
         </div>
       </div>
