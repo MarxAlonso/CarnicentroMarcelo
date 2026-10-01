@@ -5,9 +5,16 @@ import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Footer } from "@/components/Footer/Footer";
+import { PedidoWhatsApp } from "@/common/InicioComp/PedidoWhatsApp";
 import Chatbot from "@/components/Chatbot/Chatbot";
+import { WhatsAppFlotante } from "@/components/WhatsApp/WhatsAppFlotante";
 import { SITE } from "@/lib/site";
-import { buildLocalBusinessSchema, buildOrganizationSchema, jsonLd } from "@/lib/schema";
+import {
+  buildLocalBusinessSchema,
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+  jsonLd,
+} from "@/lib/schema";
 import { REVEAL_SCRIPT } from "@/components/Reveal/Reveal";
 import { TEMA_SCRIPT } from "@/components/Tema/tema";
 
@@ -60,6 +67,13 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   icons: { icon: "/logo-carnicentromarcelo.png", apple: "/logo-carnicentromarcelo.png" },
+  category: "Carnicería",
+  // Etiquetas de ubicación clásicas. Google las ignora, pero Bing —que es de
+  // donde beben Copilot y ChatGPT— sí las lee para situar el negocio.
+  other: {
+    "geo.region": "PE-LIM",
+    "geo.placename": "Lima",
+  },
 };
 
 export const viewport: Viewport = {
@@ -76,7 +90,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Las páginas añaden su propio schema específico. */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={jsonLd([buildLocalBusinessSchema(), buildOrganizationSchema()])}
+          dangerouslySetInnerHTML={jsonLd([
+            buildLocalBusinessSchema(),
+            buildOrganizationSchema(),
+            buildWebSiteSchema(),
+          ])}
         />
         {/* Marca el documento antes del primer pintado para que el revelado no
             parpadee. Son ~400 bytes inline: no hay petición de red ni espera a
@@ -96,6 +114,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Navbar />
         <main id="contenido">{children}</main>
+        {/* Cierre común de todas las páginas: cómo pedir y los botones para hacerlo. */}
+        <PedidoWhatsApp />
+        <WhatsAppFlotante />
         <Chatbot />
         <Footer />
 

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { GiPig, GiMeat, GiKnifeFork } from 'react-icons/gi';
 import banner4cerdo from "../../assets/banner/banner4-cerdo.webp";
+import { BotonWhatsApp } from '@/components/WhatsApp/BotonWhatsApp';
 
 /**
  * Sigue siendo de cliente por el texto que se escribe solo, pero ya sin
@@ -89,13 +90,20 @@ export const BannerCarneCerdos = () => {
                         garantizado.
                     </p>
 
-                    <a
-                        href="#productoscerdos"
-                        className="hero-enter inline-block rounded-full bg-surface-warm px-8 py-3 text-lg font-bold text-brand-ink shadow-lg transition-all duration-200 hover:scale-105 hover:bg-surface active:scale-95"
+                    <div
+                        className="hero-enter flex flex-wrap items-center gap-3"
                         style={{ '--hero-delay': '240ms' } as React.CSSProperties}
                     >
-                        Ver Productos
-                    </a>
+                        <BotonWhatsApp mensaje="Hola, quiero hacer un pedido de carne de cerdo.">
+                            Pedir por WhatsApp
+                        </BotonWhatsApp>
+                        <a
+                            href="#productoscerdos"
+                            className="inline-block rounded-full bg-surface-warm px-8 py-3 text-lg font-bold text-brand-ink shadow-lg transition-all duration-200 hover:scale-105 hover:bg-surface active:scale-95"
+                        >
+                            Ver Productos
+                        </a>
+                    </div>
                 </div>
 
                 <div className="relative flex h-[300px] w-full items-center justify-center md:w-1/2">

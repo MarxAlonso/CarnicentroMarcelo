@@ -1,5 +1,6 @@
 import { GiCow } from 'react-icons/gi';
 import banner1vacas from '../../assets/banner/banner1-vacas.webp';
+import { BotonWhatsApp } from '@/components/WhatsApp/BotonWhatsApp';
 
 /**
  * Componente de servidor: sin framer-motion no necesita JavaScript.
@@ -35,12 +36,17 @@ export const BannerCarneRes = () => {
                         Descubre nuestra selección de cortes premium, desde tiernos lomos hasta
                         jugosos ribeyes, preparados con la más alta calidad para tu mesa.
                     </p>
-                    <a
-                        href="#productosres"
-                        className="inline-block rounded-full bg-surface-warm px-8 py-3 text-lg font-bold text-brand-ink shadow-lg transition-all duration-200 hover:scale-105 hover:bg-surface active:scale-95"
-                    >
-                        Ver Productos
-                    </a>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <BotonWhatsApp mensaje="Hola, quiero hacer un pedido de carne de res.">
+                            Pedir por WhatsApp
+                        </BotonWhatsApp>
+                        <a
+                            href="#productosres"
+                            className="inline-block rounded-full bg-surface-warm px-8 py-3 text-lg font-bold text-brand-ink shadow-lg transition-all duration-200 hover:scale-105 hover:bg-surface active:scale-95"
+                        >
+                            Ver Productos
+                        </a>
+                    </div>
                 </div>
 
                 <div

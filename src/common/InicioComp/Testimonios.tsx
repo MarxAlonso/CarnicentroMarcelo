@@ -48,7 +48,7 @@ const TestimonioCard: React.FC<{ testimonio: Testimonio }> = ({ testimonio }) =>
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-warm font-bold text-brand-ink">
           {testimonio.nombre.charAt(0)}
         </div>
-        <h4 className="text-lg font-bold text-ink">{testimonio.nombre}</h4>
+        <p className="text-lg font-bold text-ink">{testimonio.nombre}</p>
       </div>
     </div>
   );
@@ -64,12 +64,12 @@ const Testimonios: React.FC = () => {
 
       <div className="relative z-10 mx-auto max-w-site px-4 sm:px-6 lg:px-8">
         <div data-reveal="up" className="mb-16 text-center">
-          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-cream">
+          <p className="mb-2 text-sm font-bold uppercase tracking-widest text-cream">
             Opiniones de Nuestros Clientes
+          </p>
+          <h2 className="font-display text-4xl font-bold uppercase leading-tight text-white md:text-5xl">
+            Confianza que se <span className="text-cream">saborea</span>
           </h2>
-          <h3 className="text-4xl font-extrabold leading-tight text-white md:text-5xl">
-            Confianza que se <span className="text-cream">Saborea</span>
-          </h3>
         </div>
 
         <div data-reveal-group="" className="grid grid-cols-1 gap-8 md:grid-cols-3">

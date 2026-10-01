@@ -16,6 +16,8 @@ export const SITE = {
     "Carnicería en Lima con cortes frescos de res y cerdo. Precios por kilo, delivery coordinado y atención directa por WhatsApp.",
   phone: "+51984620910",
   phoneDisplay: "+51 984 620 910",
+  /** Como lo marca y lo dicta alguien desde Lima, sin prefijo de país. */
+  phoneLocal: "984 620 910",
   whatsapp: "51984620910",
   logo: "/logo-carnicentromarcelo.png",
   ogImage: "/logo-carnicentromarcelo.png",
@@ -78,6 +80,9 @@ export const DELIVERY = {
   costoEnvioSoles: null as number | null,
   anticipacionHoras: 24,
 } as const;
+
+/** Publicadas también en el pilar de delivery: si cambian, cambian aquí. */
+export const FORMAS_DE_PAGO = ["Efectivo", "Yape", "Plin"] as const;
 
 export function whatsappUrl(mensaje?: string) {
   const base = `https://wa.me/${SITE.whatsapp}`;

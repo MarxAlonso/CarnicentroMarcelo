@@ -5,17 +5,22 @@
  * visible en la página. Un `FAQPage` cuyas preguntas no aparecen en pantalla, o
  * un precio distinto al de la tabla, es motivo de penalización manual.
  */
-import { SITE, ADDRESS, HOURS, DISTRITOS, absoluteUrl } from "./site";
+import { SITE, ADDRESS, HOURS, DISTRITOS, FORMAS_DE_PAGO, absoluteUrl, whatsappUrl } from "./site";
 
 type Json = Record<string, unknown>;
 
 const ORGANIZATION_ID = `${SITE.url}/#organization`;
 const BUSINESS_ID = `${SITE.url}/#business`;
+const WEBSITE_ID = `${SITE.url}/#website`;
 
 export function buildLocalBusinessSchema(): Json {
   const schema: Json = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "Butcher"],
+    // `Butcher` no existe en el vocabulario de schema.org, así que los
+    // validadores lo descartaban. El tipo válido más cercano es
+    // `GroceryStore`; que es una carnicería lo precisa `additionalType`.
+    "@type": ["LocalBusiness", "GroceryStore"],
+    additionalType: "http://www.productontology.org/id/Butcher",
     "@id": BUSINESS_ID,
     name: SITE.name,
     description: SITE.description,
@@ -25,6 +30,38 @@ export function buildLocalBusinessSchema(): Json {
     logo: absoluteUrl(SITE.logo),
     priceRange: "S/",
     currenciesAccepted: "PEN",
+    paymentAccepted: FORMAS_DE_PAGO.join(", "),
+    // De qué sabe el negocio. Es lo que usa un asistente de IA para decidir
+    // si esta web responde a «dónde comprar lomo fino en Lima».
+    knowsAbout: [
+      "Carne de res",
+      "Carne de cerdo",
+      "Cortes de carne para parrilla",
+      "Carne molida",
+      "Delivery de carne en Lima",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: SITE.phone,
+      url: whatsappUrl(),
+      availableLanguage: "es",
+      areaServed: "PE",
+    },
+    // El catálogo, apuntando a las páginas donde el precio está visible.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Cortes de carne por kilo",
+      itemListElement: [
+        { "@type": "OfferCatalog", name: "Carne de res", url: absoluteUrl("/carne-de-res") },
+        { "@type": "OfferCatalog", name: "Carne de cerdo", url: absoluteUrl("/carne-de-cerdo") },
+      ],
+    },
+    potentialAction: {
+      "@type": "OrderAction",
+      name: "Pedir por WhatsApp",
+      target: whatsappUrl(),
+    },
     openingHoursSpecification: HOURS.map((h) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: h.days,
@@ -65,6 +102,28 @@ export function buildOrganizationSchema(): Json {
     url: SITE.url,
     logo: absoluteUrl(SITE.logo),
     telephone: SITE.phone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: SITE.phone,
+      url: whatsappUrl(),
+      availableLanguage: "es",
+    },
+  };
+}
+
+/** Nombre del sitio, idioma y quién lo publica: lo mínimo para que un buscador
+    muestre «Carnicentro Marcelo» y no el dominio pelado. */
+export function buildWebSiteSchema(): Json {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: "es-PE",
+    publisher: { "@id": ORGANIZATION_ID },
   };
 }
 

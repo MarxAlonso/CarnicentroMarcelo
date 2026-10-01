@@ -1,5 +1,6 @@
 import React from 'react';
 import { GiMeatCleaver, GiGrass, GiHeartBeats, GiTrophy } from 'react-icons/gi';
+import { BotonWhatsApp, BotonLlamar } from '@/components/WhatsApp/BotonWhatsApp';
 
 /**
  * Sin framer-motion, esta sección ya no necesita ser componente de cliente:
@@ -59,12 +60,12 @@ const ExperienciaCarnicera: React.FC = () => {
     <section className="overflow-hidden bg-surface py-20">
       <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-8">
         <div data-reveal="up" className="mb-16 text-center">
-          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
+          <p className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
             Pasión por la Tradición
+          </p>
+          <h2 className="font-display text-4xl font-bold uppercase leading-tight text-ink md:text-5xl">
+            El arte de la <span className="text-brand-ink">carnicería</span> de verdad
           </h2>
-          <h3 className="text-4xl font-extrabold leading-tight text-ink md:text-5xl">
-            El Arte de la <span className="text-brand-ink">Carnicería</span> de Verdad
-          </h3>
           <p className="mx-auto mt-4 max-w-3xl text-xl leading-relaxed text-ink-muted">
             En Carnicentro Marcelo, no solo vendemos carne; honramos el trabajo del ganadero y la
             maestría del carnicero para llevar lo mejor a su mesa.
@@ -85,7 +86,7 @@ const ExperienciaCarnicera: React.FC = () => {
               <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-surface-warm transition-colors duration-300 group-hover:bg-brand">
                 <Icono className="text-4xl text-brand-ink transition-colors duration-300 group-hover:text-white" />
               </div>
-              <h4 className="mb-3 text-2xl font-bold text-ink">{titulo}</h4>
+              <h3 className="mb-3 text-2xl font-bold text-ink">{titulo}</h3>
               <p className="leading-relaxed text-ink-muted">{texto}</p>
             </div>
           ))}
@@ -93,9 +94,9 @@ const ExperienciaCarnicera: React.FC = () => {
 
         <div className="mt-24 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <div data-reveal="left" className="space-y-6">
-            <h4 className="text-3xl font-bold text-ink">
-              ¿Por qué elegir nuestras Carnes de Res y Cerdo?
-            </h4>
+            <h3 className="font-display text-3xl font-bold text-ink">
+              ¿Por qué elegir nuestras carnes de res y cerdo?
+            </h3>
             <p className="text-justify text-lg leading-relaxed text-ink-muted">
               Como conocedores del campo y la mesa, entendemos que la calidad de la carne comienza en
               la crianza. El ganado que seleccionamos para nuestra <strong>carnicería</strong>{' '}
@@ -110,6 +111,12 @@ const ExperienciaCarnicera: React.FC = () => {
             <div className="border-l-4 border-brand pl-6 pt-4 italic text-ink-muted">
               &ldquo;El secreto de un buen asado no está solo en el fuego, sino en la mano que elige
               la pieza correcta.&rdquo; — Marcelo, Maestro Carnicero.
+            </div>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <BotonWhatsApp mensaje="Hola, quiero que me recomienden un corte.">
+                Consultar a un carnicero
+              </BotonWhatsApp>
+              <BotonLlamar tono="marca" />
             </div>
           </div>
 

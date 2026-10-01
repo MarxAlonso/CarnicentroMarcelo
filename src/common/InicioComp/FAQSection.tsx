@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import { buildFaqSchema, jsonLd, type Faq } from '@/lib/schema';
-import { whatsappUrl } from '@/lib/site';
+import { DELIVERY, FORMAS_DE_PAGO, HOURS_DISPLAY, SITE } from '@/lib/site';
+import { BotonWhatsApp } from '@/components/WhatsApp/BotonWhatsApp';
 
 /**
  * Componente de servidor.
@@ -10,9 +11,34 @@ import { whatsappUrl } from '@/lib/site';
  * que despliega sin JavaScript y deja las respuestas dentro del HTML. Eso
  * importa para SEO: las respuestas declaradas en el `FAQPage` tienen que estar
  * realmente en la página, y así lo están aunque el visitante no abra nada.
+ *
+ * Las cuatro primeras son las que alguien le pregunta a un asistente de IA
+ * antes de comprar: cómo se pide, a qué hora, si hay reparto y cómo se paga.
+ * Cada respuesta empieza por el dato y se entiende sola, sin el resto de la
+ * página, porque así es como la van a citar. Los datos salen de `lib/site.ts`.
  */
 
+const horarioTexto = HOURS_DISPLAY.map(
+  (h) => `${h.label.toLowerCase()} de ${h.value.replace(' – ', ' a ')}`
+).join('; ');
+
 const faqs: Faq[] = [
+  {
+    pregunta: `¿Cómo hago un pedido en ${SITE.name}?`,
+    respuesta: `Escríbenos por WhatsApp o llámanos al ${SITE.phoneDisplay} con los cortes y los kilos que necesitas. Te confirmamos la disponibilidad, el total y la hora de entrega. Los pedidos se coordinan con ${DELIVERY.anticipacionHoras} horas de anticipación.`
+  },
+  {
+    pregunta: `¿Cuál es el horario de atención de ${SITE.name}?`,
+    respuesta: `Atendemos ${horarioTexto}. Los mensajes de WhatsApp que llegan fuera de horario se responden al abrir.`
+  },
+  {
+    pregunta: "¿Hacen delivery de carne en Lima?",
+    respuesta: `Sí. Llevamos carne de res y cerdo fresca a domicilio en Lima. El pedido se arma por WhatsApp al ${SITE.phoneLocal}, se confirma con un día de anticipación y se entrega empacado y porcionado.`
+  },
+  {
+    pregunta: "¿Qué formas de pago aceptan?",
+    respuesta: `Aceptamos ${FORMAS_DE_PAGO.join(', ')}. El detalle se confirma al cerrar el pedido por WhatsApp.`
+  },
   {
     pregunta: "¿Qué garantiza la calidad de sus carnes de res?",
     respuesta: "Nuestra carne de res proviene de ganado seleccionado cuidadosamente en las mejores zonas de pastura. Garantizamos frescura diaria, cortes precisos realizados por maestros carniceros y un cumplimiento estricto de las normas sanitarias."
@@ -42,10 +68,14 @@ const FAQSection: React.FC = () => {
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div data-reveal="up" className="mb-16 text-center">
-          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
-            Ayuda y Soporte
+          {/* El antetítulo era el `h2` y el título, un `h3`: la jerarquía
+              estaba al revés de como se lee. */}
+          <p className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
+            Antes de pedir
+          </p>
+          <h2 className="font-display text-4xl font-bold uppercase text-ink md:text-5xl">
+            Preguntas frecuentes
           </h2>
-          <h3 className="text-4xl font-extrabold text-ink">Preguntas Frecuentes</h3>
           <div className="mx-auto mt-6 h-1 w-20 bg-brand"></div>
         </div>
 
@@ -68,14 +98,9 @@ const FAQSection: React.FC = () => {
 
         <div data-reveal="fade" className="mt-12 text-center">
           <p className="mb-4 font-medium text-ink-muted">¿Aún tienes dudas?</p>
-          <a
-            href={whatsappUrl('Hola, tengo una consulta sobre sus cortes.')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex transform items-center gap-2 rounded-full bg-[#25D366] px-8 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-[#128C7E]"
-          >
+          <BotonWhatsApp mensaje="Hola, tengo una consulta sobre sus cortes.">
             Pregúntanos por WhatsApp
-          </a>
+          </BotonWhatsApp>
         </div>
       </div>
     </section>

@@ -20,6 +20,7 @@
   --brand-ink: 169 10 10;
   --brand-ink-deep: 138 8 8;
   --cream: 255 244 191; /* #fff4bf */
+  --char: 28 22 20;
 
   --page: 255 255 255;
   --surface: 255 255 255;
@@ -34,6 +35,10 @@
   --skeleton: 233 228 220;
   --skeleton-shine: 255 255 255;
 
+  /* Luz que sigue al mouse (`.spotlight`). En claro, un velo rojo suave. */
+  --glow: 169 10 10;
+  --glow-alpha: 0.07;
+
   color-scheme: light;
 }
 
@@ -46,6 +51,7 @@
   --brand-ink: 255 138 122;
   --brand-ink-deep: 255 185 173;
   --cream: 255 244 191;
+  --char: 12 10 9;
 
   /* Neutros cálidos, no grises puros: un gris neutro junto a este rojo se ve
      sucio. Todos llevan una pizca del tono de la marca. */
@@ -61,6 +67,10 @@
 
   --skeleton: 45 39 36;
   --skeleton-shine: 74 65 60;
+
+  /* En oscuro la luz es ámbar, como un foco cálido sobre el mostrador. */
+  --glow: 255 176 120;
+  --glow-alpha: 0.13;
 
   color-scheme: dark;
 }
@@ -234,6 +244,63 @@
     }
   }
 
+  /* ── Motivos de carnicería ──
+     Tres recursos que se repiten en la portada para que la página se lea
+     como un mostrador y no como una plantilla: el mantel a cuadros del
+     mercado, la pizarra de precios y el sello de tinta sobre el papel. Todo
+     es CSS: ninguna imagen de más que descargar. */
+
+  /* Mantel vichy. Dos franjas semitransparentes cruzadas: donde se pisan, el
+     rojo sale más oscuro, que es justo como se teje la tela. */
+  .mantel {
+    height: 28px;
+    background-color: rgb(var(--cream));
+    background-image:
+      linear-gradient(90deg, rgb(var(--brand) / 0.55) 50%, transparent 50%),
+      linear-gradient(rgb(var(--brand) / 0.55) 50%, transparent 50%);
+    background-size: 28px 28px;
+  }
+
+  /* Pizarra: carbón con un velo de tiza arriba y el rojo asomando abajo. */
+  .pizarra {
+    background-color: rgb(var(--char));
+    background-image:
+      radial-gradient(ellipse at 15% 0%, rgb(255 255 255 / 0.07), transparent 55%),
+      radial-gradient(ellipse at 95% 100%, rgb(var(--brand) / 0.35), transparent 55%);
+  }
+
+  /* Sello de tinta, torcido a propósito. */
+  .sello {
+    transform: rotate(-9deg);
+    border: 3px double rgb(var(--cream));
+    box-shadow:
+      0 0 0 6px rgb(var(--brand) / 0.85),
+      0 0 0 8px rgb(var(--cream) / 0.7);
+  }
+
+  /* Onda del botón flotante de WhatsApp. Anima solo `transform` y `opacity`. */
+  .wa-onda::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: #25d366;
+    z-index: -1;
+    animation: wa-onda 2.4s ease-out infinite;
+  }
+
+  @keyframes wa-onda {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    70%,
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+
   /* Entrada de la portada: arranca sola al cargar, sin esperar al observador,
      porque ya está en pantalla. */
   .hero-enter {
@@ -364,6 +431,287 @@
     to {
       opacity: 1;
       transform: scaleX(1);
+    }
+  }
+
+  /* ── Luz que sigue al mouse ──
+     `Spotlight` escribe `--mx` y `--my`; aquí se pinta el foco. El seudo va
+     en `z-index: -1` dentro de un contexto propio (`isolation`), así queda
+     sobre el fondo de la sección pero debajo del contenido. */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 400ms ease;
+    background: radial-gradient(
+      620px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--glow) / var(--glow-alpha)),
+      transparent 65%
+    );
+  }
+
+  .spotlight[data-lit]::before {
+    opacity: 1;
+  }
+
+  /* Tarjetas: un brillo interior y un borde que se enciende cerca del mouse. */
+  .glow-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .glow-card::before,
+  .glow-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .glow-card::before {
+    z-index: -1;
+    background: radial-gradient(
+      280px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--glow) / calc(var(--glow-alpha) * 1.6)),
+      transparent 70%
+    );
+  }
+
+  .glow-card::after {
+    padding: 1px;
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--glow) / 0.7),
+      transparent 70%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .spotlight[data-lit] .glow-card::before,
+  .spotlight[data-lit] .glow-card::after {
+    opacity: 1;
+  }
+
+  /* ── Ilustraciones de Nosotros ──
+     Solo `transform` y `opacity`. `transform-box: fill-box` hace que cada
+     pieza gire sobre su propio centro y no sobre el origen del SVG. */
+  .ilus-halo {
+    position: absolute;
+    inset: 12% 10%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgb(var(--brand-ink) / 0.18), transparent 70%);
+    filter: blur(24px);
+    animation: ilus-pulso 5s ease-in-out infinite;
+  }
+
+  .ilus-flota,
+  .ilus-respira,
+  .ilus-sombra,
+  .ilus-cola,
+  .ilus-oreja,
+  .ilus-ojo,
+  .ilus-mece,
+  .ilus-destello,
+  .ilus-corazon,
+  .ilus-vapor {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .ilus-flota {
+    animation: ilus-flota 4s ease-in-out infinite;
+  }
+  .ilus-retraso {
+    animation-delay: -2s;
+  }
+  .ilus-sombra {
+    animation: ilus-sombra 4s ease-in-out infinite;
+  }
+  .ilus-mece {
+    transform-origin: left center;
+    animation: ilus-mece 5s ease-in-out infinite;
+  }
+
+  .ilus-vapor {
+    opacity: 0;
+    animation: ilus-vapor 3.2s ease-in-out infinite;
+  }
+  .ilus-vapor-2 {
+    animation-delay: 1s;
+  }
+  .ilus-vapor-3 {
+    animation-delay: 2s;
+  }
+
+  .ilus-destello {
+    animation: ilus-destello 2.6s ease-in-out infinite;
+  }
+  .ilus-destello-2 {
+    animation-delay: 0.9s;
+  }
+  .ilus-destello-3 {
+    animation-delay: 1.7s;
+  }
+
+  .ilus-respira {
+    animation: ilus-respira 3s ease-in-out infinite;
+  }
+  .ilus-chancho .ilus-sombra {
+    animation-duration: 3s;
+  }
+  .ilus-cola {
+    transform-origin: 100% 100%;
+    animation: ilus-cola 1.4s ease-in-out infinite;
+  }
+  .ilus-oreja {
+    transform-origin: 50% 100%;
+    animation: ilus-oreja 3s ease-in-out infinite;
+  }
+  .ilus-oreja-2 {
+    animation-delay: -1.5s;
+  }
+  .ilus-ojo {
+    animation: ilus-parpadeo 4.5s ease-in-out infinite;
+  }
+  .ilus-corazon {
+    opacity: 0;
+    animation: ilus-corazon 3.6s ease-out infinite;
+  }
+  .ilus-corazon-2 {
+    animation-delay: 1.8s;
+  }
+
+  /* Al pasar el mouse el chancho se alegra: mueve la cola más rápido. */
+  .ilus-chancho:hover .ilus-cola {
+    animation-duration: 0.35s;
+  }
+
+  @keyframes ilus-pulso {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+  }
+  @keyframes ilus-flota {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -7px, 0);
+    }
+  }
+  @keyframes ilus-sombra {
+    0%,
+    100% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(0.92);
+    }
+  }
+  @keyframes ilus-mece {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-3deg);
+    }
+  }
+  @keyframes ilus-vapor {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 12px, 0) scaleY(0.9);
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(0, -18px, 0) scaleY(1.05);
+    }
+  }
+  @keyframes ilus-destello {
+    0%,
+    100% {
+      opacity: 0.25;
+      transform: scale(0.6) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1) rotate(45deg);
+    }
+  }
+  @keyframes ilus-respira {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1, 1);
+    }
+    50% {
+      transform: translate3d(0, -4px, 0) scale(1.015, 0.985);
+    }
+  }
+  @keyframes ilus-cola {
+    0%,
+    100% {
+      transform: rotate(-12deg);
+    }
+    50% {
+      transform: rotate(14deg);
+    }
+  }
+  @keyframes ilus-oreja {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-7deg);
+    }
+  }
+  @keyframes ilus-parpadeo {
+    0%,
+    90%,
+    100% {
+      transform: scaleY(1);
+    }
+    94% {
+      transform: scaleY(0.1);
+    }
+  }
+  @keyframes ilus-corazon {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 10px, 0) scale(0.6);
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(0, -26px, 0) scale(1.1);
     }
   }
 

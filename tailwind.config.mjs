@@ -29,6 +29,10 @@ export default {
            claro en los dos temas: el rojo de debajo no se aclara. */
         cream: color("--cream"),
 
+        /* Carbón de pizarra: las franjas oscuras de la portada. Es oscuro en
+           los dos temas, así que encima siempre va texto claro. */
+        char: color("--char"),
+
         /* ─── Superficies ─── */
         page: color("--page"),
         surface: color("--surface"), // tarjetas

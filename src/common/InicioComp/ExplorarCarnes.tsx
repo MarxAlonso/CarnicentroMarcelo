@@ -51,7 +51,7 @@ export const ExplorarCarnes: React.FC<ExplorarCarnesProps> = ({ category, setCat
       <div className="space-y-4 text-center">
         <div className="mb-2 flex items-center justify-center gap-3">
           <GiCow className="text-4xl text-brand-ink" aria-hidden="true" />
-          <h2 className="text-4xl font-bold text-brand-ink md:text-5xl">Explora Nuestras Carnes</h2>
+          <h2 className="font-display text-4xl font-bold uppercase text-brand-ink md:text-5xl">Explora nuestras carnes</h2>
           <GiMeat className="text-4xl text-brand-ink" aria-hidden="true" />
         </div>
         <p className="mx-auto max-w-2xl text-lg text-ink-muted md:text-xl">

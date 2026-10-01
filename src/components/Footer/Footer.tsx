@@ -6,7 +6,8 @@ import { MdPhone } from 'react-icons/md';
 //MdEmail, MdLocationOn
 export const Footer = () => {
     return (
-        <footer className="bg-surface-warm pt-12 pb-6">
+        <footer className="bg-surface-warm pb-6">
+            <div className="mantel mb-12" aria-hidden="true" />
             <div className="mx-auto w-full max-w-site px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Logo y descripción */}

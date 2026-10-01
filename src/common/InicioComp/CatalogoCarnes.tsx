@@ -4,7 +4,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { StaticImageData } from 'next/image';
-import { GiCow, GiPig, GiMeat, GiWeight, GiPriceTag } from 'react-icons/gi';
+import { GiCow, GiPig, GiMeat } from 'react-icons/gi';
+import { FaWhatsapp } from 'react-icons/fa';
+import { whatsappUrl } from '@/lib/site';
 import lomofino from '../../assets/catalogoinicio/lomofino.webp';
 import chuletacerdo from '../../assets/catalogoinicio/chuletacerdo.webp';
 import bife from '../../assets/catalogoinicio/bife.webp';
@@ -125,7 +127,26 @@ export const CatalogoCarnes = () => {
         filtroActivo === 'todos' ? productos : productos.filter((p) => p.tipo === filtroActivo);
 
     return (
-        <div className="bg-surface-warm/10 px-4 py-12 sm:px-6 lg:px-8">
+        <section
+            aria-labelledby="catalogo-titulo"
+            className="bg-surface-warm/10 px-4 py-20 sm:px-6 lg:px-8"
+        >
+            <div data-reveal="up" className="mx-auto mb-10 max-w-site text-center">
+                <p className="mb-2 text-sm font-bold uppercase tracking-widest text-brand-ink">
+                    Del mostrador a tu mesa
+                </p>
+                <h2
+                    id="catalogo-titulo"
+                    className="font-display text-4xl font-bold uppercase leading-tight text-ink md:text-5xl"
+                >
+                    Los cortes <span className="text-brand-ink">más pedidos</span>
+                </h2>
+                <p className="mx-auto mt-4 max-w-2xl text-lg text-ink-muted">
+                    Precio por kilo de nuestros cortes de res y cerdo con más salida. Pídelos
+                    directo por WhatsApp o entra a la ficha para ver cómo cocinarlos.
+                </p>
+            </div>
+
             <div className="mx-auto mb-8 max-w-site">
                 <div className="flex flex-wrap justify-center gap-4">
                     {filtros.map((filtro) => {
@@ -154,44 +175,76 @@ export const CatalogoCarnes = () => {
             <div className="mx-auto max-w-site">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {productosFiltrados.map((producto) => (
-                        <Link
+                        // La tarjeta dejó de ser un único enlace: ahora lleva dos
+                        // destinos (la ficha y WhatsApp) y un `<a>` no puede ir
+                        // dentro de otro.
+                        <article
                             // El filtro entra en el key: al cambiarlo React monta nodos
                             // nuevos y la animación de entrada vuelve a ejecutarse.
                             key={`${filtroActivo}-${producto.id}`}
-                            href={producto.ruta}
-                            className="card-in group block cursor-pointer overflow-hidden rounded-xl bg-surface text-left shadow-lg transition-transform duration-200 hover:-translate-y-1.5"
+                            className="card-in group flex flex-col overflow-hidden rounded-xl border border-line bg-surface shadow-lg transition-transform duration-200 hover:-translate-y-1.5"
                         >
-                            <div className="h-56 overflow-hidden bg-surface-2">
+                            <Link href={producto.ruta} className="relative block h-56 overflow-hidden bg-surface-2">
                                 <Image
                                     src={producto.imagen}
-                                    alt={producto.nombre}
+                                    alt={`${producto.nombre}, precio por kilo`}
                                     width={400}
                                     height={224}
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                 />
-                            </div>
-
-                            <div className="p-4">
-                                <h3 className="text-xl font-semibold text-ink transition-colors group-hover:text-brand-ink">
-                                    {producto.nombre}
-                                </h3>
-                                <div className="mt-2 flex items-center gap-2 text-brand-ink">
-                                    <GiPriceTag aria-hidden="true" />
-                                    <span className="font-medium tabular-nums">
+                                {/* Etiqueta de precio como la que se pincha en la
+                                    pieza del mostrador, con su agujero y todo. */}
+                                <span className="absolute left-0 top-4 flex items-center gap-2 rounded-r-full bg-brand py-1.5 pl-3 pr-4 text-white shadow-lg">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-cream" aria-hidden="true" />
+                                    <span className="font-display text-xl font-bold tabular-nums leading-none">
                                         S/ {producto.precio.toFixed(2)}
                                     </span>
-                                </div>
-                                <div className="mt-1 flex items-center gap-2 text-ink-muted">
-                                    <GiWeight aria-hidden="true" />
-                                    <span>{producto.peso}</span>
+                                    <span className="text-xs font-semibold uppercase text-cream">/ kg</span>
+                                </span>
+                            </Link>
+
+                            <div className="flex flex-1 flex-col p-4">
+                                <h3 className="text-xl font-semibold text-ink">
+                                    <Link href={producto.ruta} className="transition-colors hover:text-brand-ink">
+                                        {producto.nombre}
+                                    </Link>
+                                </h3>
+                                <p className="mt-1 flex-1 text-sm text-ink-muted">{producto.descripcion}</p>
+
+                                <div className="mt-4 flex items-center gap-2">
+                                    <a
+                                        href={whatsappUrl(`Hola, quiero pedir ${producto.nombre}. ¿Está disponible?`)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`Pedir ${producto.nombre} por WhatsApp`}
+                                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-bold text-[#06280f] transition-colors hover:bg-[#3be37a]"
+                                    >
+                                        <FaWhatsapp className="text-lg" aria-hidden="true" />
+                                        Pedir
+                                    </a>
+                                    <Link
+                                        href={producto.ruta}
+                                        aria-label={`Ver la ficha de ${producto.nombre}`}
+                                        className="inline-flex flex-1 items-center justify-center rounded-full border border-brand px-4 py-2 text-sm font-bold text-brand-ink transition-colors hover:bg-brand hover:text-white"
+                                    >
+                                        Ver corte
+                                    </Link>
                                 </div>
                             </div>
-                        </Link>
+                        </article>
                     ))}
                 </div>
-            </div>
 
-        </div>
+                <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 font-semibold text-brand-ink">
+                    <Link href="/carne-de-res" className="underline underline-offset-4 hover:text-brand-ink-deep">
+                        Ver todos los cortes de res →
+                    </Link>
+                    <Link href="/carne-de-cerdo" className="underline underline-offset-4 hover:text-brand-ink-deep">
+                        Ver todos los cortes de cerdo →
+                    </Link>
+                </div>
+            </div>
+        </section>
     );
 };
