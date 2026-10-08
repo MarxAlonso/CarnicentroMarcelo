@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import { GiCow, GiPig, GiMeat } from 'react-icons/gi';
 import { MdPhone } from 'react-icons/md';
 //MdEmail, MdLocationOn
@@ -24,17 +24,6 @@ export const Footer = () => {
                             />
                         </div>
                         <p className="text-ink-muted">Ofrecemos la mejor calidad en carnes de res y cerdo. Nuestra experiencia y dedicación nos respaldan para brindarle los mejores cortes.</p>
-                        <div className="flex space-x-4">
-                            <a href="#" className="text-brand-ink hover:text-brand-ink-deep transition-colors">
-                                <FaFacebookF className="text-xl" />
-                            </a>
-                            <a href="#" className="text-brand-ink hover:text-brand-ink-deep transition-colors">
-                                <FaTwitter className="text-xl" />
-                            </a>
-                            <a href="#" className="text-brand-ink hover:text-brand-ink-deep transition-colors">
-                                <FaInstagram className="text-xl" />
-                            </a>
-                        </div>
                     </div>
 
                     {/* Enlaces rápidos */}
@@ -103,6 +92,11 @@ export const Footer = () => {
                 <div className="mt-8 pt-8 border-t border-line">
                     <p className="text-center text-ink-muted">
                         © {new Date().getFullYear()} Desarrollado por Marx Chipana - Todos los derechos reservados
+                    </p>
+                    <p className="mt-2 text-center text-sm">
+                        <Link href="/politica-de-privacidad" className="text-ink-muted underline-offset-2 hover:text-brand-ink hover:underline">
+                            Política de privacidad
+                        </Link>
                     </p>
                 </div>
             </div>

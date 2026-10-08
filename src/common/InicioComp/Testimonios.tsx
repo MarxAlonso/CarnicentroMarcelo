@@ -1,33 +1,10 @@
 import React from 'react';
-import { FaQuoteLeft, FaStar } from 'react-icons/fa';
+import { FaGoogle, FaQuoteLeft } from 'react-icons/fa';
+import { RESENAS_GOOGLE, type ResenaGoogle } from '@/content/resenas';
 
 /** Componente de servidor: sin framer-motion no necesita JavaScript en cliente. */
 
-interface Testimonio {
-  nombre: string;
-  comentario: string;
-  estrellas: number;
-}
-
-const testimonios: Testimonio[] = [
-  {
-    nombre: "Roberto García",
-    comentario: "La mejor carnicería de la zona. El lomo fino siempre está en su punto y la atención de Marcelo es de primera. Muy recomendado.",
-    estrellas: 5
-  },
-  {
-    nombre: "Lucía Fernández",
-    comentario: "Compré panceta para un asado familiar y quedó espectacular. Se nota que es carne fresca de buena crianza. ¡Volveré pronto!",
-    estrellas: 5
-  },
-  {
-    nombre: "Andrés Mendoza",
-    comentario: "Excelente variedad de cortes de res. Me asesoraron sobre qué corte llevar para un guiso y el resultado fue delicioso. Gran calidad.",
-    estrellas: 5
-  }
-];
-
-const TestimonioCard: React.FC<{ testimonio: Testimonio }> = ({ testimonio }) => {
+const TestimonioCard: React.FC<{ testimonio: ResenaGoogle }> = ({ testimonio }) => {
   return (
     <div
       data-reveal="scale"
@@ -36,19 +13,19 @@ const TestimonioCard: React.FC<{ testimonio: Testimonio }> = ({ testimonio }) =>
       <div className="absolute right-10 top-0 flex h-16 w-16 -translate-y-1/2 transform items-center justify-center rounded-2xl bg-brand shadow-lg transition-transform group-hover:-rotate-6">
         <FaQuoteLeft className="text-2xl text-white" />
       </div>
-      <div className="mb-4 flex gap-1" aria-label={`${testimonio.estrellas} de 5 estrellas`}>
-        {Array.from({ length: testimonio.estrellas }, (_, i) => (
-          <FaStar key={i} className="text-[#FFD700]" aria-hidden="true" />
-        ))}
-      </div>
       <p className="mb-6 text-lg italic leading-relaxed text-ink-muted">
-        &ldquo;{testimonio.comentario}&rdquo;
+        &ldquo;{testimonio.texto}&rdquo;
       </p>
       <div className="flex items-center gap-4">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-warm font-bold text-brand-ink">
-          {testimonio.nombre.charAt(0)}
+          {testimonio.autor.charAt(0)}
         </div>
-        <p className="text-lg font-bold text-ink">{testimonio.nombre}</p>
+        <div>
+          <p className="text-lg font-bold text-ink">{testimonio.autor}</p>
+          <p className="flex items-center gap-1.5 text-sm text-ink-subtle">
+            <FaGoogle aria-hidden="true" /> Reseña en Google · {testimonio.antiguedad}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -72,17 +49,17 @@ const Testimonios: React.FC = () => {
           </h2>
         </div>
 
-        <div data-reveal-group="" className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {testimonios.map((t) => (
-            <TestimonioCard key={t.nombre} testimonio={t} />
+        <div data-reveal-group="" className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+          {RESENAS_GOOGLE.map((t) => (
+            <TestimonioCard key={t.autor} testimonio={t} />
           ))}
         </div>
 
         <div data-reveal="fade" className="mt-20 text-center">
           <div className="inline-block rounded-full border border-white/20 bg-surface/10 px-6 py-3 backdrop-blur-sm">
             <p className="text-lg font-medium text-white">
-              Más de <span className="font-bold text-cream">500+ clientes</span> satisfechos cada
-              mes.
+              Opiniones publicadas por nuestros clientes en{" "}
+              <span className="font-bold text-cream">Google</span>.
             </p>
           </div>
         </div>

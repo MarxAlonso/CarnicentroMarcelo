@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/nosotros"), lastModified: hoy, changeFrequency: "monthly", priority: 0.6 },
     { url: url("/contacto"), lastModified: hoy, changeFrequency: "monthly", priority: 0.7 },
     { url: url("/blog"), lastModified: hoy, changeFrequency: "weekly", priority: 0.8 },
+    { url: url("/politica-de-privacidad"), changeFrequency: "yearly", priority: 0.2 },
   ];
 
   // Los pilares son el destino de todo el enlazado interno: prioridad alta.

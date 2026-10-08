@@ -84,6 +84,15 @@ export const DELIVERY = {
 /** Publicadas también en el pilar de delivery: si cambian, cambian aquí. */
 export const FORMAS_DE_PAGO = ["Efectivo", "Yape", "Plin"] as const;
 
+/**
+ * Cuenta de AdSense.
+ *
+ * De aquí salen el script de anuncios del layout y el `/ads.txt`. Si se cambia
+ * de cuenta, se cambia este valor y nada más. Va sin el prefijo `ca-`: el
+ * script lo antepone, el `ads.txt` lo usa tal cual.
+ */
+export const ADSENSE_PUB_ID = "pub-7330512160006531";
+
 export function whatsappUrl(mensaje?: string) {
   const base = `https://wa.me/${SITE.whatsapp}`;
   return mensaje ? `${base}?text=${encodeURIComponent(mensaje)}` : base;

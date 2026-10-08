@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer/Footer";
 import { PedidoWhatsApp } from "@/common/InicioComp/PedidoWhatsApp";
 import Chatbot from "@/components/Chatbot/Chatbot";
 import { WhatsAppFlotante } from "@/components/WhatsApp/WhatsAppFlotante";
-import { SITE } from "@/lib/site";
+import { ADSENSE_PUB_ID, SITE } from "@/lib/site";
 import {
   buildLocalBusinessSchema,
   buildOrganizationSchema,
@@ -76,6 +76,15 @@ export const metadata: Metadata = {
   },
 };
 
+/** Países donde Google exige consentimiento previo para cookies de anuncios. */
+const REGIONES_CONSENTIMIENTO = [
+  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IS", "IE",
+  "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+  "GB", "CH",
+];
+
+const CONSENT_SCRIPT = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:${JSON.stringify(REGIONES_CONSENTIMIENTO)},wait_for_update:500});`;
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -103,6 +112,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Aplica el tema antes del primer pintado. Sin esto la pagina
             parpadea en blanco antes de pasar a oscuro. */}
         <script dangerouslySetInnerHTML={{ __html: TEMA_SCRIPT }} />
+        {/* Modo de consentimiento de Google. Tiene que correr antes que GA4 y
+            AdSense, por eso va inline y no con <Script lazyOnload>. En el EEE,
+            Reino Unido y Suiza todo arranca denegado hasta que el visitante
+            responde al aviso de cookies (el CMP de AdSense, que se activa en
+            "Privacidad y mensajes"). En Perú no cambia nada. */}
+        <script dangerouslySetInnerHTML={{ __html: CONSENT_SCRIPT }} />
       </head>
       <body className="bg-page text-ink antialiased">
         <a
@@ -138,7 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="lazyOnload"
           async
           crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7330512160006531"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUB_ID}`}
         />
       </body>
     </html>

@@ -96,7 +96,7 @@ export const POSTS: Post[] = [
     pilar: "res",
     estado: "publicado",
     categoria: "Cocina",
-    publicado: "2026-11-24",
+    publicado: "2026-09-13",
   },
   {
     slug: "cortes-de-carne-de-res-peru",
@@ -108,7 +108,7 @@ export const POSTS: Post[] = [
     pilar: "res",
     estado: "publicado",
     categoria: "Guías",
-    publicado: "2026-12-01",
+    publicado: "2026-09-13",
   },
   {
     slug: "tipos-de-carne-molida",
@@ -120,7 +120,7 @@ export const POSTS: Post[] = [
     pilar: "res",
     estado: "publicado",
     categoria: "Guías",
-    publicado: "2026-12-22",
+    publicado: "2026-09-13",
   },
 
   // ─────────── Planificados · pilar CERDO ───────────
@@ -158,7 +158,7 @@ export const POSTS: Post[] = [
     pilar: "cerdo",
     estado: "publicado",
     categoria: "Guías",
-    publicado: "2026-12-08",
+    publicado: "2026-09-13",
   },
   {
     slug: "cerdo-para-navidad-lima",
